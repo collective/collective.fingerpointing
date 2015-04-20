@@ -1,0 +1,95 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:zcml="http://namespaces.zope.org/zcml">
+
+  <!-- PluggableAuthService -->
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IUserLoggedInEvent"
+      handler=".pas_logger"
+      />
+
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IUserLoggedOutEvent"
+      handler=".pas_logger"
+      />
+
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IPrincipalCreatedEvent"
+      handler=".pas_logger"
+      />
+
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IPrincipalDeletedEvent"
+      handler=".pas_logger"
+      />
+
+  <!-- Archetypes -->
+  <subscriber
+      zcml:condition="installed Products.Archetypes"
+      for="Products.Archetypes.interfaces.IBaseObject
+           zope.lifecycleevent.IObjectCreatedEvent"
+      handler=".lifecycle_logger"
+      />
+
+  <subscriber
+      zcml:condition="installed Products.Archetypes"
+      for="Products.Archetypes.interfaces.IBaseObject
+           zope.lifecycleevent.IObjectModifiedEvent"
+      handler=".lifecycle_logger"
+      />
+
+  <subscriber
+      zcml:condition="installed Products.Archetypes"
+      for="Products.Archetypes.interfaces.IBaseObject
+           zope.lifecycleevent.IObjectRemovedEvent"
+      handler=".lifecycle_logger"
+      />
+
+  <!-- Dexterity -->
+  <subscriber
+      zcml:condition="installed plone.app.dexterity"
+      for="plone.dexterity.interfaces.IDexterityContent
+           zope.lifecycleevent.IObjectCreatedEvent"
+      handler=".lifecycle_logger"
+      />
+
+  <subscriber
+      zcml:condition="installed plone.app.dexterity"
+      for="plone.dexterity.interfaces.IDexterityContent
+           zope.lifecycleevent.IObjectModifiedEvent"
+      handler=".lifecycle_logger"
+      />
+
+  <subscriber
+      zcml:condition="installed plone.app.dexterity"
+      for="plone.dexterity.interfaces.IDexterityContent
+           zope.lifecycleevent.IObjectRemovedEvent"
+      handler=".lifecycle_logger"
+      />
+
+  <!-- plone.app.registry -->
+  <subscriber
+      for="plone.registry.interfaces.IRecordModifiedEvent"
+      handler=".registry_logger"
+      />
+
+  <!-- plone.app.iterate -->
+  <subscriber
+      zcml:condition="installed plone.app.iterate"
+      for="plone.app.iterate.interfaces.ICheckoutEvent"
+      handler=".iterate_logger"
+      />
+
+  <subscriber
+      zcml:condition="installed plone.app.iterate"
+      for="plone.app.iterate.interfaces.ICheckinEvent"
+      handler=".iterate_logger"
+      />
+
+  <subscriber
+      zcml:condition="installed plone.app.iterate"
+      for="plone.app.iterate.interfaces.ICancelCheckoutEvent"
+      handler=".iterate_logger"
+      />
+
+</configure>
