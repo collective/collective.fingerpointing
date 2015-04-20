@@ -1,4 +1,4 @@
 <?xml version="1.0"?>
 <registry>
-  <records interface="collective.fingerpointing.controlpanel.IFingerPointingSettings" />
+  <records interface="collective.fingerpointing.interfaces.IFingerPointingSettings" />
 </registry>
