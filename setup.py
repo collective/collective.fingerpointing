@@ -43,7 +43,7 @@ setup(
         'plone.app.registry',
         'plone.directives.form',
         'plone.registry',
-        'Products.CMFPlone >=4.3',
+        'Products.CMFPlone >=4.2',
         'Products.CMFQuickInstallerTool',
         'Products.GenericSetup',
         'Products.PluggableAuthService',
