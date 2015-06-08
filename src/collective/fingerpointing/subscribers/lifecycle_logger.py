@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.config import AUDIT_MESSAGE
-from collective.fingerpointing.config import BASE_REGISTRY
+from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import logger
 from collective.fingerpointing.utils import get_request_information
 from plone import api
@@ -13,7 +13,8 @@ def lifecycle_logger(obj, event):
     """Log content type life cycle events like object creation,
     modification and removal.
     """
-    if api.portal.get_registry_record(BASE_REGISTRY + 'audit_lifecycle'):
+    record = IFingerPointingSettings.__identifier__ + '.audit_lifecycle'
+    if api.portal.get_registry_record(record):
         user, ip = get_request_information()
 
         if IObjectCreatedEvent.providedBy(event):

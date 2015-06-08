@@ -1,8 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective.fingerpointing.config import BASE_REGISTRY
 from collective.fingerpointing.config import PROJECTNAME
-from collective.fingerpointing.controlpanel import IFingerPointingSettings
 from collective.fingerpointing.interfaces import IBrowserLayer
+from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import logout
@@ -82,10 +81,10 @@ class RegistryTestCase(unittest.TestCase):
             qi.uninstallProducts(products=[PROJECTNAME])
 
         records = [
-            BASE_REGISTRY + 'audit_pas',
-            BASE_REGISTRY + 'audit_lifecycle',
-            BASE_REGISTRY + 'audit_registry',
-            BASE_REGISTRY + 'audit_iterate',
+            IFingerPointingSettings.__identifier__ + '.audit_pas',
+            IFingerPointingSettings.__identifier__ + '.audit_lifecycle',
+            IFingerPointingSettings.__identifier__ + '.audit_registry',
+            IFingerPointingSettings.__identifier__ + '.audit_iterate',
         ]
 
         for r in records:

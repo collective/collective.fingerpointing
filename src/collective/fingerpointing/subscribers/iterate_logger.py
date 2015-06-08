@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.config import AUDIT_MESSAGE
-from collective.fingerpointing.config import BASE_REGISTRY
+from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import logger
 from collective.fingerpointing.utils import get_request_information
 from plone import api
@@ -13,7 +13,8 @@ def iterate_logger(event):
     """Log events like content editing checkouts and checkins, if
     plone.app.iterate is installed.
     """
-    if api.portal.get_registry_record(BASE_REGISTRY + 'audit_iterate'):
+    record = IFingerPointingSettings.__identifier__ + '.audit_iterate'
+    if api.portal.get_registry_record(record):
         user, ip = get_request_information()
 
         if ICheckoutEvent.providedBy(event):
