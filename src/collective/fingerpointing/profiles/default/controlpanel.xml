@@ -9,7 +9,7 @@
         category="Products"
         condition_expr=""
         url_expr="string:${portal_url}/@@fingerpointing-settings"
-        icon_expr="string:${portal_url}/++resource++collective.fingerpointing/fingerpointing_icon.png"
+        icon_expr="string:${portal_url}/++resource++collective.fingerpointing/fingerpointing-icon.png"
         visible="True"
         i18n:attributes="title">
       <permission>Manage portal</permission>
