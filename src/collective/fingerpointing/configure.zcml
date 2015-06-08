@@ -4,6 +4,8 @@
 
   <five:registerPackage package="." />
 
+  <include package="Products.CMFCore" file="permissions.zcml" />
+
   <include package=".browser" />
   <include package=".subscribers" />
 
