@@ -1,3 +1,9 @@
+.. image:: docs/fingerpointing.png
+    :align: left
+    :alt: Finger Pointing
+    :height: 100px
+    :width: 100px
+
 ***************
 Finger Pointing
 ***************
@@ -52,4 +58,21 @@ Check the box next to ``collective.fingerpointing`` and click the 'Activate' but
 Usage
 -----
 
-TBD.
+Go to 'Site Setup' and select 'Finger Pointing' and enable the events you want to keep an eye on.
+
+.. figure:: docs/controlpanel.png
+    :align: center
+    :height: 600px
+    :width: 768px
+
+    The Finger Pointing control panel configlet.
+
+Finger Pointing will start logging the selected events::
+
+    # bin/instance fg
+    2015-06-08 11:25:08 INFO ZServer HTTP server started at Mon Jun  8 11:25:08 2015
+    Hostname: 0.0.0.0
+    Port: 8080
+    2015-06-08 11:25:17 INFO Zope Ready to handle requests
+    2015-06-08 11:30:03 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logged out
+    2015-06-08 11:30:15 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logged in
