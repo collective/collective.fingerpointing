@@ -4,6 +4,7 @@ from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import logger
 from collective.fingerpointing.utils import get_request_information
 from plone import api
+from plone.api.exc import InvalidParameterError
 from plone.app.iterate.interfaces import ICancelCheckoutEvent
 from plone.app.iterate.interfaces import ICheckinEvent
 from plone.app.iterate.interfaces import ICheckoutEvent
@@ -13,8 +14,15 @@ def iterate_logger(event):
     """Log events like content editing checkouts and checkins, if
     plone.app.iterate is installed.
     """
-    record = IFingerPointingSettings.__identifier__ + '.audit_iterate'
-    if api.portal.get_registry_record(record):
+    # subscriber is registered even if package has not yet been installed
+    # ignore any error caused by missing registry records
+    try:
+        record = IFingerPointingSettings.__identifier__ + '.audit_iterate'
+        audit_iterate = api.portal.get_registry_record(record)
+    except InvalidParameterError:
+        return
+
+    if audit_iterate:
         user, ip = get_request_information()
 
         if ICheckoutEvent.providedBy(event):

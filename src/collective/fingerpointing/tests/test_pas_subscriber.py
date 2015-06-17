@@ -1,6 +1,12 @@
 # -*- coding: utf-8 -*-
+from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from logging import INFO
+from plone import api
+from Products.PlonePAS.events import UserLoggedInEvent
+from Products.PlonePAS.events import UserLoggedOutEvent
+from Products.PluggableAuthService.events import PrincipalCreated
+from Products.PluggableAuthService.events import PrincipalDeleted
 from testfixtures import LogCapture
 from zope.event import notify
 
@@ -17,7 +23,6 @@ class PasSubscribersTestCase(unittest.TestCase):
         self.request = self.layer['request']
 
     def test_user_login(self):
-        from Products.PlonePAS.events import UserLoggedInEvent
         event = UserLoggedInEvent(self.request)
         with LogCapture(level=INFO) as log:
             notify(event)
@@ -26,7 +31,6 @@ class PasSubscribersTestCase(unittest.TestCase):
             )
 
     def test_user_logout(self):
-        from Products.PlonePAS.events import UserLoggedOutEvent
         event = UserLoggedOutEvent(self.request)
         with LogCapture(level=INFO) as log:
             notify(event)
@@ -35,7 +39,6 @@ class PasSubscribersTestCase(unittest.TestCase):
             )
 
     def test_user_created(self):
-        from Products.PluggableAuthService.events import PrincipalCreated
         event = PrincipalCreated('foo')
         with LogCapture(level=INFO) as log:
             notify(event)
@@ -44,10 +47,27 @@ class PasSubscribersTestCase(unittest.TestCase):
             )
 
     def test_user_removed(self):
-        from Products.PluggableAuthService.events import PrincipalDeleted
         event = PrincipalDeleted('foo')
         with LogCapture(level=INFO) as log:
             notify(event)
             log.check(
                 ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=user removed object=foo'),
             )
+
+    def test_susbcriber_ignored_when_package_not_installed(self):
+        # authentication events should not raise errors
+        # if package is not installed
+        portal = self.layer['portal']
+        qi = portal['portal_quickinstaller']
+
+        with api.env.adopt_roles(['Manager']):
+            qi.uninstallProducts(products=[PROJECTNAME])
+
+        event = UserLoggedInEvent(self.request)
+        notify(event)
+        event = UserLoggedOutEvent(self.request)
+        notify(event)
+        event = PrincipalCreated('foo')
+        notify(event)
+        event = PrincipalDeleted('foo')
+        notify(event)

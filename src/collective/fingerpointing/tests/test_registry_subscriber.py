@@ -1,8 +1,9 @@
 # -*- coding: utf-8 -*-
-from collective.fingerpointing.interfaces import IFingerPointingSettings
+from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from logging import INFO
 from plone import api
+from plone.app.discussion.interfaces import IDiscussionSettings
 from testfixtures import LogCapture
 
 import unittest
@@ -19,8 +20,19 @@ class RegistrySubscribersTestCase(unittest.TestCase):
 
     def test_record_modified(self):
         with LogCapture(level=INFO) as log:
-            record = IFingerPointingSettings.__identifier__ + '.audit_pas'
+            record = IDiscussionSettings.__identifier__ + '.globally_enabled'
             api.portal.set_registry_record(record, False)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=record modified object=<Record collective.fingerpointing.interfaces.IFingerPointingSettings.audit_pas> value=False'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=record modified object=<Record plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled> value=False'),
             )
+
+    def test_susbcriber_ignored_when_package_not_installed(self):
+        # registry events should not raise errors
+        # if package is not installed
+        qi = self.portal['portal_quickinstaller']
+
+        with api.env.adopt_roles(['Manager']):
+            qi.uninstallProducts(products=[PROJECTNAME])
+
+        record = IDiscussionSettings.__identifier__ + '.globally_enabled'
+        api.portal.set_registry_record(record, False)
