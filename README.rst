@@ -18,17 +18,14 @@ Keep track of different events and write them down to an audit log.
 Mostly Harmless
 ===============
 
-.. image:: https://secure.travis-ci.org/collective/collective.fingerpointing.png?branch=master
-    :alt: Travis CI badge
+.. image:: http://img.shields.io/pypi/v/collective.fingerpointing.svg
+   :target: https://pypi.python.org/pypi/collective.fingerpointing
+
+.. image:: https://img.shields.io/travis/collective/collective.fingerpointing/master.svg
     :target: http://travis-ci.org/collective/collective.fingerpointing
 
-.. image:: https://coveralls.io/repos/collective/collective.fingerpointing/badge.png?branch=master
-    :alt: Coveralls badge
+.. image:: https://img.shields.io/coveralls/collective/collective.fingerpointing/master.svg
     :target: https://coveralls.io/r/collective/collective.fingerpointing
-
-.. image:: https://pypip.in/d/collective.fingerpointing/badge.png
-    :alt: Downloads
-    :target: https://pypi.python.org/pypi/collective.fingerpointing/
 
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
