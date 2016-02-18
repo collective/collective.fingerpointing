@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.config import PROJECTNAME
+from collective.fingerpointing.interfaces import IBrowserLayer
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from plone.browserlayer.utils import registered_layers
 
@@ -20,8 +21,7 @@ class InstallTestCase(unittest.TestCase):
         self.assertTrue(qi.isProductInstalled(PROJECTNAME))
 
     def test_addon_layer(self):
-        layers = [l.getName() for l in registered_layers()]
-        self.assertIn('IBrowserLayer', layers)
+        self.assertIn(IBrowserLayer, registered_layers())
 
 
 class UninstallTestCase(unittest.TestCase):
@@ -39,5 +39,4 @@ class UninstallTestCase(unittest.TestCase):
         self.assertFalse(self.qi.isProductInstalled(PROJECTNAME))
 
     def test_addon_layer_removed(self):
-        layers = [l.getName() for l in registered_layers()]
-        self.assertNotIn('IBrowserLayer', layers)
+        self.assertNotIn(IBrowserLayer, registered_layers())

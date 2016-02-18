@@ -1,6 +1,11 @@
 # -*- coding: utf-8 -*-
+"""Tests for lifecycle subscriber.
+
+Log output is slightly different among Plone 4 and Plone 5.
+"""
 from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.testing import INTEGRATION_TESTING
+from collective.fingerpointing.testing import PLONE_VERSION
 from logging import INFO
 from plone import api
 from Products.PlonePAS.events import UserLoggedInEvent
@@ -23,12 +28,25 @@ class PasSubscribersTestCase(unittest.TestCase):
         self.request = self.layer['request']
 
     def test_user_login(self):
+        if PLONE_VERSION >= '5.0':
+            expected = (
+                ('plone.protect', 'INFO', 'auto rotating keyring _system'),
+                ('plone.protect', 'INFO', 'auto rotating keyring _forms'),
+                ('plone.protect', 'INFO', 'auto rotating keyring _anon'),
+                ('plone.protect', 'INFO', 'auto rotating keyring _system'),
+                ('plone.protect', 'INFO', 'auto rotating keyring _forms'),
+                ('plone.protect', 'INFO', 'auto rotating keyring _anon'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logged in '),
+            )
+        else:
+            expected = (
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logged in '),
+            )
+
         event = UserLoggedInEvent(self.request)
         with LogCapture(level=INFO) as log:
             notify(event)
-            log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logged in '),
-            )
+            log.check(*expected)
 
     def test_user_logout(self):
         event = UserLoggedOutEvent(self.request)
