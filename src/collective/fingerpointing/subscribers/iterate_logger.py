@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.config import AUDIT_MESSAGE
 from collective.fingerpointing.interfaces import IFingerPointingSettings
-from collective.fingerpointing.logger import logger
+from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
 from plone.api.exc import InvalidParameterError
@@ -38,4 +38,4 @@ def iterate_logger(event):
             extras = 'object={0} baseline={1}'.format(
                 event.object, event.baseline)
 
-        logger.info(AUDIT_MESSAGE.format(user, ip, action, extras))
+        log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
