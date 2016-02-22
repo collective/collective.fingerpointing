@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from plone.directives import form
 from collective.fingerpointing import _
+from plone.directives import form
 from zope import schema
 from zope.interface import Interface
 

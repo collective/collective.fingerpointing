@@ -9,6 +9,7 @@ import os.path
 import time
 import zc.lockfile
 
+
 # by default, the audit log will use the same location used for the event log
 eventlog = getattr(getConfiguration(), 'eventlog', None)
 

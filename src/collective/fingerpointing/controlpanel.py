@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from plone.app.registry.browser import controlpanel
 from collective.fingerpointing import _
 from collective.fingerpointing.interfaces import IFingerPointingSettings
+from plone.app.registry.browser import controlpanel
 
 
 class FingerPointingSettingsEditForm(controlpanel.RegistryEditForm):
