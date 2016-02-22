@@ -54,6 +54,7 @@ setup(
         'zope.interface',
         'zope.lifecycleevent',
         'zope.schema',
+        'zc.lockfile',
     ],
     extras_require={
         'test': [
