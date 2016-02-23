@@ -73,3 +73,6 @@ Finger Pointing will start logging the selected events::
     2015-06-08 11:25:17 INFO Zope Ready to handle requests
     2015-06-08 11:30:03 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logged out
     2015-06-08 11:30:15 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logged in
+
+These event's are also available trough `var/log/audit.log` and through the `@@fingerpointing-log` view.
+The `@@fingerpointing-log` is also linked to portal_actions for users with the permission.

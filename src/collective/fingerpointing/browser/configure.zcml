@@ -16,4 +16,11 @@
       permission="cmf.ManagePortal"
       />
 
+  <browser:page
+      name="fingerpointing-log"
+      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      class="collective.fingerpointing.browser.logview.LogView"
+      permission="cmf.ManagePortal"
+      />
+
 </configure>

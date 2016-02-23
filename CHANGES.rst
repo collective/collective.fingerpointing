@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Add a view for the audit.log file `@@fingerpointing-log` and link it to portal_actions.
+  [pcdummy]
+
 - Avoid `ComponentLookupError` when removing a Plone site (fixes `#2`_).
   [hvelarde]
 
@@ -11,7 +14,7 @@ Changelog
   [vangheem]
 
 - Audit information is now logged into a file named `audit.log` instead of inside the standard `event.log`.
-  [jochum]
+  [pcdummy]
 
 - Package is now compatible with Plone 5.
   [hvelarde]
