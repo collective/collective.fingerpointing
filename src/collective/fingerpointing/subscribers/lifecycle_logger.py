@@ -5,6 +5,7 @@ from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
 from plone.api.exc import InvalidParameterError
+from zope.component import ComponentLookupError
 from zope.lifecycleevent import IObjectCreatedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
 from zope.lifecycleevent import IObjectRemovedEvent
@@ -19,7 +20,7 @@ def lifecycle_logger(obj, event):
     try:
         record = IFingerPointingSettings.__identifier__ + '.audit_lifecycle'
         audit_lifecycle = api.portal.get_registry_record(record)
-    except InvalidParameterError:
+    except (ComponentLookupError, InvalidParameterError):
         return
 
     if audit_lifecycle:

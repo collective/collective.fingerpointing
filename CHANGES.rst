@@ -4,7 +4,10 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
-- Remove unused plone.directives.form dependency which pulled in grok packages.
+- Avoid `ComponentLookupError` when removing a Plone site (fixes `#2`_).
+  [hvelarde]
+
+- Remove unused plone.directives.form dependency which pulled in Grok packages.
   [vangheem]
 
 - Audit information is now logged into a file named `audit.log` instead of inside the standard `event.log`.
@@ -23,3 +26,4 @@ Changelog
 - Initial release.
 
 .. _`#1`: https://github.com/collective/collective.fingerpointing/issues/1
+.. _`#2`: https://github.com/collective/collective.fingerpointing/issues/2
