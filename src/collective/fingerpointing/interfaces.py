@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing import _
-from plone.directives import form
 from zope import schema
 from zope.interface import Interface
 
@@ -10,7 +9,7 @@ class IBrowserLayer(Interface):
     """A layer specific for this add-on product."""
 
 
-class IFingerPointingSettings(form.Schema):
+class IFingerPointingSettings(Interface):
 
     """Schema for the control panel form."""
 
