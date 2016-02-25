@@ -48,12 +48,13 @@ setup(
         'Products.GenericSetup',
         'Products.PluggableAuthService',
         'setuptools',
+        'zc.lockfile',
+        'zope.component',
         'zope.globalrequest',
         'zope.i18nmessageid',
         'zope.interface',
         'zope.lifecycleevent',
         'zope.schema',
-        'zc.lockfile',
     ],
     extras_require={
         'test': [
