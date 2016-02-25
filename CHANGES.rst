@@ -4,6 +4,9 @@ Changelog
 1.0a2 (unreleased)
 ------------------
 
+- Remove unused plone.directives.form dependency which pulled in grok packages.
+  [vangheem]
+
 - Audit information is now logged into a file named `audit.log` instead of inside the standard `event.log`.
   [jochum]
 
