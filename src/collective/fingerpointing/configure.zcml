@@ -1,16 +1,16 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:browser="http://namespaces.zope.org/browser">
+    xmlns:browser="http://namespaces.zope.org/browser"
+    xmlns:five="http://namespaces.zope.org/five">
 
   <five:registerPackage package="." />
 
   <include package="Products.CMFCore" file="permissions.zcml" />
 
   <permission
-    id="collective.fingerpointing.showlog"
-    title="collective.fingerpointing: Show the Log"
-    />
+      id="collective.fingerpointing.showlog"
+      title="collective.fingerpointing: Show the Log"
+      />
 
   <include package=".browser" />
   <include package=".subscribers" />

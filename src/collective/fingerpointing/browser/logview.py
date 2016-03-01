@@ -9,38 +9,6 @@ import os
 import os.path
 
 
-def tail(f, lines=20):
-    """ From:
-    http://stackoverflow.com/questions/136168/get-last-n-lines-of-a-file-with-python-similar-to-tail
-    """
-
-    total_lines_wanted = lines
-
-    BLOCK_SIZE = 1024
-    f.seek(0, os.SEEK_END)
-    block_end_byte = f.tell()
-    lines_to_go = total_lines_wanted
-    block_number = -1
-    blocks = []  # blocks of size BLOCK_SIZE, in reverse order starting
-    # from the end of the file
-    while lines_to_go > 0 and block_end_byte > 0:
-        if (block_end_byte - BLOCK_SIZE > 0):
-            # read the last block we haven't yet read
-            f.seek(block_number*BLOCK_SIZE, 2)
-            blocks.append(f.read(BLOCK_SIZE))
-        else:
-            # file too small, start from begining
-            f.seek(0, os.SEEK_SET)
-            # only read what was not read
-            blocks.append(f.read(block_end_byte))
-        lines_found = blocks[-1].count('\n')
-        lines_to_go -= lines_found
-        block_end_byte -= BLOCK_SIZE
-        block_number -= 1
-    all_read_text = ''.join(reversed(blocks))
-    return '\n'.join(all_read_text.splitlines()[-total_lines_wanted:])
-
-
 # by default, the audit log will use the same location used for the event log
 eventlog = getattr(getConfiguration(), 'eventlog', None)
 
@@ -54,10 +22,10 @@ else:
 
 
 class LogView(BrowserView):
+
     index = ViewPageTemplateFile('logview.pt')
 
     def __call__(self):
-
         self.show_all = False
         if 'show_all' in self.request.form:
             self.show_all = True
@@ -68,12 +36,29 @@ class LogView(BrowserView):
         return self.index()
 
     def label(self):
-        return _("Fingerpointing log view")
+        return _('Fingerpointing log view')
+
+    def tail(self, f, n=100):
+        """Return the last n lines of a file.
+        See: http://stackoverflow.com/a/280083/644075
+        """
+        assert n >= 0
+        pos, lines = n + 1, []
+        while len(lines) <= n:
+            try:
+                f.seek(-pos, 2)
+            except IOError:
+                f.seek(0)
+                break
+            finally:
+                lines = list(f)
+            pos *= 2
+        return lines[-n:]
 
     @property
     def logcontents(self):
         with open(logfile, 'r') as fp:
             if not self.show_all:
-                return tail(fp, 100)
+                return self.tail(fp)
             else:
                 return fp.read()

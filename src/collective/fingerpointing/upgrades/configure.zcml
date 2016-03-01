@@ -4,8 +4,6 @@
     xmlns:i18n="http://namespaces.zope.org/i18n"
     xmlns:gs="http://namespaces.zope.org/genericsetup">
 
-  <include file="profiles.zcml" />
-
   <gs:registerProfile
       name="1_to_2"
       title="Upgrade collective.fingerpointing GS profile to 2"
@@ -22,7 +20,8 @@
     <gs:upgradeDepends
         title="Add portal_actions action and rolemap"
         import_profile="collective.fingerpointing.upgrades:1_to_2"
-        run_deps="True"/>
+        run_deps="True"
+        />
 
   </gs:upgradeSteps>
 
