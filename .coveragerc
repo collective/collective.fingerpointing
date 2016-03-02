@@ -1,8 +1,7 @@
 [report]
 omit =
-    /home/*/.buildout/eggs/*
+    /home/*/eggs/*
+    /home/*/virtualenv/*
     /usr/*
     bin/test
-    buildout-cache/eggs/*
-    eggs/*
     parts/*
