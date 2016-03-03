@@ -23,6 +23,13 @@ class InstallTestCase(unittest.TestCase):
     def test_addon_layer(self):
         self.assertIn(IBrowserLayer, registered_layers())
 
+    def test_setup_permission(self):
+        permission = 'collective.fingerpointing: Setup'
+        roles = self.portal.rolesOfPermission(permission)
+        roles = [r['name'] for r in roles if r['selected']]
+        expected = ['Manager', 'Site Administrator']
+        self.assertListEqual(roles, expected)
+
 
 class UninstallTestCase(unittest.TestCase):
 
