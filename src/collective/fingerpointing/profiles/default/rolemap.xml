@@ -1,13 +1,13 @@
 <?xml version="1.0"?>
 <rolemap>
   <permissions>
-    <permission name="collective.fingerpointing: View Audit Log" acquire="False">
-      <role name="Manager" />
-      <role name="Site Administrator" />
-    </permission>
     <permission name="collective.fingerpointing: Setup" acquire="False">
       <role name="Manager"/>
       <role name="Site Administrator"/>
+    </permission>
+    <permission name="collective.fingerpointing: View Audit Log" acquire="False">
+      <role name="Manager" />
+      <role name="Site Administrator" />
     </permission>
   </permissions>
 </rolemap>
