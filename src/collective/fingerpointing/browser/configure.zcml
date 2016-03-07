@@ -20,7 +20,7 @@
       name="fingerpointing-audit-log"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class="collective.fingerpointing.browser.logview.LogView"
-      permission="cmf.ManagePortal"
+      permission="collective.fingerpointing.viewauditlog"
       />
 
 </configure>
