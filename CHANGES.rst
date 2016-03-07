@@ -7,6 +7,9 @@ Changelog
 - Add a view for the audit.log file `@@fingerpointing-log` and link it to portal_actions.
   [pcdummy]
 
+- Make control panel configlet accesible to Site Administrator role (closes `#18`_).
+  [hvelarde]
+
 - Avoid `ComponentLookupError` when removing a Plone site (fixes `#2`_).
   [hvelarde]
 
@@ -30,3 +33,4 @@ Changelog
 
 .. _`#1`: https://github.com/collective/collective.fingerpointing/issues/1
 .. _`#2`: https://github.com/collective/collective.fingerpointing/issues/2
+.. _`#18`: https://github.com/collective/collective.fingerpointing/issues/18

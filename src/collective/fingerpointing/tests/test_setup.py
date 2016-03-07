@@ -35,6 +35,13 @@ class InstallTestCase(unittest.TestCase):
         self.assertIn('/@@fingerpointing-log', url_expr)
 
     def test_setup_permission(self):
+        permission = 'collective.fingerpointing: Setup'
+        roles = self.portal.rolesOfPermission(permission)
+        roles = [r['name'] for r in roles if r['selected']]
+        expected = ['Manager', 'Site Administrator']
+        self.assertListEqual(roles, expected)
+
+    def test_show_log_permission(self):
         permission = 'collective.fingerpointing: Show the Log'
         roles = self.portal.rolesOfPermission(permission)
         roles = [r['name'] for r in roles if r['selected']]

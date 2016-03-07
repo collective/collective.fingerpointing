@@ -45,7 +45,6 @@ setup(
         'plone.registry',
         'Products.CMFCore',
         'Products.CMFPlone >=4.2',
-        'Products.CMFQuickInstallerTool',
         'Products.GenericSetup',
         'Products.PluggableAuthService',
         'setuptools',

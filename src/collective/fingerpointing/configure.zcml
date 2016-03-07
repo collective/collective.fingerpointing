@@ -8,6 +8,11 @@
   <include package="Products.CMFCore" file="permissions.zcml" />
 
   <permission
+      id="collective.fingerpointing.Setup"
+      title="collective.fingerpointing: Setup"
+      />
+
+  <permission
       id="collective.fingerpointing.showlog"
       title="collective.fingerpointing: Show the Log"
       />

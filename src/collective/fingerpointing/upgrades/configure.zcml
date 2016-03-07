@@ -1,28 +1,3 @@
-<configure
-    xmlns="http://namespaces.zope.org/zope"
-    xmlns:five="http://namespaces.zope.org/five"
-    xmlns:i18n="http://namespaces.zope.org/i18n"
-    xmlns:gs="http://namespaces.zope.org/genericsetup">
-
-  <gs:registerProfile
-      name="1_to_2"
-      title="Upgrade collective.fingerpointing GS profile to 2"
-      directory="profiles/1_to_2"
-      description=""
-      provides="Products.GenericSetup.interfaces.EXTENSION"
-      for="Products.CMFPlone.interfaces.IMigratingPloneSiteRoot" />
-
-  <gs:upgradeSteps
-      source="1"
-      destination="2"
-      profile="collective.fingerpointing:default">
-
-    <gs:upgradeDepends
-        title="Add portal_actions action and rolemap"
-        import_profile="collective.fingerpointing.upgrades:1_to_2"
-        run_deps="True"
-        />
-
-  </gs:upgradeSteps>
-
+<configure xmlns="http://namespaces.zope.org/zope">
+  <include package=".v2" />
 </configure>
