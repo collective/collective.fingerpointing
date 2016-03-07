@@ -5,7 +5,6 @@ from collective.fingerpointing.config import AUDITLOG
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
 
-import os
 import os.path
 
 
@@ -26,17 +25,13 @@ class LogView(BrowserView):
     index = ViewPageTemplateFile('logview.pt')
 
     def __call__(self):
-        self.show_all = False
-        if 'show_all' in self.request.form:
-            self.show_all = True
-
         return self.render()
 
     def render(self):
         return self.index()
 
     def label(self):
-        return _('Fingerpointing log view')
+        return _('Finger Pointing Audit Log')
 
     def tail(self, f, n=100):
         """Return the last n lines of a file.
@@ -56,9 +51,6 @@ class LogView(BrowserView):
         return lines[-n:]
 
     @property
-    def logcontents(self):
+    def log_tail(self):
         with open(logfile, 'r') as fp:
-            if not self.show_all:
-                return self.tail(fp)
-            else:
-                return fp.read()
+            return self.tail(fp)

@@ -23,15 +23,9 @@
 
       <div id="content-core">
         <div id="layout-contents">
-          <div style="width: 100%; height: 100%; overflow: scroll;">
-            <pre tal:content="view/logcontents"></pre>
-          </div>
+          <pre tal:content="view/log_tail"></pre>
         </div>
       </div>
-
-      <p>
-        <a tal:attributes="href string:${context/absolute_url}/@@fingerpointing-audit-log?show_all=1" i18n:translate="link_show_all">Show All</a>
-      </p>
     </div>
   </body>
 </html>
