@@ -23,7 +23,8 @@
       i18n:attributes="title; description"
       />
 
+  <include package=".upgrades" />
+
   <utility factory=".setuphandlers.HiddenProfiles" name="collective.fingerpointing" />
-  <utility factory=".setuphandlers.HiddenProducts" name="collective.fingerpointing" />
 
 </configure>

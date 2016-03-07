@@ -12,6 +12,6 @@
         icon_expr="string:${portal_url}/++resource++collective.fingerpointing/fingerpointing-icon.png"
         visible="True"
         i18n:attributes="title">
-      <permission>Manage portal</permission>
+      <permission>collective.fingerpointing: Setup</permission>
     </configlet>
 </object>

@@ -13,7 +13,7 @@
       name="fingerpointing-settings"
       for="Products.CMFPlone.interfaces.IPloneSiteRoot"
       class="collective.fingerpointing.controlpanel.FingerPointingSettingsControlPanel"
-      permission="cmf.ManagePortal"
+      permission="collective.fingerpointing.Setup"
       />
 
 </configure>
