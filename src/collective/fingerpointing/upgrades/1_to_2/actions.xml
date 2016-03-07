@@ -5,7 +5,7 @@
     <object name="audit-log" meta_type="CMF Action" i18n:domain="collective.fingerpointing">
       <property name="title" i18n:translate="">View Audit Log</property>
       <property name="description" i18n:translate=""></property>
-      <property name="url_expr">string:${portal_url}/@@fingerpointing-log</property>
+      <property name="url_expr">string:${portal_url}/@@fingerpointing-audit-log</property>
       <property name="link_target"></property>
       <property name="icon_expr"></property>
       <property name="available_expr"></property>

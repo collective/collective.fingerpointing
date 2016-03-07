@@ -30,7 +30,7 @@
       </div>
 
       <p>
-        <a tal:attributes="href string:${context/absolute_url}/@@fingerpointing-log?show_all=1" i18n:translate="link_show_all">Show All</a>
+        <a tal:attributes="href string:${context/absolute_url}/@@fingerpointing-audit-log?show_all=1" i18n:translate="link_show_all">Show All</a>
       </p>
     </div>
   </body>

@@ -32,7 +32,7 @@ class InstallTestCase(unittest.TestCase):
         expected = ('collective.fingerpointing: View Audit Log',)
         self.assertEqual(permissions, expected)
         url_expr = user_actions['audit-log'].url_expr
-        self.assertIn('/@@fingerpointing-log', url_expr)
+        self.assertIn('/@@fingerpointing-audit-log', url_expr)
 
     def test_setup_permission(self):
         permission = 'collective.fingerpointing: Setup'
