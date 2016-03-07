@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <rolemap>
   <permissions>
-    <permission name="collective.fingerpointing: Show the Log" acquire="False">
+    <permission name="collective.fingerpointing: View Audit Log" acquire="False">
       <role name="Manager" />
       <role name="Site Administrator" />
     </permission>

@@ -29,7 +29,7 @@ class InstallTestCase(unittest.TestCase):
         self.assertIn('audit-log', user_actions)
 
         permissions = user_actions['audit-log'].permissions
-        expected = ('collective.fingerpointing: Show the Log',)
+        expected = ('collective.fingerpointing: View Audit Log',)
         self.assertEqual(permissions, expected)
         url_expr = user_actions['audit-log'].url_expr
         self.assertIn('/@@fingerpointing-log', url_expr)
@@ -42,7 +42,7 @@ class InstallTestCase(unittest.TestCase):
         self.assertListEqual(roles, expected)
 
     def test_show_log_permission(self):
-        permission = 'collective.fingerpointing: Show the Log'
+        permission = 'collective.fingerpointing: View Audit Log'
         roles = self.portal.rolesOfPermission(permission)
         roles = [r['name'] for r in roles if r['selected']]
         expected = ['Manager', 'Site Administrator']

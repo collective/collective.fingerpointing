@@ -13,8 +13,8 @@
       />
 
   <permission
-      id="collective.fingerpointing.showlog"
-      title="collective.fingerpointing: Show the Log"
+      id="collective.fingerpointing.viewauditlog"
+      title="collective.fingerpointing: View Audit Log"
       />
 
   <include package=".browser" />
