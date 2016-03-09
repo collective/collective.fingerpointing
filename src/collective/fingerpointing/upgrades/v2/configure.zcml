@@ -15,6 +15,12 @@
         handler=".update_configlet"
         />
 
+    <genericsetup:upgradeStep
+        title="Update user actions"
+        description="Add action to view audit log if user has permission."
+        handler=".update_user_actions"
+        />
+
   </genericsetup:upgradeSteps>
 
 </configure>

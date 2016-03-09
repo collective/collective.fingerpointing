@@ -60,3 +60,32 @@ class To2TestCase(BaseUpgradeTestCase):
         configlet = cptool.getActionObject('Products/fingerpointing')
         new_permissions = ('collective.fingerpointing: Setup',)
         self.assertEqual(configlet.getPermissions(), new_permissions)
+
+    def test_update_user_actions(self):
+        # check if the upgrade step is registered
+        title = u'Update user actions'
+        step = self._get_upgrade_step_by_title(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        permission = 'collective.fingerpointing: View Audit Log'
+        self.portal.manage_permission(permission_to_manage=permission, roles=[])
+        roles = self.portal.rolesOfPermission(permission)
+        roles = [r['name'] for r in roles if r['selected']]
+        self.assertListEqual(roles, [])
+
+        user_actions = self.portal['portal_actions'].user
+        del user_actions['audit-log']
+        self.assertNotIn('audit-log', user_actions)
+
+        # run the upgrade step to validate the update
+        self._do_upgrade(step)
+        roles = self.portal.rolesOfPermission(permission)
+        roles = [r['name'] for r in roles if r['selected']]
+        self.assertListEqual(roles, ['Manager', 'Site Administrator'])
+
+        permissions = user_actions['audit-log'].permissions
+        expected = (permission,)
+        self.assertEqual(permissions, expected)
+        url_expr = user_actions['audit-log'].url_expr
+        self.assertIn('/@@fingerpointing-audit-log', url_expr)
