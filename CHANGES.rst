@@ -5,7 +5,7 @@ Changelog
 ------------------
 
 - Add a view for the audit.log file `@@fingerpointing-log` and link it to portal_actions.
-  [pcdummy]
+  [pcdummy, hvelarde]
 
 - Make control panel configlet accesible to Site Administrator role (closes `#18`_).
   [hvelarde]
