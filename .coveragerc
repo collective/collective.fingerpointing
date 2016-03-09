@@ -1,7 +1,7 @@
 [report]
 omit =
-    /home/*/eggs/*
-    /home/*/virtualenv/*
-    /usr/*
-    bin/test
-    parts/*
+    */bin/test
+    */eggs/*
+    */lib/python*
+    */parts/*
+    */usr/*
