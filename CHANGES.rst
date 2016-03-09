@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0a2 (unreleased)
+1.0b1 (2016-03-09)
 ------------------
 
 - Add a view for the audit.log file `@@fingerpointing-log` and link it to portal_actions.
