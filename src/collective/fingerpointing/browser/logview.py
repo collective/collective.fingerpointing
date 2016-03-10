@@ -1,6 +1,5 @@
 # -*- coding: utf-8 -*-
 from App.config import getConfiguration
-from collective.fingerpointing import _
 from collective.fingerpointing.config import AUDITLOG
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
@@ -29,9 +28,6 @@ class LogView(BrowserView):
 
     def render(self):
         return self.index()
-
-    def label(self):
-        return _('Finger Pointing Audit Log')
 
     def tail(self, f, n=100):
         """Return the last n lines of a file.
