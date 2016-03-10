@@ -4,6 +4,9 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
+- The "View Audit log" action appears now before the "Log out" one (fixes `#18`_).
+  [pcdummy]
+
 - Use the main_template for the logview.
   [pcdummy]
 
@@ -17,7 +20,7 @@ Changelog
 - Add a view for the audit.log file `@@fingerpointing-audit-log` and link it to portal_actions.
   [pcdummy, hvelarde]
 
-- Make control panel configlet accesible to Site Administrator role (closes `#18`_).
+- Make control panel configlet accesible to Site Administrator role (closes `#15`_).
   [hvelarde]
 
 - Avoid `ComponentLookupError` when removing a Plone site (fixes `#4`_).
@@ -44,4 +47,5 @@ Changelog
 .. _`#1`: https://github.com/collective/collective.fingerpointing/issues/1
 .. _`#2`: https://github.com/collective/collective.fingerpointing/issues/2
 .. _`#4`: https://github.com/collective/collective.fingerpointing/issues/4
+.. _`#15`: https://github.com/collective/collective.fingerpointing/issues/15
 .. _`#18`: https://github.com/collective/collective.fingerpointing/issues/18
