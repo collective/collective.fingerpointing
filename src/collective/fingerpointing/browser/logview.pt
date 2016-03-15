@@ -4,28 +4,17 @@
     xmlns:metal="http://xml.zope.org/namespaces/metal"
     xmlns:i18n="http://xml.zope.org/namespaces/i18n"
     lang="en"
-    metal:use-macro="here/prefs_main_template/macros/master"
-    i18n:domain="plone">
+    metal:use-macro="context/main_template/macros/master"
+    i18n:domain="collective.fingerpointing">
   <body>
-    <div metal:fill-slot="prefs_configlet_main">
-      <a href=""
-         id="setup-link"
-         tal:attributes="href string:$portal_url/plone_control_panel"
-         i18n:translate="">
-        Site Setup
-      </a>
+    <metal:title metal:fill-slot="content-title">
+      <h1 class="documentFirstHeading" i18n:translate="">
+        Finger Pointing Audit Log
+      </h1>
+    </metal:title>
 
-      <h1 class="documentFirstHeading" tal:content="view/label">View Title</h1>
-
-      <div metal:use-macro="context/global_statusmessage/macros/portal_message">
-        Portal status message
-      </div>
-
-      <div id="content-core">
-        <div id="layout-contents">
-          <pre tal:content="view/log_tail"></pre>
-        </div>
-      </div>
-    </div>
+    <metal:content-core metal:fill-slot="content-core">
+      <pre tal:content="view/log_tail"></pre>
+    </metal:content-core>
   </body>
 </html>

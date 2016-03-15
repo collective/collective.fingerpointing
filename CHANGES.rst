@@ -4,6 +4,9 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
+- Use the main_template for the logview.
+  [pcdummy]
+
 - Avoid `TypeError` while running third party tests (fixes `#2`_).
   [hvelarde]
 
