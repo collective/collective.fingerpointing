@@ -4,13 +4,16 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
+- Fix output of the audit log view.
+  [pcdummy, hvelarde]
+
 - Add Brazilian Portuguese and Spanish translations.
   [hvelarde]
 
 - The "View Audit log" action appears now before the "Log out" one (fixes `#18`_).
   [pcdummy, hvelarde]
 
-- Use the main_template for the logview.
+- Use main_template for the audit log view.
   [pcdummy]
 
 - Avoid `TypeError` while running third party tests (fixes `#2`_).
