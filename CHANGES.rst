@@ -4,7 +4,8 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Avoid `TypeError` while running third party tests (fixes `#2`_).
+  [hvelarde]
 
 
 1.0b1 (2016-03-09)
@@ -16,7 +17,7 @@ Changelog
 - Make control panel configlet accesible to Site Administrator role (closes `#18`_).
   [hvelarde]
 
-- Avoid `ComponentLookupError` when removing a Plone site (fixes `#2`_).
+- Avoid `ComponentLookupError` when removing a Plone site (fixes `#4`_).
   [hvelarde]
 
 - Remove unused plone.directives.form dependency which pulled in Grok packages.
@@ -39,4 +40,5 @@ Changelog
 
 .. _`#1`: https://github.com/collective/collective.fingerpointing/issues/1
 .. _`#2`: https://github.com/collective/collective.fingerpointing/issues/2
+.. _`#4`: https://github.com/collective/collective.fingerpointing/issues/4
 .. _`#18`: https://github.com/collective/collective.fingerpointing/issues/18
