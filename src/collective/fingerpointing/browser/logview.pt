@@ -6,6 +6,10 @@
     lang="en"
     metal:use-macro="context/main_template/macros/master"
     i18n:domain="collective.fingerpointing">
+  <head>
+    <metal:block metal:fill-slot="top_slot"
+        tal:define="dummy python:request.set('disable_border', 1)" />
+  <head>
   <body>
     <metal:title metal:fill-slot="content-title">
       <h1 class="documentFirstHeading" i18n:translate="">
