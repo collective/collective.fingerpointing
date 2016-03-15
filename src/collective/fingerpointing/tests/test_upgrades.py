@@ -40,8 +40,8 @@ class To2TestCase(BaseUpgradeTestCase):
         self.assertEqual(version, self.from_)
 
     def test_registered_steps(self):
-        steps = len(self.setup.listUpgrades(self.profile_id))
-        self.assertEqual(steps, 1)
+        steps = len(self.setup.listUpgrades(self.profile_id)[0])
+        self.assertEqual(steps, 2)
 
     def test_update_configlet(self):
         # check if the upgrade step is registered
@@ -89,3 +89,34 @@ class To2TestCase(BaseUpgradeTestCase):
         self.assertEqual(permissions, expected)
         url_expr = user_actions['audit-log'].url_expr
         self.assertIn('/@@fingerpointing-audit-log', url_expr)
+
+
+class To3TestCase(BaseUpgradeTestCase):
+
+    from_ = '2'
+    to_ = '3'
+
+    def test_profile_version(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertEqual(version, self.from_)
+
+    def test_registered_steps(self):
+        steps = len(self.setup.listUpgrades(self.profile_id)[0])
+        self.assertEqual(steps, 1)
+
+    def test_update_user_actions(self):
+        # check if the upgrade step is registered
+        title = u'Update user actions'
+        step = self._get_upgrade_step_by_title(title)
+        self.assertIsNotNone(step)
+
+        # simulate state on previous version
+        user_actions = self.portal['portal_actions'].user
+        user_actions.moveObjectsDown('audit-log')
+        self.assertEqual(user_actions.keys()[-1], 'audit-log')
+        self.assertEqual(user_actions.keys()[-2], 'logout')
+
+        # run the upgrade step to validate the update
+        self._do_upgrade(step)
+        self.assertEqual(user_actions.keys()[-1], 'logout')
+        self.assertEqual(user_actions.keys()[-2], 'audit-log')
