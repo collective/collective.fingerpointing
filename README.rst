@@ -83,3 +83,11 @@ These events are also logged in `var/log/audit.log`::
 
 The audit log is available through the `@@fingerpointing-log` view,
 available in portal_actions for users with the `collective.fingerpointing: Show the Log` permission.
+
+.. image:: docs/audit-log-view.png
+    :align: left
+    :alt: Finger Pointing
+    :height: 480px
+    :width: 768px
+
+    The Finger Pointing audit log view.
