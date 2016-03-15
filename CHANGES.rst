@@ -4,6 +4,9 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
+- Add Brazilian Portuguese and Spanish translations.
+  [hvelarde]
+
 - The "View Audit log" action appears now before the "Log out" one (fixes `#18`_).
   [pcdummy, hvelarde]
 
