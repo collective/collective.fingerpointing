@@ -5,7 +5,7 @@ Changelog
 ------------------
 
 - The "View Audit log" action appears now before the "Log out" one (fixes `#18`_).
-  [pcdummy]
+  [pcdummy, hvelarde]
 
 - Use the main_template for the logview.
   [pcdummy]
