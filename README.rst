@@ -64,7 +64,9 @@ Go to 'Site Setup' and select 'Finger Pointing' and enable the events you want t
 
     The Finger Pointing control panel configlet.
 
-Finger Pointing will start logging the selected events::
+Finger Pointing will start logging the selected events:
+
+.. code-block:: console
 
     # bin/instance fg
     2016-03-01 17:29:29 INFO ZServer HTTP server started at Tue Mar  1 17:29:29 2016
@@ -76,15 +78,16 @@ Finger Pointing will start logging the selected events::
     2016-03-01 17:31:40 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logged out
     2016-03-01 17:31:49 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logged in
 
-These events are also logged in `var/log/audit.log`::
+These events are also logged in `var/log/audit.log`:
 
-    2016-03-01 17:31:40,813 - collective.fingerpointing - INFO - user=admin ip=127.0.0.1 action=logged out
-    2016-03-01 17:31:49,678 - collective.fingerpointing - INFO - user=admin ip=127.0.0.1 action=logged in
+.. code-block:: console
 
-The audit log is available through the `@@fingerpointing-log` view,
-available in portal_actions for users with the `collective.fingerpointing: Show the Log` permission.
+    2016-03-01 17:31:40,813 - INFO - user=admin ip=127.0.0.1 action=logged out
+    2016-03-01 17:31:49,678 - INFO - user=admin ip=127.0.0.1 action=logged in
 
-.. image:: docs/audit-log-view.png
+An audit log view is available in the user menu to users with the `collective.fingerpointing: View Audit Log` permission:
+
+.. figure:: docs/audit-log-view.png
     :align: left
     :alt: Finger Pointing
     :height: 480px
