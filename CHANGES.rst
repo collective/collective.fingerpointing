@@ -46,6 +46,9 @@ Changelog
 1.0b2 (2016-03-18)
 ------------------
 
+- Log deletion of groups too.
+  [fRiSi]
+
 - Log to audit.log even if Zope's `event-log-level` is above INFO (fixes `#25`_).
   [fRiSi]
 

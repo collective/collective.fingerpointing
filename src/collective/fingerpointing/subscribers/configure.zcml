@@ -23,6 +23,12 @@
       handler=".pas_logger"
       />
 
+  <!-- FIXME: this breaks setup when running plone < 4.3.7 -->
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IGroupDeletedEvent"
+      handler=".pas_logger"
+      />
+
   <!-- Archetypes -->
   <subscriber
       zcml:condition="installed Products.Archetypes"

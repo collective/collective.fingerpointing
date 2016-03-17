@@ -11,6 +11,13 @@ from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedOutEvent
 
 
+try:
+    from Products.PluggableAuthService.interfaces.events import IGroupDeletedEvent
+    HAS_GROUPEVENTS = True
+except ImportError:
+    HAS_GROUPEVENTS = False
+
+
 def pas_logger(event):
     """Log authentication events like users logging in and loggin out."""
     # subscriber is registered even if package has not yet been installed
@@ -23,7 +30,6 @@ def pas_logger(event):
 
     if audit_pas:
         user, ip = get_request_information()
-
         if IUserLoggedInEvent.providedBy(event):
             action = 'login'
             extras = ''
@@ -35,6 +41,9 @@ def pas_logger(event):
             extras = u'principal={0}'.format(event.principal)
         elif IPrincipalDeletedEvent.providedBy(event):
             action = 'remove'
-            extras = u'principal={0}'.format(event.principal)
+            extras = u'user={0}'.format(event.principal)
+        if IGroupDeletedEvent.providedBy(event):
+            action = 'remove'
+            extras = u'group={0}'.format(event.principal)
 
         log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
