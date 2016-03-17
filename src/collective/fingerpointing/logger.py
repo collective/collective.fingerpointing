@@ -23,6 +23,7 @@ else:
     logfile = AUDITLOG
 
 logger = logging.getLogger(PROJECTNAME)
+logger.setLevel(logging.INFO)
 logger.info('Start logging audit information to ' + AUDITLOG)
 
 handler = logging.FileHandler(logfile)

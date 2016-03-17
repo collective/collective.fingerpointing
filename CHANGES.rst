@@ -4,7 +4,11 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
-- Add German translations. [fRiSi]
+- Log to audit.log even if Zope's `event-log-level` is above INFO (fixes `#25`_).
+  [fRiSi]
+
+- Add German translations.
+  [fRiSi]
 
 - Fix output of the audit log view.
   [pcdummy, hvelarde]
@@ -57,3 +61,4 @@ Changelog
 .. _`#4`: https://github.com/collective/collective.fingerpointing/issues/4
 .. _`#15`: https://github.com/collective/collective.fingerpointing/issues/15
 .. _`#18`: https://github.com/collective/collective.fingerpointing/issues/18
+.. _`#25`: https://github.com/collective/collective.fingerpointing/issues/25
