@@ -4,6 +4,8 @@ Changelog
 1.0b2 (unreleased)
 ------------------
 
+- Add German translations. [fRiSi]
+
 - Fix output of the audit log view.
   [pcdummy, hvelarde]
 

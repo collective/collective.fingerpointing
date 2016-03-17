@@ -1,77 +1,93 @@
+# Harald Friessnegger <harald@webmeisterei.com>, 2016.
 msgid ""
 msgstr ""
-"Project-Id-Version: PACKAGE VERSION\n"
+"Project-Id-Version: \n"
 "POT-Creation-Date: 2016-03-17 20:34+0000\n"
-"PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
-"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
-"Language-Team: LANGUAGE <LL@li.org>\n"
+"PO-Revision-Date: 2016-03-17 21:47+0100\n"
+"Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
+"Language-Team: German <kde-i18n-de@kde.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=1; plural=0\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"Language-Code: de\n"
+"Language-Name: German\n"
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
+"Language: de\n"
+"X-Generator: Lokalize 2.0\n"
 
 #: collective/fingerpointing/interfaces.py:17
 msgid "Audit Authentication Service?"
-msgstr ""
+msgstr "Authentifizierung (PAS) auditieren"
 
 #: collective/fingerpointing/interfaces.py:24
 msgid "Audit Content Type Life Cycle?"
-msgstr ""
+msgstr "Lebenszyklus von Inhalten auditieren"
 
 #: collective/fingerpointing/interfaces.py:37
 msgid "Audit Iterate?"
-msgstr ""
+msgstr "Arbeitskopien auditieren"
 
 #: collective/fingerpointing/interfaces.py:31
 msgid "Audit Registry?"
-msgstr ""
+msgstr "Konfigurationseinträge auditieren"
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
 #: collective/fingerpointing/profiles/default/controlpanel.xml
 msgid "Finger Pointing"
-msgstr ""
+msgstr "Finger Pointing"
 
 #: collective/fingerpointing/browser/logview.pt:15
 msgid "Finger Pointing Audit Log"
-msgstr ""
+msgstr "Finger Pointing Aktionsprotokoll"
 
 #: collective/fingerpointing/interfaces.py:38
-msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
+msgid ""
+"If plone.app.iterate is installed, log events like content editing checkouts "
+"and checkins."
 msgstr ""
+"Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, checkouts und checkins "
+"loggen"
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
 msgstr ""
+"Protokolliert relevante Ereignisse in einem Aktionsprotkoll (audit.log)"
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."
 msgstr ""
+"Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Bentuzer "
+"hinzufügen oder löschen)."
 
 #: collective/fingerpointing/interfaces.py:25
-msgid "Log content type life cycle events like object creation, modification and removal."
+msgid ""
+"Log content type life cycle events like object creation, modification and "
+"removal."
 msgstr ""
+"Protokolliert den Ereignisse im Lebenszyklus von Inhalten (Erzeugen, "
+"Bearbeiten, Löschen)"
 
 #: collective/fingerpointing/interfaces.py:32
 msgid "Log registry events like records being modified."
 msgstr ""
+"Protokolliert Änderungen der Konfigurationseinträge (plone.app.registry)."
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
-msgstr ""
+msgstr "Einstellungen für collective.fingerpointing"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
-msgstr ""
+msgstr "collective.fingerpointing deinstallieren"
 
 #: collective/fingerpointing/profiles/default/actions.xml
 msgid "View Audit Log"
-msgstr ""
+msgstr "Aktionsprotokoll anzeigen"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
-msgstr ""
+msgstr "collective.fingerpointing: Deinstallation"
+
