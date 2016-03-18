@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-03-15 19:33+0000\n"
+"POT-Creation-Date: 2016-03-17 20:34+0000\n"
 "PO-Revision-Date: 2016-03-15 16:32-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -38,7 +38,7 @@ msgstr "Auditar o registro de configuração?"
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/browser/logview.pt:11
+#: collective/fingerpointing/browser/logview.pt:15
 msgid "Finger Pointing Audit Log"
 msgstr "Log de auditoria do Finger Pointing"
 
