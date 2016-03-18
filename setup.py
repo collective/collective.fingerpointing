@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '1.0b2'
+version = '1.0b3.dev0'
 description = 'Keep track of different events and write them down to an audit log.'
 long_description = (
     open('README.rst').read() + '\n' +
@@ -32,7 +32,7 @@ setup(
         'Topic :: System :: Logging',
     ],
     keywords='plone events subscribers log audit security',
-    author='HĂŠctor Velarde',
+    author='Héctor Velarde',
     author_email='hector.velarde@gmail.com',
     url='https://github.com/collective/collective.fingerpointing',
     packages=find_packages('src'),
