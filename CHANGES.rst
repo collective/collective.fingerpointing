@@ -10,6 +10,10 @@ Changelog
 1.0b4 (2016-07-07)
 ------------------
 
+- Log deletion of groups too.
+  If you are using Plone < 4.3.8 you may need to update versions of `Products.PlonePAS` and `Products.PluggableAuthService`.
+  [fRiSi]
+
 - Avoid UnicodeEncodeError with log messages.
   [jianaijun, rodfersou]
 
@@ -45,9 +49,6 @@ Changelog
 
 1.0b2 (2016-03-18)
 ------------------
-
-- Log deletion of groups too.
-  [fRiSi]
 
 - Log to audit.log even if Zope's `event-log-level` is above INFO (fixes `#25`_).
   [fRiSi]
