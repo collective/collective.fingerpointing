@@ -32,6 +32,10 @@ class LogView(BrowserView):
         return lines[-n:]
 
     @property
-    def log_tail(self):
+    def get_audit_log(self):
+        """Return audit log with newer entries first."""
         with open(logfile, 'r') as fp:
-            return self.tail(fp)
+            lines = self.tail(fp)
+
+        lines.reverse()
+        return ''.join(lines)

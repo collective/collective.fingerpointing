@@ -31,8 +31,8 @@ class LogViewTestCase(unittest.TestCase):
         from Products.PlonePAS.events import UserLoggedOutEvent
         from testfixtures import LogCapture
         from zope.event import notify
-        # verify user logged out event is the last on the log
+        # verify user logged out event is first on log (newer entries first)
         event = UserLoggedOutEvent(self.request)
         with LogCapture(level=INFO):
             notify(event)
-            self.assertIn('action=logged out', self.view.log_tail[-1])
+            self.assertIn('action=logged out', self.view.get_audit_log)

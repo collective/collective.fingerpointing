@@ -18,7 +18,7 @@
     </metal:title>
 
     <metal:content-core metal:fill-slot="content-core">
-      <pre tal:content="python:''.join(view.log_tail)" />
+      <pre tal:content="view/get_audit_log" />
     </metal:content-core>
   </body>
 </html>

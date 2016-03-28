@@ -4,7 +4,8 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Audit log entries are now shown in reverse order (newer entries first).
+  [hvelarde]
 
 
 1.0b2 (2016-03-18)
