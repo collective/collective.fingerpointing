@@ -1,22 +1,7 @@
 # -*- coding: utf-8 -*-
-from App.config import getConfiguration
-from collective.fingerpointing.config import AUDITLOG
+from collective.fingerpointing.logger import logfile
 from Products.Five.browser import BrowserView
 from Products.Five.browser.pagetemplatefile import ViewPageTemplateFile
-
-import os.path
-
-
-# by default, the audit log will use the same location used for the event log
-eventlog = getattr(getConfiguration(), 'eventlog', None)
-
-# on tests, eventlog is not set; we need to handle that
-if eventlog is not None:
-    logpath = eventlog.handler_factories[0].instance.baseFilename
-    logfolder = os.path.split(logpath)[0]
-    logfile = os.path.join(logfolder, AUDITLOG)
-else:
-    logfile = AUDITLOG
 
 
 class LogView(BrowserView):
