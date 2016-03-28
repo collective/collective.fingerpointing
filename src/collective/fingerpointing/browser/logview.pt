@@ -13,7 +13,7 @@
   <body>
     <metal:title metal:fill-slot="content-title">
       <h1 class="documentFirstHeading" i18n:translate="">
-        Finger Pointing Audit Log
+        Audit Log
       </h1>
     </metal:title>
 

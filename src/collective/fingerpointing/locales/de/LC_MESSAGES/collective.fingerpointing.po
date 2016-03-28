@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-03-17 20:34+0000\n"
+"POT-Creation-Date: 2016-03-28 14:48+0000\n"
 "PO-Revision-Date: 2016-03-17 21:47+0100\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -29,6 +29,10 @@ msgstr "Lebenszyklus von Inhalten auditieren"
 msgid "Audit Iterate?"
 msgstr "Arbeitskopien auditieren"
 
+#: collective/fingerpointing/browser/logview.pt:15
+msgid "Audit Log"
+msgstr "Aktionsprotokoll"
+
 #: collective/fingerpointing/interfaces.py:31
 msgid "Audit Registry?"
 msgstr "Konfigurationseinträge auditieren"
@@ -39,41 +43,25 @@ msgstr "Konfigurationseinträge auditieren"
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/browser/logview.pt:15
-msgid "Finger Pointing Audit Log"
-msgstr "Finger Pointing Aktionsprotokoll"
-
 #: collective/fingerpointing/interfaces.py:38
-msgid ""
-"If plone.app.iterate is installed, log events like content editing checkouts "
-"and checkins."
-msgstr ""
-"Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, checkouts und checkins "
-"loggen"
+msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
+msgstr "Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, checkouts und checkins loggen"
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
-msgstr ""
-"Protokolliert relevante Ereignisse in einem Aktionsprotkoll (audit.log)"
+msgstr "Protokolliert relevante Ereignisse in einem Aktionsprotkoll (audit.log)"
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."
-msgstr ""
-"Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Bentuzer "
-"hinzufügen oder löschen)."
+msgstr "Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Bentuzer hinzufügen oder löschen)."
 
 #: collective/fingerpointing/interfaces.py:25
-msgid ""
-"Log content type life cycle events like object creation, modification and "
-"removal."
-msgstr ""
-"Protokolliert den Ereignisse im Lebenszyklus von Inhalten (Erzeugen, "
-"Bearbeiten, Löschen)"
+msgid "Log content type life cycle events like object creation, modification and removal."
+msgstr "Protokolliert den Ereignisse im Lebenszyklus von Inhalten (Erzeugen, Bearbeiten, Löschen)"
 
 #: collective/fingerpointing/interfaces.py:32
 msgid "Log registry events like records being modified."
-msgstr ""
-"Protokolliert Änderungen der Konfigurationseinträge (plone.app.registry)."
+msgstr "Protokolliert Änderungen der Konfigurationseinträge (plone.app.registry)."
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
@@ -90,4 +78,3 @@ msgstr "Aktionsprotokoll anzeigen"
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: Deinstallation"
-

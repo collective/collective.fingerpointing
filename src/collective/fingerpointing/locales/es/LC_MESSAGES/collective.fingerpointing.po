@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-03-17 20:34+0000\n"
+"POT-Creation-Date: 2016-03-28 14:48+0000\n"
 "PO-Revision-Date: 2016-03-15 16:26-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -28,6 +28,10 @@ msgstr "¿Auditar el ciclo de vida de los tipos de contenido?"
 msgid "Audit Iterate?"
 msgstr "¿Auditar la copia de trabajo?"
 
+#: collective/fingerpointing/browser/logview.pt:15
+msgid "Audit Log"
+msgstr "Registro de auditoría"
+
 #: collective/fingerpointing/interfaces.py:31
 msgid "Audit Registry?"
 msgstr "¿Auditar el registro de configuración?"
@@ -37,10 +41,6 @@ msgstr "¿Auditar el registro de configuración?"
 #: collective/fingerpointing/profiles/default/controlpanel.xml
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
-
-#: collective/fingerpointing/browser/logview.pt:15
-msgid "Finger Pointing Audit Log"
-msgstr "Registro de auditoría de Finger Pointing"
 
 #: collective/fingerpointing/interfaces.py:38
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
