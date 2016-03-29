@@ -8,7 +8,10 @@
     i18n:domain="collective.fingerpointing">
   <head>
     <metal:block metal:fill-slot="top_slot"
-        tal:define="dummy python:request.set('disable_border', 1)" />
+        tal:define="dummy python:request.set('disable_border', 1);
+                    dummy python:request.set('disable_plone.leftcolumn', 1);
+                    dummy python:request.set('disable_plone.rightcolumn', 1);"
+        />
   <head>
   <body>
     <metal:title metal:fill-slot="content-title">

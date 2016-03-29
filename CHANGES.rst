@@ -4,6 +4,9 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
+- Disable rendering of left and right columns in audit log view.
+  [hvelarde]
+
 - Audit log entries are now shown in reverse order (newer entries first).
   [hvelarde]
 
