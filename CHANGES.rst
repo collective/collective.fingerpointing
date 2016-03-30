@@ -4,15 +4,16 @@ Changelog
 1.1b1 (unreleased)
 ------------------
 
-- Nothing changed yet.
-
-
-1.0b4 (2016-07-07)
-------------------
+- Drop support for Plone 4.2.
+  [hvelarde]
 
 - Log deletion of groups too.
   If you are using Plone < 4.3.8 you may need to update versions of `Products.PlonePAS` and `Products.PluggableAuthService`.
   [fRiSi]
+
+
+1.0b4 (2016-07-07)
+------------------
 
 - Avoid UnicodeEncodeError with log messages.
   [jianaijun, rodfersou]
