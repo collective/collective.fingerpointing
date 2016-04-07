@@ -4,6 +4,9 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
+- Package no longer rises `AttributeError` when running interactive console (`bin/instance debug`) (fixes `#30`_).
+  [hvelarde]
+
 - Clean up audit log messages.
   [hvelarde]
 
@@ -75,3 +78,4 @@ Changelog
 .. _`#15`: https://github.com/collective/collective.fingerpointing/issues/15
 .. _`#18`: https://github.com/collective/collective.fingerpointing/issues/18
 .. _`#25`: https://github.com/collective/collective.fingerpointing/issues/25
+.. _`#30`: https://github.com/collective/collective.fingerpointing/issues/30
