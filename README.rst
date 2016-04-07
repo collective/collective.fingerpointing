@@ -31,6 +31,13 @@ Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
 .. _`opening a support ticket`: https://github.com/collective/collective.fingerpointing/issues
 
+Known Issues
+------------
+
+Running your site behind a CDN may result in inconsistent IP addresses being logged.
+In CloudFlare, for instance, you can work around this limitation by enabling a feature called ''True-Client-IP Header'',
+but it requires an Enterprise plan.
+
 Don't Panic
 ===========
 
@@ -39,7 +46,9 @@ Installation
 
 To enable this package in a buildout-based installation:
 
-#. Edit your buildout.cfg and add add the following to it::
+#. Edit your buildout.cfg and add add the following to it:
+
+.. code-block:: ini
 
     [buildout]
     ...
