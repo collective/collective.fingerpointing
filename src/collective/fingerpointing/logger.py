@@ -14,13 +14,17 @@ FORMAT = '%(asctime)s - %(levelname)s - %(message)s'
 # by default, the audit log will use the same location used for the event log
 eventlog = getattr(getConfiguration(), 'eventlog', None)
 
-# on tests, eventlog is not set; we need to handle that
-if eventlog is not None:
-    logpath = eventlog.handler_factories[0].instance.baseFilename
-    logfolder = os.path.split(logpath)[0]
-    logfile = os.path.join(logfolder, AUDITLOG)
-else:
+if eventlog is None:
+    # we are running tests
     logfile = AUDITLOG
+else:
+    try:
+        logpath = eventlog.handler_factories[0].instance.baseFilename
+        logfolder = os.path.split(logpath)[0]
+        logfile = os.path.join(logfolder, AUDITLOG)
+    except AttributeError:
+        # we are in the debug console
+        logfile = AUDITLOG
 
 logger = logging.getLogger(PROJECTNAME)
 logger.setLevel(logging.INFO)
