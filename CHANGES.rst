@@ -4,6 +4,9 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
+- Clean up audit log messages.
+  [hvelarde]
+
 - Disable rendering of left and right columns in audit log view.
   [hvelarde]
 

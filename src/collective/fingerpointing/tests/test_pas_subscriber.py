@@ -36,11 +36,11 @@ class PasSubscribersTestCase(unittest.TestCase):
                 ('plone.protect', 'INFO', 'auto rotating keyring _system'),
                 ('plone.protect', 'INFO', 'auto rotating keyring _forms'),
                 ('plone.protect', 'INFO', 'auto rotating keyring _anon'),
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logged in '),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=login '),
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logged in '),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=login '),
             )
 
         event = UserLoggedInEvent(self.request)
@@ -53,7 +53,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture(level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logged out '),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logout '),
             )
 
     def test_user_created(self):
@@ -61,7 +61,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture(level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=user created object=foo'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=create principal=foo'),
             )
 
     def test_user_removed(self):
@@ -69,7 +69,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture(level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=user removed object=foo'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove principal=foo'),
             )
 
     def test_susbcriber_ignored_when_package_not_installed(self):

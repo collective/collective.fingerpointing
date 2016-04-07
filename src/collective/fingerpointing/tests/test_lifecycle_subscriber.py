@@ -28,14 +28,14 @@ class LifeCycleSubscribersTestCase(unittest.TestCase):
     def test_object_created(self):
         if PLONE_VERSION >= '5.0':
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object created object=<Folder at foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object modified object=<Folder at folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=create object=<Folder at foo>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<Folder at folder>'),
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object created object=<ATFolder at foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object modified object=<ATFolder at folder>'),
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object modified object=<ATFolder at foo>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=create object=<ATFolder at foo>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<ATFolder at folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<ATFolder at foo>'),
             )
 
         with LogCapture(level=INFO) as log:
@@ -45,13 +45,13 @@ class LifeCycleSubscribersTestCase(unittest.TestCase):
     def test_object_removed(self):
         if PLONE_VERSION >= '5.0':
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object removed object=<Folder at foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object modified object=<Folder at folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove object=<Folder at foo>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<Folder at folder>'),
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object removed object=<ATFolder at foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=object modified object=<ATFolder at folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove object=<ATFolder at foo>'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<ATFolder at folder>'),
             )
 
         api.content.create(self.folder, 'Folder', 'foo')
