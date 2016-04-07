@@ -25,16 +25,16 @@ def pas_logger(event):
         user, ip = get_request_information()
 
         if IUserLoggedInEvent.providedBy(event):
-            action = 'logged in'
+            action = 'login'
             extras = ''
         elif IUserLoggedOutEvent.providedBy(event):
-            action = 'logged out'
+            action = 'logout'
             extras = ''
         elif IPrincipalCreatedEvent.providedBy(event):
-            action = 'user created'
-            extras = 'object={0}'.format(event.principal)
+            action = 'create'
+            extras = 'principal={0}'.format(event.principal)
         elif IPrincipalDeletedEvent.providedBy(event):
-            action = 'user removed'
-            extras = 'object={0}'.format(event.principal)
+            action = 'remove'
+            extras = 'principal={0}'.format(event.principal)
 
         log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

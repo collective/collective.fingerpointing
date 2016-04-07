@@ -27,13 +27,13 @@ def lifecycle_logger(obj, event):
         user, ip = get_request_information()
 
         if IObjectCreatedEvent.providedBy(event):
-            action = 'object created'
+            action = 'create'
             extras = 'object={0}'.format(obj)
         if IObjectModifiedEvent.providedBy(event):
-            action = 'object modified'
+            action = 'modify'
             extras = 'object={0}'.format(obj)
         if IObjectRemovedEvent.providedBy(event):
-            action = 'object removed'
+            action = 'remove'
             extras = 'object={0}'.format(obj)
 
         log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

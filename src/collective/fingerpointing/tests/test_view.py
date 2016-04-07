@@ -35,4 +35,4 @@ class LogViewTestCase(unittest.TestCase):
         event = UserLoggedOutEvent(self.request)
         with LogCapture(level=INFO):
             notify(event)
-            self.assertIn('action=logged out', self.view.get_audit_log)
+            self.assertIn('action=logout', self.view.get_audit_log)

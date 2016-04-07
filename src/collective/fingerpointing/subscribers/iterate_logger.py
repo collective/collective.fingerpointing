@@ -26,15 +26,15 @@ def iterate_logger(event):
         user, ip = get_request_information()
 
         if ICheckoutEvent.providedBy(event):
-            action = 'object checked out'
+            action = 'checkout'
             extras = 'object={0} working_copy={1}'.format(
                 event.object, event.working_copy)
         if ICheckinEvent.providedBy(event):
-            action = 'working copy checked in'
+            action = 'checkin'
             extras = 'object={0} baseline={1}'.format(
                 event.object, event.baseline)
         if ICancelCheckoutEvent.providedBy(event):
-            action = 'working copy cancelled'
+            action = 'cancel checkout'
             extras = 'object={0} baseline={1}'.format(
                 event.object, event.baseline)
 
