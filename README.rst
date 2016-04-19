@@ -1,4 +1,4 @@
-.. image:: docs/fingerpointing.png
+.. image:: https://raw.githubusercontent.com/collective/collective.fingerpointing/master/docs/fingerpointing.png
     :align: left
     :alt: Finger Pointing
     :height: 100px
@@ -66,7 +66,7 @@ Usage
 
 Go to 'Site Setup' and select 'Finger Pointing' and enable the events you want to keep an eye on.
 
-.. figure:: docs/controlpanel.png
+.. figure:: https://raw.githubusercontent.com/collective/collective.fingerpointing/master/docs/controlpanel.png
     :align: center
     :height: 600px
     :width: 768px
@@ -96,7 +96,7 @@ These events are also logged in `var/log/audit.log`:
 
 An audit log view is available in the user menu to users with the `collective.fingerpointing: View Audit Log` permission:
 
-.. figure:: docs/audit-log-view.png
+.. figure:: https://raw.githubusercontent.com/collective/collective.fingerpointing/master/docs/audit-log-view.png
     :align: left
     :alt: Finger Pointing
     :height: 480px
