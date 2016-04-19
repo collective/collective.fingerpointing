@@ -4,6 +4,8 @@ Changelog
 1.0b3 (unreleased)
 ------------------
 
+- Added Chinese Simplified translation. [jianaijun]
+
 - Package no longer rises `AttributeError` when running interactive console (`bin/instance debug`) (fixes `#30`_).
   [hvelarde]
 
