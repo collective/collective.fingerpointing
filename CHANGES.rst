@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0b3 (unreleased)
+1.0b3 (2016-04-19)
 ------------------
 
 - Added Chinese Simplified translation. [jianaijun]
