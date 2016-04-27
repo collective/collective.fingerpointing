@@ -4,7 +4,8 @@ Changelog
 1.0b4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Package is now compatible with Plone 5.0 and Plone 5.1.
+  [hvelarde]
 
 
 1.0b3 (2016-04-19)
