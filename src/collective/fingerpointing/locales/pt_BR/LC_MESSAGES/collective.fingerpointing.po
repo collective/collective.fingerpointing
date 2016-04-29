@@ -56,7 +56,7 @@ msgstr "Registra eventos como acesso e saída de usuários."
 
 #: collective/fingerpointing/interfaces.py:25
 msgid "Log content type life cycle events like object creation, modification and removal."
-msgstr "Registra eventos como criação, modificação y remoção de objetos."
+msgstr "Registra eventos como criação, modificação e remoção de objetos."
 
 #: collective/fingerpointing/interfaces.py:32
 msgid "Log registry events like records being modified."
