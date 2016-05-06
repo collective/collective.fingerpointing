@@ -38,7 +38,7 @@ class LifeCycleSubscribersTestCase(unittest.TestCase):
                 ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<ATFolder at foo>'),
             )
 
-        with LogCapture(level=INFO) as log:
+        with LogCapture('collective.fingerpointing', level=INFO) as log:
             api.content.create(self.folder, 'Folder', 'foo')
             log.check(*expected)
 
@@ -55,7 +55,7 @@ class LifeCycleSubscribersTestCase(unittest.TestCase):
             )
 
         api.content.create(self.folder, 'Folder', 'foo')
-        with LogCapture(level=INFO) as log:
+        with LogCapture('collective.fingerpointing', level=INFO) as log:
             api.content.delete(self.folder['foo'])
             log.check(*expected)
 
