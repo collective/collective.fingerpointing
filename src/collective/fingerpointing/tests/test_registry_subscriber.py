@@ -19,7 +19,7 @@ class RegistrySubscribersTestCase(unittest.TestCase):
         self.portal = self.layer['portal']
 
     def test_record_modified(self):
-        with LogCapture(level=INFO) as log:
+        with LogCapture('collective.fingerpointing', level=INFO) as log:
             record = IDiscussionSettings.__identifier__ + '.globally_enabled'
             api.portal.set_registry_record(record, False)
             log.check(

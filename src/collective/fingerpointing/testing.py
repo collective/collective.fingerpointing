@@ -21,7 +21,7 @@ else:
     from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE
 
 
-PLONE_VERSION = api.env.plone_version()
+IS_PLONE_5 = api.env.plone_version().startswith('5')
 
 
 class Fixture(PloneSandboxLayer):

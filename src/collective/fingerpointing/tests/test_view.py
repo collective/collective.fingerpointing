@@ -27,12 +27,10 @@ class LogViewTestCase(unittest.TestCase):
             self.portal.restrictedTraverse('@@fingerpointing-audit-log')
 
     def test_log_tail(self):
-        from logging import INFO
         from Products.PlonePAS.events import UserLoggedOutEvent
-        from testfixtures import LogCapture
         from zope.event import notify
-        # verify user logged out event is first on log (newer entries first)
         event = UserLoggedOutEvent(self.request)
-        with LogCapture(level=INFO):
-            notify(event)
-            self.assertIn('action=logout', self.view.get_audit_log)
+        notify(event)
+        audit_log = self.view.get_audit_log.split('\n')
+        # user logged out event is first on log (newer entries first)
+        self.assertIn('user=test ip=127.0.0.1 action=logout', audit_log[0])
