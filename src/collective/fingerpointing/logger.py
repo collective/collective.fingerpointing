@@ -30,7 +30,11 @@ logger = logging.getLogger(PROJECTNAME)
 logger.setLevel(logging.INFO)
 logger.info('Start logging audit information to ' + AUDITLOG)
 
-handler = logging.FileHandler(logfile)
+# support automatic rotation of audit log files at timed intervals
+# we can later implement a way to make this configurable
+handler = logging.handlers.TimedRotatingFileHandler(
+    logfile, when='midnight', backupCount=30)
+
 formatter = logging.Formatter(FORMAT)
 handler.setFormatter(formatter)
 logger.addHandler(handler)
