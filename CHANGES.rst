@@ -4,6 +4,10 @@ Changelog
 1.0b4 (unreleased)
 ------------------
 
+- Use object representation to log life cycle events;
+  this fixes an issue with Archetypes-based objects being dumped to the log (refs. `#8`_ and fixes `#38`_).
+  [hvelarde]
+
 - Package is now compatible with Plone 5.0 and Plone 5.1.
   [hvelarde]
 
@@ -84,7 +88,9 @@ Changelog
 .. _`#1`: https://github.com/collective/collective.fingerpointing/issues/1
 .. _`#2`: https://github.com/collective/collective.fingerpointing/issues/2
 .. _`#4`: https://github.com/collective/collective.fingerpointing/issues/4
+.. _`#8`: https://github.com/collective/collective.fingerpointing/issues/8
 .. _`#15`: https://github.com/collective/collective.fingerpointing/issues/15
 .. _`#18`: https://github.com/collective/collective.fingerpointing/issues/18
 .. _`#25`: https://github.com/collective/collective.fingerpointing/issues/25
 .. _`#30`: https://github.com/collective/collective.fingerpointing/issues/30
+.. _`#38`: https://github.com/collective/collective.fingerpointing/issues/38
