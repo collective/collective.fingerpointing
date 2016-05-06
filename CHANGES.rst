@@ -4,6 +4,10 @@ Changelog
 1.0b4 (unreleased)
 ------------------
 
+- Support automatic rotation of audit log files at timed intervals;
+  a new file is created every day and up to 30 backup files are maintained (closes `#9`_).
+  [hvelarde]
+
 - Use object representation to log life cycle events;
   this fixes an issue with Archetypes-based objects being dumped to the log (refs. `#8`_ and fixes `#38`_).
   [hvelarde]

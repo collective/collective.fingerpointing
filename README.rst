@@ -103,3 +103,5 @@ An audit log view is available in the user menu to users with the `collective.fi
     :width: 768px
 
     The Finger Pointing audit log view.
+
+Audit log files are rotated automatically every day at midnight and up to 30 days are maintained in backup.
