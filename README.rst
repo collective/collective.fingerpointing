@@ -1,4 +1,4 @@
-.. image:: https://raw.githubusercontent.com/collective/collective.fingerpointing/master/docs/fingerpointing.png
+.. image:: https://raw.githubusercontent.com/collective/collective.fingerpointing/master/docs/hand-o-right.svg
     :align: left
     :alt: Finger Pointing
     :height: 100px
