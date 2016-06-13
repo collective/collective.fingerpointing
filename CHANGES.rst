@@ -4,6 +4,8 @@ Changelog
 1.0b4 (unreleased)
 ------------------
 
+- Fixed `UnicodeEncodeError`. [jianaijun]
+
 - Support automatic rotation of audit log files at timed intervals;
   a new file is created every day and up to 30 backup files are maintained (closes `#9`_).
   [hvelarde]
