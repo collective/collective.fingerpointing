@@ -27,15 +27,15 @@ def iterate_logger(event):
 
         if ICheckoutEvent.providedBy(event):
             action = 'checkout'
-            extras = 'object={0} working_copy={1}'.format(
+            extras = u'object={0} working_copy={1}'.format(
                 event.object, event.working_copy)
         if ICheckinEvent.providedBy(event):
             action = 'checkin'
-            extras = 'object={0} baseline={1}'.format(
+            extras = u'object={0} baseline={1}'.format(
                 event.object, event.baseline)
         if ICancelCheckoutEvent.providedBy(event):
             action = 'cancel checkout'
-            extras = 'object={0} baseline={1}'.format(
+            extras = u'object={0} baseline={1}'.format(
                 event.object, event.baseline)
 
         log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

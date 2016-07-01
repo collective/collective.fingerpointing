@@ -4,7 +4,11 @@ from collective.fingerpointing.testing import INTEGRATION_TESTING
 from logging import INFO
 from plone import api
 from plone.app.discussion.interfaces import IDiscussionSettings
+from plone.registry import field
+from plone.registry.interfaces import IRegistry
+from plone.registry.record import Record
 from testfixtures import LogCapture
+from zope.component import getUtility
 
 import unittest
 
@@ -24,6 +28,16 @@ class RegistrySubscribersTestCase(unittest.TestCase):
             api.portal.set_registry_record(record, False)
             log.check(
                 ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<Record plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled> value=False'),
+            )
+
+    def test_new_record_modified(self):
+        registry = getUtility(IRegistry)
+        registry.records['collective.fingerpointing.new_field'] = Record(
+            field.TextLine(title=u'New field'))
+        with LogCapture('collective.fingerpointing', level=INFO) as log:
+            api.portal.set_registry_record('collective.fingerpointing.new_field', u'Descrição')
+            log.check(
+                ('collective.fingerpointing', 'INFO', u'user=test ip=127.0.0.1 action=modify object=<Record collective.fingerpointing.new_field> value=Descrição'),
             )
 
     def test_susbcriber_ignored_when_package_not_installed(self):
