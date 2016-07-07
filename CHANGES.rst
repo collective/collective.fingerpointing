@@ -96,6 +96,7 @@ Changelog
 .. _`#2`: https://github.com/collective/collective.fingerpointing/issues/2
 .. _`#4`: https://github.com/collective/collective.fingerpointing/issues/4
 .. _`#8`: https://github.com/collective/collective.fingerpointing/issues/8
+.. _`#9`: https://github.com/collective/collective.fingerpointing/issues/9
 .. _`#15`: https://github.com/collective/collective.fingerpointing/issues/15
 .. _`#18`: https://github.com/collective/collective.fingerpointing/issues/18
 .. _`#25`: https://github.com/collective/collective.fingerpointing/issues/25
