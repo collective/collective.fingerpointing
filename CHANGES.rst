@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.1b1 (unreleased)
+1.1b1 (2016-07-07)
 ------------------
 
 - Drop support for Plone 4.2.
