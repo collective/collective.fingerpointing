@@ -23,6 +23,6 @@ def registry_logger(event):
 
         if IRecordModifiedEvent.providedBy(event):
             action = 'modify'
-            extras = 'object={0} value={1}'.format(event.record, event.record.value)
+            extras = u'object={0} value={1}'.format(event.record, event.record.value)
 
         log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
