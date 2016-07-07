@@ -6,6 +6,7 @@ from logging import INFO
 from plone import api
 from Products.PlonePAS.events import UserLoggedInEvent
 from Products.PlonePAS.events import UserLoggedOutEvent
+from Products.PluggableAuthService.events import GroupDeleted
 from Products.PluggableAuthService.events import PrincipalCreated
 from Products.PluggableAuthService.events import PrincipalDeleted
 from testfixtures import LogCapture
@@ -52,7 +53,15 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove principal=foo'),
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove user=foo'),
+            )
+
+    def test_group_removed(self):
+        event = GroupDeleted('bar')
+        with LogCapture('collective.fingerpointing', level=INFO) as log:
+            notify(event)
+            log.check(
+                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove group=bar'),
             )
 
     def test_susbcriber_ignored_when_package_not_installed(self):

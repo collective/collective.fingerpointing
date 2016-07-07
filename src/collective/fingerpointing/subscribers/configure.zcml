@@ -23,6 +23,11 @@
       handler=".pas_logger"
       />
 
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IGroupDeletedEvent"
+      handler=".pas_logger"
+      />
+
   <!-- Archetypes -->
   <subscriber
       zcml:condition="installed Products.Archetypes"

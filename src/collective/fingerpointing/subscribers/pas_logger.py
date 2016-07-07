@@ -5,6 +5,7 @@ from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
 from plone.api.exc import InvalidParameterError
+from Products.PluggableAuthService.interfaces.events import IGroupDeletedEvent
 from Products.PluggableAuthService.interfaces.events import IPrincipalCreatedEvent
 from Products.PluggableAuthService.interfaces.events import IPrincipalDeletedEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
@@ -23,7 +24,6 @@ def pas_logger(event):
 
     if audit_pas:
         user, ip = get_request_information()
-
         if IUserLoggedInEvent.providedBy(event):
             action = 'login'
             extras = ''
@@ -35,6 +35,9 @@ def pas_logger(event):
             extras = u'principal={0}'.format(event.principal)
         elif IPrincipalDeletedEvent.providedBy(event):
             action = 'remove'
-            extras = u'principal={0}'.format(event.principal)
+            extras = u'user={0}'.format(event.principal)
+        if IGroupDeletedEvent.providedBy(event):
+            action = 'remove'
+            extras = u'group={0}'.format(event.principal)
 
         log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
