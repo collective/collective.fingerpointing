@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.0b4 (unreleased)
+1.0b4 (2016-07-07)
 ------------------
 
 - Avoid UnicodeEncodeError with log messages.
