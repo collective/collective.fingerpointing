@@ -21,7 +21,7 @@ setup(
         'Environment :: Web Environment',
         'Framework :: Plone :: 4.3',
         'Framework :: Plone :: 5.0',
-        # 'Framework :: Plone :: 5.1',
+        'Framework :: Plone :: 5.1',
         'Framework :: Plone',
         'Intended Audience :: System Administrators',
         'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
