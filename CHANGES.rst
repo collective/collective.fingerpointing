@@ -4,7 +4,8 @@ Changelog
 1.1b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Avoid ComponentLookupError when plonectl adduser.
+  [jianaijun]
 
 
 1.1b1 (2016-07-07)
