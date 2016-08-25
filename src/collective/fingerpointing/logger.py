@@ -2,6 +2,8 @@
 from App.config import getConfiguration
 from collective.fingerpointing.config import AUDITLOG
 from collective.fingerpointing.config import PROJECTNAME
+from ZConfig.components.logger.loghandler import FileHandler
+
 
 import logging
 import os.path
@@ -12,32 +14,33 @@ import zc.lockfile
 FORMAT = '%(asctime)s - %(levelname)s - %(message)s'
 
 # by default, the audit log will use the same location used for the event log
-eventlog = getattr(getConfiguration(), 'eventlog', None)
+zopeConf = getConfiguration()
 
-if eventlog is None:
-    # we are running tests
-    logfile = os.path.join('.', AUDITLOG)
-else:
-    try:
-        logpath = eventlog.handler_factories[0].instance.baseFilename
-        logfolder = os.path.split(logpath)[0]
-        logfile = os.path.join(logfolder, AUDITLOG)
-    except AttributeError:
-        # we are in the debug console
-        logfile = os.path.join('.', AUDITLOG)
+auditlogConf = getattr(
+    zopeConf,
+    'product_config',
+    {}
+).get(
+    'collective.fingerpointing',
+    {}
+)
 
+logfile = auditlogConf.get('audit-log', './audit.log')
 logger = logging.getLogger(PROJECTNAME)
 logger.setLevel(logging.INFO)
 logger.info('Start logging audit information to ' + AUDITLOG)
 
-# support automatic rotation of audit log files at timed intervals
-# we can later implement a way to make this configurable
-handler = logging.handlers.TimedRotatingFileHandler(
-    logfile, when='midnight', backupCount=30)
+if logfile is not None:
+    # Use the rotatingfilehandler to rotate at X Bytes,
+    # maxBytes can be 0 to never rotate.
+    maxBytes = int(auditlogConf.get('audit-log-max-size', 0))
+    backupCount = int(auditlogConf.get('audit-log-old-files', 30))
+    handler = logging.handlers.RotatingFileHandler(
+        logfile, maxBytes=maxBytes, backupCount=backupCount)
 
-formatter = logging.Formatter(FORMAT)
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+    formatter = logging.Formatter(FORMAT)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
 
 
 def log_info(*args, **kwargs):

@@ -55,6 +55,23 @@ To enable this package in a buildout-based installation:
     eggs =
         collective.fingerpointing
 
+    [instance]
+    zope-conf-additional +=
+      <product-config collective.fingerpointing>
+        audit-log ${buildout:directory}/var/log/audit.log
+        audit-log-max-size 10240
+        audit-log-old-files 30
+      </product-config>
+
+The values in `zope-conf-additional`:
+
+  - `audit-log`: Absolute path of the audit.log logfile
+  - `audit-log-max-size`: Rotate at a size of x bytes, can be 0 to never rotate.
+  - `audit-log-old-files`: Keep X rotated log files on hand.
+
+Without these lines in zope.conf `fingerpointing` will try to detect the path of the eventlog and use that one,
+if that also fails it will use `./audit.log`.
+
 After updating the configuration you need to run ''bin/buildout'', which will take care of updating your system.
 
 Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.

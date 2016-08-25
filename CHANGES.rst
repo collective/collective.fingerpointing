@@ -4,7 +4,8 @@ Changelog
 1.1b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix audit.log path when other logghandlers are installed and make rotating
+  configureable, through zope.conf. [rene]
 
 
 1.1b1 (2016-07-07)
