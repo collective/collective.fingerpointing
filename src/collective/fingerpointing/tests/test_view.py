@@ -31,7 +31,7 @@ class LogViewTestCase(unittest.TestCase):
         # we have at least one log file to process
         self.assertGreaterEqual(len(audit_log_files), 1)
         # the first file is the current audit log
-        self.assertEqual('./audit.log', audit_log_files[0])
+        self.assertEqual('/tmp/audit.log', audit_log_files[0])
 
     def test_log_tail(self):
         from Products.PlonePAS.events import UserLoggedOutEvent

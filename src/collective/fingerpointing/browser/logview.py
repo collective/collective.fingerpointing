@@ -15,6 +15,9 @@ class LogView(BrowserView):
     def render(self):
         return self.index()
 
+    def available(self):
+        return LOGFILE is not None
+
     def tail(self, f, n=100):
         """Return the last n lines of a file.
         See: http://stackoverflow.com/a/280083/644075

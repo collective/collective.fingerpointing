@@ -4,8 +4,8 @@ Changelog
 1.1b2 (unreleased)
 ------------------
 
-- Fix audit.log path when other logghandlers are installed and make rotating
-  configureable, through zope.conf. [rene]
+- Make log rotating configurable using the `zope-conf-additional` option.
+  [rene, hvelarde]
 
 
 1.1b1 (2016-07-07)

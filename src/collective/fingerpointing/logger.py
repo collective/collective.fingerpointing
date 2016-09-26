@@ -1,53 +1,39 @@
 # -*- coding: utf-8 -*-
-from App.config import getConfiguration
-from collective.fingerpointing.config import AUDITLOG
+from collective.fingerpointing.config import fingerpointing_config
+from collective.fingerpointing.config import LOG_FORMAT
 from collective.fingerpointing.config import PROJECTNAME
-from ZConfig.components.logger.loghandler import FileHandler
-
 
 import logging
-import os.path
 import time
 import zc.lockfile
 
-
-FORMAT = '%(asctime)s - %(levelname)s - %(message)s'
-
-# by default, the audit log will use the same location used for the event log
-zopeConf = getConfiguration()
-
-auditlogConf = getattr(
-    zopeConf,
-    'product_config',
-    {}
-).get(
-    'collective.fingerpointing',
-    {}
-)
-
-logfile = auditlogConf.get('audit-log', './audit.log')
 logger = logging.getLogger(PROJECTNAME)
-logger.setLevel(logging.INFO)
-logger.info('Start logging audit information to ' + AUDITLOG)
 
-if logfile is not None:
-    # Use the rotatingfilehandler to rotate at X Bytes,
-    # maxBytes can be 0 to never rotate.
-    maxBytes = int(auditlogConf.get('audit-log-max-size', 0))
-    backupCount = int(auditlogConf.get('audit-log-old-files', 30))
+logfile = fingerpointing_config.get('audit-log', None)
+if logfile is None:
+    logger.warn('No audit log file specified; audit log view will be disabled')
+else:
+    # if either of maxBytes or backupCount is zero, rollover never occurs
+    maxBytes = int(fingerpointing_config.get('audit-log-max-size', 0))
+    backupCount = int(fingerpointing_config.get('audit-log-old-files', 1))
     handler = logging.handlers.RotatingFileHandler(
         logfile, maxBytes=maxBytes, backupCount=backupCount)
-
-    formatter = logging.Formatter(FORMAT)
+    formatter = logging.Formatter(LOG_FORMAT)
     handler.setFormatter(formatter)
     logger.addHandler(handler)
+    logger.info('Logging audit information to ' + logfile)
 
 
 def log_info(*args, **kwargs):
     """Log information to a file handling access from multiple instances.
     This code was taken from ZEO/ClientStorage.py.
     """
-    # try to lock the logfile then write to the logfile
+    # if no logfile was specified just log the event normally
+    if logfile is None:
+        logger.info(*args, **kwargs)
+        return
+
+    # otherwise, try to lock the logfile then writing to it
     lockfilename = logfile + '.lock'
     n = 0
 
