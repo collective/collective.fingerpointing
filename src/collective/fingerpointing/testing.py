@@ -28,7 +28,16 @@ class Fixture(PloneSandboxLayer):
 
     defaultBases = (PLONE_FIXTURE,)
 
+    # XXX: this can probably be done in a different way
+    def _configure_audit_log(self):
+        """Fake configuration for collective.fingerpointing as tests
+        expect an audit.log file to be set.
+        """
+        from collective.fingerpointing.config import fingerpointing_config
+        fingerpointing_config['audit-log'] = '/tmp/audit.log'
+
     def setUpZope(self, app, configurationContext):
+        self._configure_audit_log()
         import collective.fingerpointing
         self.loadZCML(package=collective.fingerpointing)
 

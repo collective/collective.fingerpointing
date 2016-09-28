@@ -1,50 +1,40 @@
 # -*- coding: utf-8 -*-
-from App.config import getConfiguration
-from collective.fingerpointing.config import AUDITLOG
+from collective.fingerpointing.config import fingerpointing_config
+from collective.fingerpointing.config import LOG_FORMAT
 from collective.fingerpointing.config import PROJECTNAME
 
 import logging
-import os.path
 import time
 import zc.lockfile
 
-
-FORMAT = '%(asctime)s - %(levelname)s - %(message)s'
-
-# by default, the audit log will use the same location used for the event log
-eventlog = getattr(getConfiguration(), 'eventlog', None)
-
-if eventlog is None:
-    # we are running tests
-    logfile = os.path.join('.', AUDITLOG)
-else:
-    try:
-        logpath = eventlog.handler_factories[0].instance.baseFilename
-        logfolder = os.path.split(logpath)[0]
-        logfile = os.path.join(logfolder, AUDITLOG)
-    except AttributeError:
-        # we are in the debug console
-        logfile = os.path.join('.', AUDITLOG)
-
 logger = logging.getLogger(PROJECTNAME)
 logger.setLevel(logging.INFO)
-logger.info('Start logging audit information to ' + AUDITLOG)
 
-# support automatic rotation of audit log files at timed intervals
-# we can later implement a way to make this configurable
-handler = logging.handlers.TimedRotatingFileHandler(
-    logfile, when='midnight', backupCount=30)
-
-formatter = logging.Formatter(FORMAT)
-handler.setFormatter(formatter)
-logger.addHandler(handler)
+logfile = fingerpointing_config.get('audit-log', None)
+if logfile is None:
+    logger.warn('No audit log file specified; audit log view will be disabled')
+else:
+    # if either of maxBytes or backupCount is zero, rollover never occurs
+    maxBytes = int(fingerpointing_config.get('audit-log-max-size', 0))
+    backupCount = int(fingerpointing_config.get('audit-log-old-files', 1))
+    handler = logging.handlers.RotatingFileHandler(
+        logfile, maxBytes=maxBytes, backupCount=backupCount)
+    formatter = logging.Formatter(LOG_FORMAT)
+    handler.setFormatter(formatter)
+    logger.addHandler(handler)
+    logger.info('Logging audit information to ' + logfile)
 
 
 def log_info(*args, **kwargs):
     """Log information to a file handling access from multiple instances.
     This code was taken from ZEO/ClientStorage.py.
     """
-    # try to lock the logfile then write to the logfile
+    # if no logfile was specified just log the event normally
+    if logfile is None:
+        logger.info(*args, **kwargs)
+        return
+
+    # otherwise, try to lock the logfile then writing to it
     lockfilename = logfile + '.lock'
     n = 0
 

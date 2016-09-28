@@ -21,7 +21,11 @@
     </metal:title>
 
     <metal:content-core metal:fill-slot="content-core">
-      <pre tal:content="view/get_audit_log" />
+      <pre tal:condition="view/available" tal:content="view/get_audit_log" />
+
+      <p tal:condition="not:view/available" i18n:translate="">
+        No audit log file specified; audit log view is disabled.
+      </p>
     </metal:content-core>
   </body>
 </html>

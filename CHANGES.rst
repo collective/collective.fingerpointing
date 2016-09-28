@@ -4,7 +4,8 @@ Changelog
 1.1b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Make log rotating configurable using the `zope-conf-additional` option.
+  [rene, hvelarde]
 
 
 1.1b1 (2016-07-07)
