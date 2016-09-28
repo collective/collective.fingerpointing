@@ -8,6 +8,7 @@ import time
 import zc.lockfile
 
 logger = logging.getLogger(PROJECTNAME)
+logger.setLevel(logging.INFO)
 
 logfile = fingerpointing_config.get('audit-log', None)
 if logfile is None:
