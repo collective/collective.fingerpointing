@@ -55,8 +55,8 @@ Edit your buildout.cfg and add the following to it:
     eggs =
         collective.fingerpointing
 
-By default, ``collective.fingerpointing`` logs audit events to the event log only.
-   To enable logging to a separate file use the following configuration:
+By default, Finger Pointing logs audit events to the event log only.
+To enable logging to a separate file use the following configuration:
 
 .. code-block:: ini
 
@@ -79,7 +79,7 @@ After updating the configuration you need to run ''bin/buildout'', which will ta
 
 Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
 
-Check the box next to ``collective.fingerpointing`` and click the 'Activate' button.
+Check the box next to Finger Pointing and click the 'Activate' button.
 
 Usage
 -----

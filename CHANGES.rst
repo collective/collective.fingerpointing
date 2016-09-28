@@ -4,7 +4,12 @@ Changelog
 1.1b2 (unreleased)
 ------------------
 
+.. Warning::
+    Starting with this version you need to explicitly configure the package to use a separate audit.log file.
+    Check the documentation to find out how to do so.
+
 - Make log rotating configurable using the `zope-conf-additional` option.
+  Note that now, by default, rotating is disabled.
   [rene, hvelarde]
 
 
