@@ -13,7 +13,7 @@ Finger Pointing
 Life, the Universe, and Everything
 ==================================
 
-Finger Pointing logging adds additional logging events (e.g. user logging in and out and content type life cycle) to the standard Zope log. Also, during product installation, user can select to create unique Finger Pointing log and activate log rotation.
+Finger Pointing adds additional logging events (e.g. user logging in and out and content type life cycle) to the standard Zope log. Also, during product installation, user can select to create unique Finger Pointing log and activate log rotation.
 
 Finally, the product configlet allows user can select which additional events to log.
 
@@ -73,7 +73,7 @@ To enable logging to a separate file use the following configuration:
 audit-log
     The filename of the audit log. Add file name to create Finger Pointing audit file.
 audit-log-max-size
-    Maximum size of audit log file. Adding this max size enables log rotation.  
+    Maximum size of audit log file. Adding this max size enables log rotation.
 audit-log-old-files
     Number of previous log files to retain when log rotation is enabled. Defaults to 1.
 
