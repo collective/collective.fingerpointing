@@ -13,7 +13,9 @@ Finger Pointing
 Life, the Universe, and Everything
 ==================================
 
-Keep track of different events and write them down to an audit log.
+Finger Pointing logging adds additional logging events (e.g. user logging in and out and content type life cycle) to the standard Zope log. Also, during product installation, user can select to create unique Finger Pointing log and activate log rotation.
+
+Finally, the product configlet allows user can select which additional events to log.
 
 Mostly Harmless
 ===============
@@ -55,7 +57,7 @@ Edit your buildout.cfg and add the following to it:
     eggs =
         collective.fingerpointing
 
-By default, Finger Pointing logs audit events to the event log only.
+By default, Finger Pointing logs audit events to the Zope event log only.
 To enable logging to a separate file use the following configuration:
 
 .. code-block:: ini
@@ -69,9 +71,9 @@ To enable logging to a separate file use the following configuration:
         </product-config>
 
 audit-log
-    The filename of the audit log. Defaults to none.
+    The filename of the audit log. Add file name to create Finger Pointing audit file.
 audit-log-max-size
-    Maximum size of audit log file. Enables log rotation.
+    Maximum size of audit log file. Adding this max size enables log rotation.  
 audit-log-old-files
     Number of previous log files to retain when log rotation is enabled. Defaults to 1.
 
@@ -124,8 +126,8 @@ An audit log view is available in the user menu to users with the `collective.fi
 
     The Finger Pointing audit log view.
 
-If you specify no audit log file you'll see a warning;
-however, audit events will be normally logged to the event log:
+If you didn't specify a Finger Pointing audit log file name,  you'll see a warning.
+However, audit events will be normally logged to the Zope event log:
 
 .. code-block:: console
 
