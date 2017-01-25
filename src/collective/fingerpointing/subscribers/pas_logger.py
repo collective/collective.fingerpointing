@@ -10,6 +10,7 @@ from Products.PluggableAuthService.interfaces.events import IPrincipalCreatedEve
 from Products.PluggableAuthService.interfaces.events import IPrincipalDeletedEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedOutEvent
+from zope.component.interfaces import ComponentLookupError
 
 
 def pas_logger(event):
@@ -19,7 +20,7 @@ def pas_logger(event):
     try:
         record = IFingerPointingSettings.__identifier__ + '.audit_pas'
         audit_pas = api.portal.get_registry_record(record)
-    except InvalidParameterError:
+    except (InvalidParameterError, ComponentLookupError):
         return
 
     if audit_pas:
