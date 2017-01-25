@@ -27,6 +27,12 @@ class IFingerPointingSettings(Interface):
         default=True,
     )
 
+    audit_workflow = schema.Bool(
+        title=_(u'Audit Workflow Transitions?'),
+        description=_(u'Log workflow transitions like object publishing.'),
+        default=True,
+    )
+
     audit_registry = schema.Bool(
         title=_(u'Audit Registry?'),
         description=_(u'Log registry events like records being modified.'),
