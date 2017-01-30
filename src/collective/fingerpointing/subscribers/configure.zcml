@@ -97,4 +97,10 @@
       handler=".iterate_logger"
       />
 
+  <!-- Workflow -->
+  <subscriber
+      for="Products.CMFCore.interfaces.IActionSucceededEvent"
+      handler=".workflow_logger"
+      />
+
 </configure>

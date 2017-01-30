@@ -43,17 +43,16 @@ class Fixture(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         self.applyProfile(portal, 'collective.fingerpointing:default')
+        portal.portal_workflow.setDefaultChain('simple_publication_workflow')
 
 
 FIXTURE = Fixture()
 
 INTEGRATION_TESTING = IntegrationTesting(
-    bases=(FIXTURE,),
-    name='collective.fingerpointing:Integration')
+    bases=(FIXTURE,), name='collective.fingerpointing:Integration')
 
 FUNCTIONAL_TESTING = FunctionalTesting(
-    bases=(FIXTURE,),
-    name='collective.fingerpointing:Functional')
+    bases=(FIXTURE,), name='collective.fingerpointing:Functional')
 
 ROBOT_TESTING = FunctionalTesting(
     bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),

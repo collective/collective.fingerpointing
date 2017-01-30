@@ -4,7 +4,11 @@ Changelog
 1.2b2 (unreleased)
 ------------------
 
-- Avoid ComponentLookupError when plonectl adduser. 
+- Add support for logging workflow transitions.
+  [hvelarde]
+
+- Avoid ComponentLookupError when plonectl adduser.
+  [jianaijun]
 
 
 1.2b1 (2016-09-28)
