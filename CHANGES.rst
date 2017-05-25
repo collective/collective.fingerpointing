@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.2b2 (unreleased)
+1.3b1 (2017-05-25)
 ------------------
 
 - Add support for Cloudflare's ``CF-Connecting-IP`` request header to log real client IP addresses.
