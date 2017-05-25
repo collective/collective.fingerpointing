@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.3b2 (unreleased)
+1.3b2 (2017-05-25)
 ------------------
 
 - Avoid possible ``ConfigurationConflictError`` on upgrade step registration.

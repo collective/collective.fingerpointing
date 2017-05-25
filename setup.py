@@ -3,7 +3,7 @@ from setuptools import find_packages
 from setuptools import setup
 
 
-version = '1.3b2.dev0'
+version = '1.3b2'
 description = 'Keep track of different events and write them down to an audit log.'
 long_description = (
     open('README.rst').read() + '\n' +
