@@ -28,9 +28,9 @@ class WorkflowSubscribersTestCase(unittest.TestCase):
 
     def test_workflow_transitions(self):
         expected = (
-            ('collective.fingerpointing', 'INFO', u'user=test ip=127.0.0.1 action=workflow transition object=<NewsItem at foo> transition=submit'),
-            ('collective.fingerpointing', 'INFO', u'user=test ip=127.0.0.1 action=workflow transition object=<NewsItem at foo> transition=publish'),
-            ('collective.fingerpointing', 'INFO', u'user=test ip=127.0.0.1 action=workflow transition object=<NewsItem at foo> transition=retract'),
+            ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=submit'),
+            ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=publish'),
+            ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=retract'),
         )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:

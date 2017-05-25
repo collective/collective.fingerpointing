@@ -40,4 +40,4 @@ class LogViewTestCase(unittest.TestCase):
         notify(event)
         audit_log = self.view.get_audit_log.split('\n')
         # user logged out event is first on log (newer entries first)
-        self.assertIn('user=test ip=127.0.0.1 action=logout', audit_log[0])
+        self.assertIn('user=test_user_1_ ip=None action=logout', audit_log[0])

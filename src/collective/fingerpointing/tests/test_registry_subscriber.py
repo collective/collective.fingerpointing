@@ -27,7 +27,7 @@ class RegistrySubscribersTestCase(unittest.TestCase):
             record = IDiscussionSettings.__identifier__ + '.globally_enabled'
             api.portal.set_registry_record(record, False)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=modify object=<Record plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled> value=False'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Record plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled> value=False'),
             )
 
     def test_new_record_modified(self):
@@ -37,7 +37,7 @@ class RegistrySubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             api.portal.set_registry_record('collective.fingerpointing.new_field', u'Descrição')
             log.check(
-                ('collective.fingerpointing', 'INFO', u'user=test ip=127.0.0.1 action=modify object=<Record collective.fingerpointing.new_field> value=Descrição'),
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=modify object=<Record collective.fingerpointing.new_field> value=Descrição'),
             )
 
     def test_susbcriber_ignored_when_package_not_installed(self):

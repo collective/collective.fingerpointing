@@ -29,7 +29,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=login '),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=login '),
             )
 
     def test_user_logout(self):
@@ -37,7 +37,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=logout '),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=logout '),
             )
 
     def test_user_created(self):
@@ -45,7 +45,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=create principal=foo'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create principal=foo'),
             )
 
     def test_user_removed(self):
@@ -53,7 +53,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove user=foo'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove user=foo'),
             )
 
     def test_group_removed(self):
@@ -61,7 +61,7 @@ class PasSubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test ip=127.0.0.1 action=remove group=bar'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove group=bar'),
             )
 
     def test_susbcriber_ignored_when_package_not_installed(self):
