@@ -4,7 +4,8 @@ Changelog
 1.3b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Avoid possible ``ConfigurationConflictError`` on upgrade step registration.
+  [hvelarde]
 
 
 1.3b1 (2017-05-25)

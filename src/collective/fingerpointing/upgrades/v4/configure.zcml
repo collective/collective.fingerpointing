@@ -10,6 +10,7 @@
     <genericsetup:upgradeDepends
         title="Add new field audit_workflow to configlet"
         description="Reload registration of configlet registry to add new field."
+        import_profile="collective.fingerpointing:default"
         import_steps="plone.app.registry"
         run_deps="false"
         />
