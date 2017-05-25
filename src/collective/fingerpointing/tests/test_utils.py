@@ -1,7 +1,6 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.utils import get_request_information
-from plone.app.testing import TEST_USER_NAME
 
 import unittest
 
@@ -10,11 +9,14 @@ class UtilsTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
 
+    def setUp(self):
+        self.request = self.layer['request']
+
     def test_get_request_information(self):
-        request = self.layer['request']
-        request['AUTHENTICATED_USER'] = TEST_USER_NAME
-        request['REMOTE_ADDR'] = localhost = '127.0.0.1'
         self.assertEqual(
-            get_request_information(),
-            (TEST_USER_NAME, localhost),
-        )
+            get_request_information(), ('test_user_1_', 'None'))
+
+    def test_get_request_information_cloudflare(self):
+        self.request.environ['HTTP_CF_CONNECTING_IP'] = '192.168.1.1'
+        self.assertEqual(
+            get_request_information(), ('test_user_1_', '192.168.1.1'))

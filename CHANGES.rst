@@ -4,6 +4,13 @@ Changelog
 1.2b2 (unreleased)
 ------------------
 
+- Add support for Cloudflare's ``CF-Connecting-IP`` request header to log real client IP addresses.
+  [hvelarde]
+
+- We now use plone.api to get the id of the user instead of the ``AUTHENTICATED_USER`` key on the request.
+  Also, we now use the ``getClientAddr()`` function to get remote IP address.
+  These changes simplify testing.
+
 - Add support for logging workflow transitions.
   [hvelarde]
 

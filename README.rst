@@ -13,9 +13,15 @@ Finger Pointing
 Life, the Universe, and Everything
 ==================================
 
-Finger Pointing adds additional logging events (e.g. user logging in and out and content type life cycle) to the standard Zope log. Also, during product installation, user can select to create unique Finger Pointing log and activate log rotation.
+Finger Pointing is a basic audit logger that helps you keep record of events like user login/logout and content types objects life cycle.
+All events are logged into the standard Zope log and, optionally, to a dedicated audit log file.
 
-Finally, the product configlet allows user can select which additional events to log.
+Other features included:
+
+- configurable via control panel configlet
+- log entries can be easily visualized by users with permissions to do so
+- support for Cloudflare's ``CF-Connecting-IP`` request header to log real client IP addresses
+- support for automatic log rotation based on audit log file size
 
 Mostly Harmless
 ===============
@@ -37,8 +43,6 @@ Known Issues
 ------------
 
 Running your site behind a CDN may result in inconsistent IP addresses being logged.
-In CloudFlare, for instance, you can work around this limitation by enabling a feature called ''True-Client-IP Header'',
-but it requires an Enterprise plan.
 
 Don't Panic
 ===========
