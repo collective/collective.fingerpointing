@@ -7,6 +7,8 @@ Changelog
 - Fixed issue that lead to error when logging is run by anonymous user
   [keul]
 
+- Added support for ``HTTP_X_FORWARDED_FOR`` when getting request informations
+  [keul]
 
 1.3b2 (2017-05-25)
 ------------------

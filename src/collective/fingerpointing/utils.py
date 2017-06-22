@@ -17,6 +17,9 @@ def get_request_information():
     # see: https://support.cloudflare.com/hc/en-us/articles/200170986
     if 'HTTP_CF_CONNECTING_IP' in request.environ:
         ip = request.environ['HTTP_CF_CONNECTING_IP']
+    # Common proxy configuration
+    elif 'HTTP_X_FORWARDED_FOR' in request.environ:
+        ip = request.environ['HTTP_X_FORWARDED_FOR']
     else:
         ip = request.getClientAddr() or 'None'
 
