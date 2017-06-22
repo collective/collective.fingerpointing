@@ -4,7 +4,8 @@ Changelog
 1.3b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fixed issue that lead to error when logging is run by anonymous user
+  [keul]
 
 
 1.3b2 (2017-05-25)
