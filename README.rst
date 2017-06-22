@@ -77,7 +77,7 @@ To enable logging to a separate file use the following configuration:
 audit-log
     The filename of the audit log. Add file name to create Finger Pointing audit file.
 audit-log-max-size
-    Maximum size of audit log file. Adding this max size enables log rotation.
+    Maximum size of audit log file (in bytes). Adding this max size enables log rotation.
 audit-log-old-files
     Number of previous log files to retain when log rotation is enabled. Defaults to 1.
 
