@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.3b3 (unreleased)
+1.4b1 (2017-06-26)
 ------------------
 
 - Fix `AttributeError` when logging activity from anonymous users (fixes `#57 <https://github.com/collective/collective.fingerpointing/issues/57>`_).
