@@ -16,6 +16,11 @@ class UtilsTestCase(unittest.TestCase):
         self.assertEqual(
             get_request_information(), ('test_user_1_', 'None'))
 
+    def test_get_request_information_anonymous(self):
+        from plone.app.testing import logout
+        logout()
+        self.assertEqual(get_request_information(), ('-', 'None'))
+
     def test_get_request_information_cloudflare(self):
         self.request.environ['HTTP_CF_CONNECTING_IP'] = '192.168.1.1'
         self.assertEqual(

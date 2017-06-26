@@ -4,7 +4,11 @@ Changelog
 1.3b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix `AttributeError` when logging activity from anonymous users (fixes `#57 <https://github.com/collective/collective.fingerpointing/issues/57>`_).
+  [keul]
+
+- Add support for ``HTTP_X_FORWARDED_FOR`` request header to log real client IP addresses.
+  [keul]
 
 
 1.3b2 (2017-05-25)
