@@ -4,7 +4,8 @@ Changelog
 1.4b2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Added french translations.
+  [gbastien]
 
 
 1.4b1 (2017-06-26)
