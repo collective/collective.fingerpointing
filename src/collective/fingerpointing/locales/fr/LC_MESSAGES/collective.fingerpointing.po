@@ -16,74 +16,74 @@ msgstr ""
 
 #: collective/fingerpointing/interfaces.py:17
 msgid "Audit Authentication Service?"
-msgstr ""
+msgstr "Auditer le service d'authentification?"
 
 #: collective/fingerpointing/interfaces.py:24
 msgid "Audit Content Type Life Cycle?"
-msgstr ""
+msgstr "Auditer le cycle de vie des types de contenus?"
 
 #: collective/fingerpointing/interfaces.py:43
 msgid "Audit Iterate?"
-msgstr ""
+msgstr "Auditer l'outil \"Support des copies de travail\"?"
 
 #: collective/fingerpointing/browser/logview.pt:18
 msgid "Audit Log"
-msgstr ""
+msgstr "Journal d'audit"
 
 #: collective/fingerpointing/interfaces.py:37
 msgid "Audit Registry?"
-msgstr ""
+msgstr "Auditer le Registre de configuration?"
 
 #: collective/fingerpointing/interfaces.py:31
 msgid "Audit Workflow Transitions?"
-msgstr ""
+msgstr "Auditer les transitions de workflow?"
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
 #: collective/fingerpointing/profiles/default/controlpanel.xml
 msgid "Finger Pointing"
-msgstr ""
+msgstr "Finger Pointing"
 
 #: collective/fingerpointing/interfaces.py:44
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
-msgstr ""
+msgstr "Si plone.app.iterate est installé, enregistrer les événements comme la création ou la validation de brouillons."
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
-msgstr ""
+msgstr "Suivre les différents événements et les écrire dans un fichier d'audit."
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."
-msgstr ""
+msgstr "Enregistrer les événements liés à l'authentification comme la connexion ou la déconnexion des utilisateurs."
 
 #: collective/fingerpointing/interfaces.py:25
 msgid "Log content type life cycle events like object creation, modification and removal."
-msgstr ""
+msgstr "Enregistrer les événements se produisant sur les types de contenu comme la création, la modification ou la suppression."
 
 #: collective/fingerpointing/interfaces.py:38
 msgid "Log registry events like records being modified."
-msgstr ""
+msgstr "Enregistrer les événements du Registre de configuration tels que la modification d'un enregistrement."
 
 #: collective/fingerpointing/interfaces.py:32
 msgid "Log workflow transitions like object publishing."
-msgstr ""
+msgstr "Enregistrer les transitions de workflow telles que la publication."
 
 #: collective/fingerpointing/browser/logview.pt:26
 msgid "No audit log file specified; audit log view is disabled."
-msgstr ""
+msgstr "Aucun fichier de journal d'audit spécifié, la visualisation du journal d'audit est désactivée."
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
-msgstr ""
+msgstr "Configuration de l'outil collective.fingerpointing"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
-msgstr ""
+msgstr "Uninstall collective.fingerpointing."
 
 #: collective/fingerpointing/profiles/default/actions.xml
 msgid "View Audit Log"
-msgstr ""
+msgstr "Voir le journal d'audit"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
-msgstr ""
+msgstr "collective.fingerpointing: uninstall"
