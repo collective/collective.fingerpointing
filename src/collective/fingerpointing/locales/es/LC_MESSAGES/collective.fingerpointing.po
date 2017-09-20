@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-03-28 14:48+0000\n"
-"PO-Revision-Date: 2016-03-15 16:26-0300\n"
+"POT-Creation-Date: 2017-09-05 15:08+0000\n"
+"PO-Revision-Date: 2017-09-20 09:18-0300\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -14,7 +14,7 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 "Language: es\n"
-"X-Generator: Poedit 1.7.5\n"
+"X-Generator: Poedit 1.8.7.1\n"
 
 #: collective/fingerpointing/interfaces.py:17
 msgid "Audit Authentication Service?"
@@ -24,17 +24,21 @@ msgstr "¿Auditar el servicio de identificación?"
 msgid "Audit Content Type Life Cycle?"
 msgstr "¿Auditar el ciclo de vida de los tipos de contenido?"
 
-#: collective/fingerpointing/interfaces.py:37
+#: collective/fingerpointing/interfaces.py:43
 msgid "Audit Iterate?"
 msgstr "¿Auditar la copia de trabajo?"
 
-#: collective/fingerpointing/browser/logview.pt:15
+#: collective/fingerpointing/browser/logview.pt:18
 msgid "Audit Log"
 msgstr "Registro de auditoría"
 
-#: collective/fingerpointing/interfaces.py:31
+#: collective/fingerpointing/interfaces.py:37
 msgid "Audit Registry?"
 msgstr "¿Auditar el registro de configuración?"
+
+#: collective/fingerpointing/interfaces.py:31
+msgid "Audit Workflow Transitions?"
+msgstr "¿Auditar las transiciones del flujo de trabajo?"
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
@@ -42,7 +46,7 @@ msgstr "¿Auditar el registro de configuración?"
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/interfaces.py:38
+#: collective/fingerpointing/interfaces.py:44
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr "Si plone.app.iterate está instalado, registra eventos como checkouts y checkins."
 
@@ -58,9 +62,17 @@ msgstr "Registra eventos como acceso y salida de usuarios."
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr "Registra eventos como creación, modificación y remoción de objetos."
 
-#: collective/fingerpointing/interfaces.py:32
+#: collective/fingerpointing/interfaces.py:38
 msgid "Log registry events like records being modified."
 msgstr "Registra eventos como cambios en la configuración."
+
+#: collective/fingerpointing/interfaces.py:32
+msgid "Log workflow transitions like object publishing."
+msgstr "Registra eventos como publicación de objetos."
+
+#: collective/fingerpointing/browser/logview.pt:26
+msgid "No audit log file specified; audit log view is disabled."
+msgstr "No se especificó un archivo de bitácora; el registro de auditoría está deshabilitado."
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"

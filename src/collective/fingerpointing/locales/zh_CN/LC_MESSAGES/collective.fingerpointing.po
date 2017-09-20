@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.fingerpointing\n"
-"POT-Creation-Date: 2016-03-28 14:48+0000\n"
+"POT-Creation-Date: 2017-09-05 15:08+0000\n"
 "PO-Revision-Date: 2016-08-08 8:58+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sf.net>\n"
@@ -22,17 +22,21 @@ msgstr "审核认证服务"
 msgid "Audit Content Type Life Cycle?"
 msgstr "审核内容类型生命周期"
 
-#: collective/fingerpointing/interfaces.py:37
+#: collective/fingerpointing/interfaces.py:43
 msgid "Audit Iterate?"
 msgstr "审核工作副本"
 
-#: collective/fingerpointing/browser/logview.pt:15
+#: collective/fingerpointing/browser/logview.pt:18
 msgid "Audit Log"
 msgstr "审核日志"
 
-#: collective/fingerpointing/interfaces.py:31
+#: collective/fingerpointing/interfaces.py:37
 msgid "Audit Registry?"
 msgstr "审核注册表"
+
+#: collective/fingerpointing/interfaces.py:31
+msgid "Audit Workflow Transitions?"
+msgstr ""
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
@@ -40,7 +44,7 @@ msgstr "审核注册表"
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/interfaces.py:38
+#: collective/fingerpointing/interfaces.py:44
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr "如果安装了 plone.app.iterate，记录事件例如内容编辑检入和检出。"
 
@@ -56,9 +60,17 @@ msgstr "记录身份验证事件例如用户登录和退出。"
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr "记录内容类型生命周期事件例如对象创建、修改和删除。"
 
-#: collective/fingerpointing/interfaces.py:32
+#: collective/fingerpointing/interfaces.py:38
 msgid "Log registry events like records being modified."
 msgstr "记录注册表事件例如修改记录。"
+
+#: collective/fingerpointing/interfaces.py:32
+msgid "Log workflow transitions like object publishing."
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:26
+msgid "No audit log file specified; audit log view is disabled."
+msgstr ""
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"

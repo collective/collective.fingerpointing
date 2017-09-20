@@ -2,7 +2,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2016-03-28 14:48+0000\n"
+"POT-Creation-Date: 2017-09-05 15:08+0000\n"
 "PO-Revision-Date: 2016-03-17 21:47+0100\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -25,17 +25,21 @@ msgstr "Authentifizierung (PAS) auditieren"
 msgid "Audit Content Type Life Cycle?"
 msgstr "Lebenszyklus von Inhalten auditieren"
 
-#: collective/fingerpointing/interfaces.py:37
+#: collective/fingerpointing/interfaces.py:43
 msgid "Audit Iterate?"
 msgstr "Arbeitskopien auditieren"
 
-#: collective/fingerpointing/browser/logview.pt:15
+#: collective/fingerpointing/browser/logview.pt:18
 msgid "Audit Log"
 msgstr "Aktionsprotokoll"
 
-#: collective/fingerpointing/interfaces.py:31
+#: collective/fingerpointing/interfaces.py:37
 msgid "Audit Registry?"
 msgstr "Konfigurationseinträge auditieren"
+
+#: collective/fingerpointing/interfaces.py:31
+msgid "Audit Workflow Transitions?"
+msgstr ""
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
@@ -43,7 +47,7 @@ msgstr "Konfigurationseinträge auditieren"
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/interfaces.py:38
+#: collective/fingerpointing/interfaces.py:44
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr "Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, checkouts und checkins loggen"
 
@@ -59,9 +63,17 @@ msgstr "Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Bent
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr "Protokolliert den Ereignisse im Lebenszyklus von Inhalten (Erzeugen, Bearbeiten, Löschen)"
 
-#: collective/fingerpointing/interfaces.py:32
+#: collective/fingerpointing/interfaces.py:38
 msgid "Log registry events like records being modified."
 msgstr "Protokolliert Änderungen der Konfigurationseinträge (plone.app.registry)."
+
+#: collective/fingerpointing/interfaces.py:32
+msgid "Log workflow transitions like object publishing."
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:26
+msgid "No audit log file specified; audit log view is disabled."
+msgstr ""
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
