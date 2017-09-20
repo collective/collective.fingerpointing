@@ -1,10 +1,10 @@
 Changelog
 =========
 
-1.4b2 (unreleased)
+1.4b2 (2017-09-20)
 ------------------
 
-- Added french translations.
+- Add French translations.
   [gbastien]
 
 
