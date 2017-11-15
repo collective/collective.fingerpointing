@@ -27,9 +27,9 @@ before_script:
 script:
 - bin/code-analysis
 - bin/test
+- pylint --py3k --disable=no-absolute-import src/collective/fingerpointing
 after_success:
 - bin/createcoverage --output-dir=htmlcov
 - coveralls
-- pylint --py3k --disable=no-absolute-import src/collective/fingerpointing
 notifications:
   irc: irc.freenode.org#plone-testing
