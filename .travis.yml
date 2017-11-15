@@ -3,6 +3,7 @@ python: 2.7
 sudo: false
 cache:
   directories:
+  - $HOME/.pylint.d
   - eggs
 addons:
   firefox: latest-esr
@@ -12,6 +13,8 @@ env:
 - PLONE_VERSION=5.1
 matrix:
   fast_finish: true
+before_install:
+- pip install coveralls pylint
 install:
 - sed -ie "s#test-4.3.x.cfg#test-$PLONE_VERSION.x.cfg#" buildout.cfg
 - python bootstrap.py
@@ -26,7 +29,7 @@ script:
 - bin/test
 after_success:
 - bin/createcoverage --output-dir=htmlcov
-- pip install coveralls
 - coveralls
+- pylint --py3k --disable=no-absolute-import src/collective/fingerpointing
 notifications:
   irc: irc.freenode.org#plone-testing
