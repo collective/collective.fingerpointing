@@ -10,7 +10,10 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 from plone.testing import z2
 
+import os
 import pkg_resources
+import shutil
+import tempfile
 
 
 try:
@@ -29,21 +32,36 @@ class Fixture(PloneSandboxLayer):
     defaultBases = (PLONE_FIXTURE,)
 
     # XXX: this can probably be done in a different way
-    def _configure_audit_log(self):
+    def _setup_audit_log(self):
         """Fake configuration for collective.fingerpointing as tests
         expect an audit.log file to be set.
         """
         from collective.fingerpointing.config import fingerpointing_config
-        fingerpointing_config['audit-log'] = '/tmp/audit.log'
+        from collective.fingerpointing.logger import log_info
+        self.temp_dir = tempfile.mkdtemp()
+        fingerpointing_config['audit-log'] = os.path.join(
+            self.temp_dir,
+            'audit.log',
+        )
+        log_info.configure(fingerpointing_config)
+
+    def _cleanup_audit_log(self):
+        from collective.fingerpointing.config import fingerpointing_config
+        fingerpointing_config['audit-log'] = None
+        shutil.rmtree(self.temp_dir)
 
     def setUpZope(self, app, configurationContext):
-        self._configure_audit_log()
+        self._setup_audit_log()
         import collective.fingerpointing
         self.loadZCML(package=collective.fingerpointing)
 
     def setUpPloneSite(self, portal):
         self.applyProfile(portal, 'collective.fingerpointing:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
+
+    def tearDown(self):
+        super(Fixture, self).tearDown()
+        self._cleanup_audit_log()
 
 
 FIXTURE = Fixture()

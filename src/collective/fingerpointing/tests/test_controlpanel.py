@@ -23,7 +23,8 @@ class ControlPanelTestCase(unittest.TestCase):
         self.controlpanel = self.portal['portal_controlpanel']
 
     def test_controlpanel_has_view(self):
-        view = api.content.get_view(u'fingerpointing-settings', self.portal, self.request)  # noqa: E501
+        view = api.content.get_view(
+            u'fingerpointing-settings', self.portal, self.request)
         view = view.__of__(self.portal)
         self.assertTrue(view())
 

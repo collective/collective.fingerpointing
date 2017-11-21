@@ -26,18 +26,5 @@ class LogViewTestCase(unittest.TestCase):
         with self.assertRaises(Unauthorized):
             self.portal.restrictedTraverse('@@fingerpointing-audit-log')
 
-    def test_get_audit_log_files(self):
-        audit_log_files = self.view._get_audit_log_files
-        # we have at least one log file to process
-        self.assertGreaterEqual(len(audit_log_files), 1)
-        # the first file is the current audit log
-        self.assertEqual('/tmp/audit.log', audit_log_files[0])
-
-    def test_log_tail(self):
-        from Products.PlonePAS.events import UserLoggedOutEvent
-        from zope.event import notify
-        event = UserLoggedOutEvent(self.request)
-        notify(event)
-        audit_log = self.view.get_audit_log.split('\n')
-        # user logged out event is first on log (newer entries first)
-        self.assertIn('user=test_user_1_ ip=None action=logout', audit_log[0])
+    def test_available(self):
+        self.assertTrue(self.view.available)

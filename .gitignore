@@ -16,6 +16,7 @@ downloads/
 eggs/
 include/
 lib/
+local/
 local.cfg
 Makefile
 parts/

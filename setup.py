@@ -41,6 +41,7 @@ setup(
     include_package_data=True,
     zip_safe=False,
     install_requires=[
+        'file_read_backwards',
         'plone.api',
         'plone.app.registry',
         'plone.registry',

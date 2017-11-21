@@ -3,6 +3,7 @@
 from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
+from collective.fingerpointing.testing import IS_PLONE_5
 from logging import INFO
 from plone import api
 from plone.app.testing import setRoles
@@ -27,11 +28,19 @@ class WorkflowSubscribersTestCase(unittest.TestCase):
         api.portal.set_registry_record(record, False)
 
     def test_workflow_transitions(self):
-        expected = (
-            ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=submit'),  # noqa: E501
-            ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=publish'),  # noqa: E501
-            ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=retract'),  # noqa: E501
-        )
+
+        if IS_PLONE_5:
+            expected = (
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=submit'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=publish'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=retract'),  # noqa: E501
+            )
+        else:
+            expected = (
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at foo> transition=submit'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at foo> transition=publish'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at foo> transition=retract'),  # noqa: E501
+            )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             obj = api.content.create(self.portal, 'News Item', 'foo')
