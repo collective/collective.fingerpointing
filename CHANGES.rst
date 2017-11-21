@@ -4,6 +4,9 @@ Changelog
 1.4b3 (unreleased)
 ------------------
 
+- Fix #66 - Lifecycle logger: On create path is not logged.
+  [jensens]
+
 - Fix #64: Fails to startup w/o plone.app.iterate installed.
   [jensens]
 

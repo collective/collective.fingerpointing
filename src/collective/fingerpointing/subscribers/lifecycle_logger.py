@@ -6,7 +6,7 @@ from collective.fingerpointing.utils import get_request_information
 from plone import api
 from plone.api.exc import InvalidParameterError
 from zope.component import ComponentLookupError
-from zope.lifecycleevent import IObjectCreatedEvent
+from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
 from zope.lifecycleevent import IObjectRemovedEvent
 
@@ -26,7 +26,7 @@ def lifecycle_logger(obj, event):
     if audit_lifecycle:
         user, ip = get_request_information()
 
-        if IObjectCreatedEvent.providedBy(event):
+        if IObjectAddedEvent.providedBy(event):
             action = 'create'
             extras = u'object={0}'.format(repr(obj))
         if IObjectModifiedEvent.providedBy(event):

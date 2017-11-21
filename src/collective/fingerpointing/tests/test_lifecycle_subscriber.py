@@ -28,18 +28,18 @@ class LifeCycleSubscribersTestCase(unittest.TestCase):
     def test_file_lifecicle(self):
         if IS_PLONE_5:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<File at foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<File at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<File at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<File at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: C901
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATFile at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFile at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATFile at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATFile at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFile at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATFile at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: C901
             )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:
@@ -51,18 +51,18 @@ class LifeCycleSubscribersTestCase(unittest.TestCase):
     def test_folder_lifecicle(self):
         if IS_PLONE_5:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<Folder at foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<Folder at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<Folder at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<Folder at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: C901
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATFolder at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATFolder at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATFolder at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATFolder at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: C901
             )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:
@@ -74,18 +74,18 @@ class LifeCycleSubscribersTestCase(unittest.TestCase):
     def test_image_lifecicle(self):
         if IS_PLONE_5:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<Image at foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<Image at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<Image at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<Image at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: C901
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATImage at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATImage at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATImage at /plone/folder/foo>'),
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATImage at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATImage at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATImage at /plone/folder/foo>'),  # noqa: C901
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: C901
             )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:
