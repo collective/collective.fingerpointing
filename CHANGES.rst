@@ -4,10 +4,10 @@ Changelog
 1.4b3 (unreleased)
 ------------------
 
-- Fix #66 - Lifecycle logger: On create path is not logged.
+- Fix object location for lifecycle logger by subscribing to ``IObjectAddedEvent`` (fixes `#66 <https://github.com/collective/collective.fingerpointing/issues/66>`_).
   [jensens]
 
-- Fix #64: Fails to startup w/o plone.app.iterate installed.
+- Do not fail on startup if plone.app.iterate is not installed (fixes `#64 <https://github.com/collective/collective.fingerpointing/issues/64>`_).
   [jensens]
 
 - Reviewed and updated German translations.
