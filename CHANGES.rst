@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.4b3 (unreleased)
+1.4b3 (2017-11-21)
 ------------------
 
 - Fix object location for lifecycle logger by subscribing to ``IObjectAddedEvent`` (fixes `#66 <https://github.com/collective/collective.fingerpointing/issues/66>`_).
