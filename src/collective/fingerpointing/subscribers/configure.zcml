@@ -32,7 +32,7 @@
   <subscriber
       zcml:condition="installed Products.Archetypes"
       for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectCreatedEvent"
+           zope.lifecycleevent.IObjectAddedEvent"
       handler=".lifecycle_logger"
       />
 
@@ -54,7 +54,7 @@
   <subscriber
       zcml:condition="installed plone.app.dexterity"
       for="plone.dexterity.interfaces.IDexterityContent
-           zope.lifecycleevent.IObjectCreatedEvent"
+           zope.lifecycleevent.IObjectAddedEvent"
       handler=".lifecycle_logger"
       />
 
