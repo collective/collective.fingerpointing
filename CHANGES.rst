@@ -4,7 +4,8 @@ Changelog
 1.4b3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Reviewed and updated German translations.
+  [jensens]
 
 
 1.4b2 (2017-09-20)

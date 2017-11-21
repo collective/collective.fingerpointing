@@ -1,4 +1,5 @@
 # Harald Friessnegger <harald@webmeisterei.com>, 2016.
+# Jens Klein <jens@bluedynamics.com>, 2017.
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
@@ -19,15 +20,15 @@ msgstr ""
 
 #: collective/fingerpointing/interfaces.py:17
 msgid "Audit Authentication Service?"
-msgstr "Authentifizierung (PAS) auditieren"
+msgstr "Authentifizierungsdienst auditieren?"
 
 #: collective/fingerpointing/interfaces.py:24
 msgid "Audit Content Type Life Cycle?"
-msgstr "Lebenszyklus von Inhalten auditieren"
+msgstr "Lebenszyklus von Inhaltentypen auditieren?"
 
 #: collective/fingerpointing/interfaces.py:43
 msgid "Audit Iterate?"
-msgstr "Arbeitskopien auditieren"
+msgstr "Arbeitskopien auditieren?"
 
 #: collective/fingerpointing/browser/logview.pt:18
 msgid "Audit Log"
@@ -35,11 +36,11 @@ msgstr "Aktionsprotokoll"
 
 #: collective/fingerpointing/interfaces.py:37
 msgid "Audit Registry?"
-msgstr "Konfigurationseinträge auditieren"
+msgstr "Konfigurationseinträge auditieren?"
 
 #: collective/fingerpointing/interfaces.py:31
 msgid "Audit Workflow Transitions?"
-msgstr ""
+msgstr "Arbeitsablauf Aktionen auditieren?"
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
@@ -49,7 +50,7 @@ msgstr "Finger Pointing"
 
 #: collective/fingerpointing/interfaces.py:44
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
-msgstr "Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, checkouts und checkins loggen"
+msgstr "Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, dann protokolliere Bearbeitungsereignisse wie Checkouts und Checkins."
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
@@ -57,31 +58,31 @@ msgstr "Protokolliert relevante Ereignisse in einem Aktionsprotkoll (audit.log)"
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."
-msgstr "Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Bentuzer hinzufügen oder löschen)."
+msgstr "Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Benutzer hinzufügen oder löschen)."
 
 #: collective/fingerpointing/interfaces.py:25
 msgid "Log content type life cycle events like object creation, modification and removal."
-msgstr "Protokolliert den Ereignisse im Lebenszyklus von Inhalten (Erzeugen, Bearbeiten, Löschen)"
+msgstr "Protokolliert die Ereignisse im Lebenszyklus von Inhalten, wie Erstellen, Bearbeiten und Löschen."
 
 #: collective/fingerpointing/interfaces.py:38
 msgid "Log registry events like records being modified."
-msgstr "Protokolliert Änderungen der Konfigurationseinträge (plone.app.registry)."
+msgstr "Protokolliert Änderungen der Konfigurationseinträge (Registry)."
 
 #: collective/fingerpointing/interfaces.py:32
 msgid "Log workflow transitions like object publishing."
-msgstr ""
+msgstr "Protokolliert Arbeitsablauf Übergänge, wie z.B. das Veröffentlichen von Inhalten."
 
 #: collective/fingerpointing/browser/logview.pt:26
 msgid "No audit log file specified; audit log view is disabled."
-msgstr ""
+msgstr "Keine Protokoll-Datei angegeben, die Aktionsprotokoll Ansicht ist deaktiviert."
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
-msgstr "Einstellungen für collective.fingerpointing"
+msgstr "Einstellungen für die Erweiterung collective.fingerpointing"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
-msgstr "collective.fingerpointing deinstallieren"
+msgstr "collective.fingerpointing deinstallieren."
 
 #: collective/fingerpointing/profiles/default/actions.xml
 msgid "View Audit Log"
