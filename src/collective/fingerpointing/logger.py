@@ -63,9 +63,19 @@ class LogInfo(object):
 
         while 1:
             try:
-                lock = zc.lockfile.LockFile(lockfilename)
-                self.logger.info(*args, **kwargs)
-                lock.close()
+                # A content_template with hostname makes the implementation
+                # container save, where each process in the different
+                # containers is likely to have the same PID.
+                # https://pypi.python.org/pypi/zc.lockfile#hostname-in-lock-file
+                lock = zc.lockfile.LockFile(
+                    lockfilename,
+                    content_template='{pid};{hostname}'
+                )
+                try:
+                    self.logger.info(*args, **kwargs)
+                finally:
+                    # even if logging fails: release the lock.
+                    lock.close()
             except zc.lockfile.LockError:
                 time.sleep(0.01)
                 n += 1

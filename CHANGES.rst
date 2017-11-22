@@ -4,6 +4,9 @@ Changelog
 1.4b4 (unreleased)
 ------------------
 
+- Lock-file is now container save and it's close more robust.
+  [jensens]
+
 - Refactor logger module in order to improve testability.
   [jensens]
 
