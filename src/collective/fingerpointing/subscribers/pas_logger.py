@@ -6,8 +6,8 @@ from collective.fingerpointing.utils import get_request_information
 from plone import api
 from plone.api.exc import InvalidParameterError
 from Products.PluggableAuthService.interfaces.events import IGroupDeletedEvent
-from Products.PluggableAuthService.interfaces.events import IPrincipalCreatedEvent
-from Products.PluggableAuthService.interfaces.events import IPrincipalDeletedEvent
+from Products.PluggableAuthService.interfaces.events import IPrincipalCreatedEvent  # noqa: E501
+from Products.PluggableAuthService.interfaces.events import IPrincipalDeletedEvent  # noqa: E501
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedOutEvent
 from zope.component.interfaces import ComponentLookupError

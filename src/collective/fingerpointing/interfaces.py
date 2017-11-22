@@ -16,14 +16,14 @@ class IFingerPointingSettings(Interface):
     audit_pas = schema.Bool(
         title=_(u'Audit Authentication Service?'),
         description=_(
-            u'Log authentication events like users logging in and loggin out.'),
+            u'Log authentication events like users logging in and loggin out.'),   # noqa: E501
         default=True,
     )
 
     audit_lifecycle = schema.Bool(
         title=_(u'Audit Content Type Life Cycle?'),
         description=_(
-            u'Log content type life cycle events like object creation, modification and removal.'),
+            u'Log content type life cycle events like object creation, modification and removal.'),  # noqa: E501
         default=True,
     )
 

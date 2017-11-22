@@ -19,5 +19,5 @@ def workflow_logger(event):
     if audit_workflow:
         user, ip = get_request_information()
         action = 'workflow transition'
-        extras = u'object={0} transition={1}'.format(event.object, event.action)
+        extras = u'object={0} transition={1}'.format(event.object, event.action)  # noqa: E501
         log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

@@ -18,7 +18,7 @@ try:
 except pkg_resources.DistributionNotFound:
     from plone.app.testing import PLONE_FIXTURE
 else:
-    from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE
+    from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE  # noqa: E501
 
 
 IS_PLONE_5 = api.env.plone_version().startswith('5')

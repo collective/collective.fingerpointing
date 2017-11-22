@@ -69,7 +69,7 @@ class To2TestCase(BaseUpgradeTestCase):
 
         # simulate state on previous version
         permission = 'collective.fingerpointing: View Audit Log'
-        self.portal.manage_permission(permission_to_manage=permission, roles=[])
+        self.portal.manage_permission(permission_to_manage=permission, roles=[])  # noqa: E501
         roles = self.portal.rolesOfPermission(permission)
         roles = [r['name'] for r in roles if r['selected']]
         self.assertListEqual(roles, [])
@@ -141,7 +141,7 @@ class To4TestCase(BaseUpgradeTestCase):
         step = self._get_upgrade_step_by_title(title)
         assert step is not None
 
-        from collective.fingerpointing.interfaces import IFingerPointingSettings
+        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
         registry = getUtility(IRegistry)
