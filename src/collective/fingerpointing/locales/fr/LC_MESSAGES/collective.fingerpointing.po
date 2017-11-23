@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-09-05 15:08+0000\n"
+"POT-Creation-Date: 2017-11-23 18:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,10 @@ msgstr "Auditer le Registre de configuration?"
 msgid "Audit Workflow Transitions?"
 msgstr "Auditer les transitions de workflow?"
 
+#: collective/fingerpointing/browser/logview.pt:34
+msgid "Enter a search term"
+msgstr ""
+
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
 #: collective/fingerpointing/profiles/default/controlpanel.xml
@@ -68,7 +72,7 @@ msgstr "Enregistrer les événements du Registre de configuration tels que la mo
 msgid "Log workflow transitions like object publishing."
 msgstr "Enregistrer les transitions de workflow telles que la publication."
 
-#: collective/fingerpointing/browser/logview.pt:26
+#: collective/fingerpointing/browser/logview.pt:102
 msgid "No audit log file specified; audit log view is disabled."
 msgstr "Aucun fichier de journal d'audit spécifié, la visualisation du journal d'audit est désactivée."
 
@@ -87,3 +91,7 @@ msgstr "Voir le journal d'audit"
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: uninstall"
+
+#: collective/fingerpointing/browser/logview.pt:42
+msgid "filter"
+msgstr ""

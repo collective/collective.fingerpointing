@@ -4,6 +4,9 @@ Changelog
 1.4b4 (unreleased)
 ------------------
 
+- Update i18n, Brazilian Portuguese and Spanish translations.
+  [hvelarde]
+
 - Lock-file is now container save and it's close more robust.
   [jensens]
 

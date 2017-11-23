@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-09-05 15:08+0000\n"
+"POT-Creation-Date: 2017-11-23 18:14+0000\n"
 "PO-Revision-Date: 2016-03-17 21:47+0100\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -42,6 +42,10 @@ msgstr "Konfigurationseinträge auditieren?"
 msgid "Audit Workflow Transitions?"
 msgstr "Arbeitsablauf Aktionen auditieren?"
 
+#: collective/fingerpointing/browser/logview.pt:34
+msgid "Enter a search term"
+msgstr ""
+
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
 #: collective/fingerpointing/profiles/default/controlpanel.xml
@@ -72,7 +76,7 @@ msgstr "Protokolliert Änderungen der Konfigurationseinträge (Registry)."
 msgid "Log workflow transitions like object publishing."
 msgstr "Protokolliert Arbeitsablauf Übergänge, wie z.B. das Veröffentlichen von Inhalten."
 
-#: collective/fingerpointing/browser/logview.pt:26
+#: collective/fingerpointing/browser/logview.pt:102
 msgid "No audit log file specified; audit log view is disabled."
 msgstr "Keine Protokoll-Datei angegeben, die Aktionsprotokoll Ansicht ist deaktiviert."
 
@@ -91,3 +95,7 @@ msgstr "Aktionsprotokoll anzeigen"
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: Deinstallation"
+
+#: collective/fingerpointing/browser/logview.pt:42
+msgid "filter"
+msgstr ""

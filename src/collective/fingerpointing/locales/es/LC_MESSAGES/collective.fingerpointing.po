@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-09-05 15:08+0000\n"
-"PO-Revision-Date: 2017-09-20 09:18-0300\n"
+"POT-Creation-Date: 2017-11-23 18:14+0000\n"
+"PO-Revision-Date: 2017-11-23 16:15-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -40,6 +40,10 @@ msgstr "¿Auditar el registro de configuración?"
 msgid "Audit Workflow Transitions?"
 msgstr "¿Auditar las transiciones del flujo de trabajo?"
 
+#: collective/fingerpointing/browser/logview.pt:34
+msgid "Enter a search term"
+msgstr "Introduzca un texto para buscar"
+
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
 #: collective/fingerpointing/profiles/default/controlpanel.xml
@@ -70,7 +74,7 @@ msgstr "Registra eventos como cambios en la configuración."
 msgid "Log workflow transitions like object publishing."
 msgstr "Registra eventos como publicación de objetos."
 
-#: collective/fingerpointing/browser/logview.pt:26
+#: collective/fingerpointing/browser/logview.pt:102
 msgid "No audit log file specified; audit log view is disabled."
 msgstr "No se especificó un archivo de bitácora; el registro de auditoría está deshabilitado."
 
@@ -89,3 +93,7 @@ msgstr "Ver el registro de auditoría"
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: uninstall"
+
+#: collective/fingerpointing/browser/logview.pt:42
+msgid "filter"
+msgstr "filtrar"

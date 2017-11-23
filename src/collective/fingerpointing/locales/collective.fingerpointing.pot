@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-09-05 15:08+0000\n"
+"POT-Creation-Date: 2017-11-23 18:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -38,6 +38,10 @@ msgstr ""
 msgid "Audit Workflow Transitions?"
 msgstr ""
 
+#: collective/fingerpointing/browser/logview.pt:34
+msgid "Enter a search term"
+msgstr ""
+
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
 #: collective/fingerpointing/profiles/default/controlpanel.xml
@@ -68,7 +72,7 @@ msgstr ""
 msgid "Log workflow transitions like object publishing."
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:26
+#: collective/fingerpointing/browser/logview.pt:102
 msgid "No audit log file specified; audit log view is disabled."
 msgstr ""
 
@@ -86,4 +90,8 @@ msgstr ""
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:42
+msgid "filter"
 msgstr ""

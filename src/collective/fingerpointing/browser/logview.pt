@@ -35,7 +35,7 @@
                    name="query"
                    value=""
                    class=""
-                   placeholder="Enter a search term."
+                   placeholder="Enter a search term"
                    i18n:attributes="placeholder"
                    tal:attributes="value python:view.query" />
             <span class="input-group-btn">
