@@ -10,7 +10,7 @@ Changelog
 - Refactor logger module in order to improve testability.
   [jensens]
 
-- Adds Search on audit logs and pagination (implements `#17 <https://github.com/collective/collective.fingerpointing/issues/17>`_).
+- Add search on audit logs and pagination (implements `#17 <https://github.com/collective/collective.fingerpointing/issues/17>`_).
   [jensens]
 
 

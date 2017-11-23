@@ -12,7 +12,7 @@
                     disable_column_one python:request.set('disable_plone.leftcolumn', 1);
                     disable_column_two python:request.set('disable_plone.rightcolumn', 1);"
         />
-  <head>
+  </head>
   <body>
     <metal:title metal:fill-slot="content-title">
       <h1 class="documentFirstHeading" i18n:translate="">
