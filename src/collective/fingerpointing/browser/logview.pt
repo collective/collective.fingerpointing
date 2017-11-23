@@ -25,8 +25,8 @@
                  tal:define="dummy python:view.build_audit_log()">
         <form method="get"
               action=""
+              class="input-group"
               tal:attributes="action python:view.base_url">
-          <div class="field">
             <input type="hidden"
                    name="size"
                    value=""
@@ -34,15 +34,23 @@
             <input type="text"
                    name="query"
                    value=""
-                   class="searchButton"
+                   class=""
                    placeholder="Enter a search term."
                    i18n:attributes="placeholder"
                    tal:attributes="value python:view.query" />
-          </div>
-          <div class="formControls">
-            <input class="button-field context" type="submit" value="filter" i18n:attributes="value"/>
-          </div>
+            <span class="input-group-btn">
+              <input class=""
+                     type="submit"
+                     value="filter"
+                     i18n:attributes="value"/>
+              <a href=""
+                class="plone-btn plone-btn-default"
+                role="button"
+                i18n_translate=""
+                tal:attributes="href python:view.base_url">clear</a>
+            </span>
         </form>
+        <br />
         <p class="fingerpointing-pagination field">
           <!-- Needs some love CSS-wise -->
           [<a href=""
@@ -87,11 +95,6 @@
               i18n_translate=""
               tal:attributes="href python:view.pagination_url('size', 1000)"
               tal:omit-tag="python:view.size==1000">1000</a>
-          &mdash;
-          [<a href=""
-              class="clear"
-              i18n_translate=""
-              tal:attributes="href python:view.base_url">clear all</a>]
 
         </p>
         <pre tal:content="python:view.audit_log" ></pre>
