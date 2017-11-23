@@ -4,7 +4,14 @@ Changelog
 1.4b4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Lock-file is now container save and it's close more robust.
+  [jensens]
+
+- Refactor logger module in order to improve testability.
+  [jensens]
+
+- Add search on audit logs and pagination (implements `#17 <https://github.com/collective/collective.fingerpointing/issues/17>`_).
+  [jensens]
 
 
 1.4b3 (2017-11-21)

@@ -69,7 +69,8 @@ class To2TestCase(BaseUpgradeTestCase):
 
         # simulate state on previous version
         permission = 'collective.fingerpointing: View Audit Log'
-        self.portal.manage_permission(permission_to_manage=permission, roles=[])  # noqa: E501
+        self.portal.manage_permission(
+            permission_to_manage=permission, roles=[])
         roles = self.portal.rolesOfPermission(permission)
         roles = [r['name'] for r in roles if r['selected']]
         self.assertListEqual(roles, [])
