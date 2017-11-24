@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-11-23 18:14+0000\n"
+"POT-Creation-Date: 2017-11-24 11:00+0000\n"
 "PO-Revision-Date: 2017-11-23 16:16-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -74,7 +74,7 @@ msgstr "Registra eventos como mudanças na configuração."
 msgid "Log workflow transitions like object publishing."
 msgstr "Registra eventos como publicação de objetos."
 
-#: collective/fingerpointing/browser/logview.pt:102
+#: collective/fingerpointing/browser/logview.pt:97
 msgid "No audit log file specified; audit log view is disabled."
 msgstr "Não se especificou um arquivo de log; o log de auditoria está desabilitado."
 
@@ -90,6 +90,10 @@ msgstr "Desinstalar collective.fingerpointing."
 msgid "View Audit Log"
 msgstr "Ver o log de auditoria"
 
+#: collective/fingerpointing/browser/logview.pt:46
+msgid "clear"
+msgstr ""
+
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: uninstall"
@@ -97,3 +101,15 @@ msgstr "collective.fingerpointing: uninstall"
 #: collective/fingerpointing/browser/logview.pt:42
 msgid "filter"
 msgstr "filtrar"
+
+#: collective/fingerpointing/browser/logview.pt:56
+msgid "first"
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:67
+msgid "next"
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:61
+msgid "previous"
+msgstr ""

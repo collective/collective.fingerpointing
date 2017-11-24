@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.fingerpointing\n"
-"POT-Creation-Date: 2017-11-23 18:14+0000\n"
+"POT-Creation-Date: 2017-11-24 11:00+0000\n"
 "PO-Revision-Date: 2016-08-08 8:58+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sf.net>\n"
@@ -72,7 +72,7 @@ msgstr "记录注册表事件例如修改记录。"
 msgid "Log workflow transitions like object publishing."
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:102
+#: collective/fingerpointing/browser/logview.pt:97
 msgid "No audit log file specified; audit log view is disabled."
 msgstr ""
 
@@ -88,10 +88,26 @@ msgstr "Uninstall collective.fingerpointing."
 msgid "View Audit Log"
 msgstr "查看审核日志"
 
+#: collective/fingerpointing/browser/logview.pt:46
+msgid "clear"
+msgstr ""
+
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: uninstall"
 
 #: collective/fingerpointing/browser/logview.pt:42
 msgid "filter"
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:56
+msgid "first"
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:67
+msgid "next"
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:61
+msgid "previous"
 msgstr ""
