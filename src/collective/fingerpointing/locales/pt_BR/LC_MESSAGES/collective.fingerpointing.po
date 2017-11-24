@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-11-24 11:00+0000\n"
-"PO-Revision-Date: 2017-11-23 16:16-0200\n"
+"PO-Revision-Date: 2017-11-24 10:45-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -92,7 +92,7 @@ msgstr "Ver o log de auditoria"
 
 #: collective/fingerpointing/browser/logview.pt:46
 msgid "clear"
-msgstr ""
+msgstr "apagar"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
@@ -104,12 +104,12 @@ msgstr "filtrar"
 
 #: collective/fingerpointing/browser/logview.pt:56
 msgid "first"
-msgstr ""
+msgstr "primeiro"
 
 #: collective/fingerpointing/browser/logview.pt:67
 msgid "next"
-msgstr ""
+msgstr "seguinte"
 
 #: collective/fingerpointing/browser/logview.pt:61
 msgid "previous"
-msgstr ""
+msgstr "anterior"
