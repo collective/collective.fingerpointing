@@ -1,8 +1,8 @@
 Changelog
 =========
 
-1.4b4 (unreleased)
-------------------
+1.5rc1 (2017-11-24)
+-------------------
 
 - Update i18n, Brazilian Portuguese, German and Spanish translations.
   [hvelarde, jensens]
