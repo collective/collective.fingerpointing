@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.5rc2 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 1.5rc1 (2017-11-24)
 -------------------
 
