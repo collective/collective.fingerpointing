@@ -46,7 +46,7 @@
               <a href=""
                 class="plone-btn plone-btn-default"
                 role="button"
-                i18n_translate=""
+                i18n:translate=""
                 tal:attributes="href python:view.base_url">clear</a>
             </span>
         </form>
@@ -55,44 +55,39 @@
           <!-- Needs some love CSS-wise -->
           [<a href=""
               class="first"
-              i18n_translate=""
+              i18n:translate=""
               tal:omit-tag="python:not view.has_prev"
               tal:attributes="href python:view.pagination_url('first')">first</a>]
           [<a href="#"
               class="previous"
-              i18n_translate=""
+              i18n:translate=""
               tal:omit-tag="python:not view.has_prev"
               tal:attributes="href python:view.pagination_url('prev')">previous</a>]
           <span class="current-page" tal:content="python:view.page">#</span>
           [<a href="#"
               class="last"
-              i18n_translate=""
+              i18n:translate=""
               tal:omit-tag="python:not view.has_next"
               tal:attributes="href python:view.pagination_url('next')">next</a>]
           &mdash; Size:
           <a href="#"
               class="size"
-              i18n_translate=""
               tal:attributes="href python:view.pagination_url('size', 50)"
               tal:omit-tag="python:view.size==50">50</a>
           <a href="#"
               class="size"
-              i18n_translate=""
               tal:attributes="href python:view.pagination_url('size', 100)"
               tal:omit-tag="python:view.size==100">100</a>
           <a href="#"
               class="size"
-              i18n_translate=""
               tal:attributes="href python:view.pagination_url('size', 200)"
               tal:omit-tag="python:view.size==200">200</a>
           <a href="#"
               class="size"
-              i18n_translate=""
               tal:attributes="href python:view.pagination_url('size', 500)"
               tal:omit-tag="python:view.size==500">500</a>
           <a href="#"
               class="size"
-              i18n_translate=""
               tal:attributes="href python:view.pagination_url('size', 1000)"
               tal:omit-tag="python:view.size==1000">1000</a>
 
