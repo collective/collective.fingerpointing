@@ -103,4 +103,10 @@
       handler=".workflow_logger"
       />
 
+  <!-- Generic Setup -->
+  <subscriber
+      for="Products.GenericSetup.interfaces.IProfileImportedEvent"
+      handler=".profile_imports_logger"
+      />
+
 </configure>

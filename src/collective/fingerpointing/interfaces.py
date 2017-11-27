@@ -33,6 +33,15 @@ class IFingerPointingSettings(Interface):
         default=True,
     )
 
+    audit_profile_imports = schema.Bool(
+        title=_(u'Audit Profile Imports?'),
+        description=_(
+            u'Log Generic Setup profile imports; '
+            u'this is useful to audit add-on installs/uninstalls.',
+        ),
+        default=True,
+    )
+
     audit_registry = schema.Bool(
         title=_(u'Audit Registry?'),
         description=_(u'Log registry events like records being modified.'),

@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+from .genericsetup_logger import profile_imports_logger  # noqa: F401
 from .lifecycle_logger import lifecycle_logger  # noqa: F401
 from .pas_logger import pas_logger  # noqa
 from .registry_logger import registry_logger  # noqa: F401
