@@ -40,7 +40,7 @@ msgstr "Auditer les transitions de workflow?"
 
 #: collective/fingerpointing/browser/logview.pt:34
 msgid "Enter a search term"
-msgstr ""
+msgstr "Entrez un terme de recherche"
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
@@ -90,7 +90,7 @@ msgstr "Voir le journal d'audit"
 
 #: collective/fingerpointing/browser/logview.pt:46
 msgid "clear"
-msgstr ""
+msgstr "éffacer"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
@@ -98,16 +98,16 @@ msgstr "collective.fingerpointing: uninstall"
 
 #: collective/fingerpointing/browser/logview.pt:42
 msgid "filter"
-msgstr ""
+msgstr "filtrer"
 
 #: collective/fingerpointing/browser/logview.pt:56
 msgid "first"
-msgstr ""
+msgstr "premier"
 
 #: collective/fingerpointing/browser/logview.pt:67
 msgid "next"
-msgstr ""
+msgstr "suivant"
 
 #: collective/fingerpointing/browser/logview.pt:61
 msgid "previous"
-msgstr ""
+msgstr "précédent"
