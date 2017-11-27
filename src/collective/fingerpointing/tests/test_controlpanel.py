@@ -1,13 +1,11 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.config import PROJECTNAME
-from collective.fingerpointing.interfaces import IBrowserLayer
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
-from zope.interface import alsoProvides
 
 import unittest
 
@@ -19,7 +17,6 @@ class ControlPanelTestCase(unittest.TestCase):
     def setUp(self):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
-        alsoProvides(self.request, IBrowserLayer)
         self.controlpanel = self.portal['portal_controlpanel']
 
     def test_controlpanel_has_view(self):

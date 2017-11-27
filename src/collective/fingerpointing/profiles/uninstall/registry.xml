@@ -1,9 +1,4 @@
 <?xml version="1.0"?>
 <registry>
   <records interface="collective.fingerpointing.interfaces.IFingerPointingSettings" remove="true" />
-  <!-- BBB: compatibility with Plone 4.2 (plone.app.registry <1.2) -->
-  <record name="collective.fingerpointing.interfaces.IFingerPointingSettings.audit_pas" delete="true" />
-  <record name="collective.fingerpointing.interfaces.IFingerPointingSettings.audit_lifecycle" delete="true"/>
-  <record name="collective.fingerpointing.interfaces.IFingerPointingSettings.audit_registry" delete="true"/>
-  <record name="collective.fingerpointing.interfaces.IFingerPointingSettings.audit_iterate" delete="true"/>
 </registry>
