@@ -1,7 +1,10 @@
+# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
+# SOME DESCRIPTIVE TITLE.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-11-24 11:00+0000\n"
+"POT-Creation-Date: 2017-11-27 16:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -12,7 +15,7 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: DOMAIN\n"
+"Domain: collective.fingerpointing\n"
 
 #: collective/fingerpointing/interfaces.py:17
 msgid "Audit Authentication Service?"
@@ -78,6 +81,10 @@ msgstr ""
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
+msgstr ""
+
+#: collective/fingerpointing/browser/logview.pt:72
+msgid "Size"
 msgstr ""
 
 #: collective/fingerpointing/profiles.zcml:24

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-11-24 11:00+0000\n"
+"POT-Creation-Date: 2017-11-27 16:14+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -79,6 +79,10 @@ msgstr "Aucun fichier de journal d'audit spécifié, la visualisation du journal
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
 msgstr "Configuration de l'outil collective.fingerpointing"
+
+#: collective/fingerpointing/browser/logview.pt:72
+msgid "Size"
+msgstr "Par page"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."

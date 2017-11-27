@@ -69,7 +69,7 @@
               i18n:translate=""
               tal:omit-tag="python:not view.has_next"
               tal:attributes="href python:view.pagination_url('next')">next</a>]
-          &mdash; Size:
+          &mdash; <span i18n:translate="">Size</span>:
           <a href="#"
               class="size"
               tal:attributes="href python:view.pagination_url('size', 50)"

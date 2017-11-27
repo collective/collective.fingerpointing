@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-11-24 11:00+0000\n"
+"POT-Creation-Date: 2017-11-27 16:14+0000\n"
 "PO-Revision-Date: 2017-11-24 10:45-0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
@@ -81,6 +81,10 @@ msgstr "Não se especificou um arquivo de log; o log de auditoria está desabili
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
 msgstr "Configuração do collective.fingerpointing"
+
+#: collective/fingerpointing/browser/logview.pt:72
+msgid "Size"
+msgstr ""
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
