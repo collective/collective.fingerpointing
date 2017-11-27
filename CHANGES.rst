@@ -4,7 +4,8 @@ Changelog
 1.5rc2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Do label `Size` translatable, completed french translations.
+  [gbastien]
 
 
 1.5rc1 (2017-11-24)

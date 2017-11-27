@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-11-24 11:00+0000\n"
+"POT-Creation-Date: 2017-11-27 16:14+0000\n"
 "PO-Revision-Date: 2016-03-17 21:47+0100\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -83,6 +83,10 @@ msgstr "Keine Protokoll-Datei angegeben, die Aktionsprotokoll Ansicht ist deakti
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
 msgstr "Einstellungen für die Erweiterung collective.fingerpointing"
+
+#: collective/fingerpointing/browser/logview.pt:72
+msgid "Size"
+msgstr ""
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
