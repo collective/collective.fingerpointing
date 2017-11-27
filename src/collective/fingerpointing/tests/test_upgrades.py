@@ -159,3 +159,41 @@ class To4TestCase(BaseUpgradeTestCase):
         settings = registry.forInterface(IFingerPointingSettings)
         self.assertTrue(hasattr(settings, 'audit_workflow'))
         self.assertEqual(settings.audit_workflow, True)
+
+
+class To5TestCase(BaseUpgradeTestCase):
+
+    from_ = '4'
+    to_ = '5'
+
+    def test_profile_version(self):
+        version = self.setup.getLastVersionForProfile(self.profile_id)[0]
+        self.assertEqual(version, self.from_)
+
+    def test_registered_steps(self):
+        steps = len(self.setup.listUpgrades(self.profile_id)[0])
+        self.assertEqual(steps, 1)
+
+    def test_update_user_actions(self):
+        # check if the upgrade step is registered
+        title = u'Add new field audit_profile_imports to configlet'
+        step = self._get_upgrade_step_by_title(title)
+        self.assertIsNotNone(step)
+
+        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
+        from plone.registry.interfaces import IRegistry
+        from zope.component import getUtility
+        registry = getUtility(IRegistry)
+
+        # simulate state on previous version
+        record = IFingerPointingSettings.__identifier__ + '.audit_profile_imports'  # noqa: E501
+        del registry.records[record]
+
+        with self.assertRaises(KeyError):
+            registry.forInterface(IFingerPointingSettings)
+
+        # execute upgrade step and verify changes were applied
+        self._do_upgrade(step)
+        settings = registry.forInterface(IFingerPointingSettings)
+        self.assertTrue(hasattr(settings, 'audit_profile_imports'))
+        self.assertEqual(settings.audit_profile_imports, True)

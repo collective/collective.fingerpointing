@@ -1,0 +1,20 @@
+<configure
+    xmlns="http://namespaces.zope.org/zope"
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+
+  <genericsetup:upgradeSteps
+      source="4"
+      destination="5"
+      profile="collective.fingerpointing:default">
+
+    <genericsetup:upgradeDepends
+        title="Add new field audit_profile_imports to configlet"
+        description="Reload registration of configlet registry to add new field."
+        import_profile="collective.fingerpointing:default"
+        import_steps="plone.app.registry"
+        run_deps="false"
+        />
+
+  </genericsetup:upgradeSteps>
+
+</configure>

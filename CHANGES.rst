@@ -4,6 +4,9 @@ Changelog
 1.5rc2 (unreleased)
 -------------------
 
+- Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls (implements `#32 <https://github.com/collective/collective.fingerpointing/issues/32>`_).
+  [hvelarde]
+
 - Do label `Size` translatable, completed french translations.
   [gbastien]
 

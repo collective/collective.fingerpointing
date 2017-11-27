@@ -42,7 +42,7 @@ setup(
     zip_safe=False,
     install_requires=[
         'file_read_backwards',
-        'plone.api',
+        'plone.api >=1.5.1',
         'plone.app.registry',
         'plone.registry',
         'Products.CMFCore',

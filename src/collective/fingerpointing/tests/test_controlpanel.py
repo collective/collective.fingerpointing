@@ -68,6 +68,10 @@ class RegistryTestCase(unittest.TestCase):
         self.assertTrue(hasattr(self.settings, 'audit_workflow'))
         self.assertEqual(self.settings.audit_workflow, True)
 
+    def test_audit_profile_imports_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'audit_profile_imports'))
+        self.assertEqual(self.settings.audit_profile_imports, True)
+
     def test_audit_registry_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'audit_registry'))
         self.assertEqual(self.settings.audit_registry, True)
@@ -86,6 +90,7 @@ class RegistryTestCase(unittest.TestCase):
             IFingerPointingSettings.__identifier__ + '.audit_pas',
             IFingerPointingSettings.__identifier__ + '.audit_lifecycle',
             IFingerPointingSettings.__identifier__ + '.audit_workflow',
+            IFingerPointingSettings.__identifier__ + '.audit_profile_imports',
             IFingerPointingSettings.__identifier__ + '.audit_registry',
             IFingerPointingSettings.__identifier__ + '.audit_iterate',
         ]
