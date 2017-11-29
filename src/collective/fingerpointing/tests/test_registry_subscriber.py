@@ -37,7 +37,7 @@ class RegistrySubscribersTestCase(unittest.TestCase):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             api.portal.set_registry_record('collective.fingerpointing.new_field', u'Descrição')  # noqa: E501
             log.check(
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=modify object=<Record collective.fingerpointing.new_field> value=Descrição'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Record collective.fingerpointing.new_field> value=Descrição'),  # noqa: E501
             )
 
     def test_susbcriber_ignored_when_package_not_installed(self):

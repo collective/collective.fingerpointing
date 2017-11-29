@@ -4,7 +4,6 @@ from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
-from plone.api.exc import InvalidParameterError
 from Products.PluggableAuthService.interfaces.events import IGroupDeletedEvent
 from Products.PluggableAuthService.interfaces.events import IPrincipalCreatedEvent  # noqa: E501
 from Products.PluggableAuthService.interfaces.events import IPrincipalDeletedEvent  # noqa: E501
@@ -15,30 +14,31 @@ from zope.component.interfaces import ComponentLookupError
 
 def pas_logger(event):
     """Log authentication events like users logging in and loggin out."""
-    # subscriber is registered even if package has not yet been installed
-    # ignore any error caused by missing registry records
+    name = IFingerPointingSettings.__identifier__ + '.audit_pas'
     try:
-        record = IFingerPointingSettings.__identifier__ + '.audit_pas'
-        audit_pas = api.portal.get_registry_record(record)
-    except (InvalidParameterError, ComponentLookupError):
+        audit_pas = api.portal.get_registry_record(name, default=False)
+    except ComponentLookupError:  # plonectl adduser
         return
 
-    if audit_pas:
-        user, ip = get_request_information()
-        if IUserLoggedInEvent.providedBy(event):
-            action = 'login'
-            extras = ''
-        elif IUserLoggedOutEvent.providedBy(event):
-            action = 'logout'
-            extras = ''
-        elif IPrincipalCreatedEvent.providedBy(event):
-            action = 'create'
-            extras = u'principal={0}'.format(event.principal)
-        elif IPrincipalDeletedEvent.providedBy(event):
-            action = 'remove'
-            extras = u'user={0}'.format(event.principal)
-        if IGroupDeletedEvent.providedBy(event):
-            action = 'remove'
-            extras = u'group={0}'.format(event.principal)
+    if not audit_pas:
+        return
 
-        log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
+    user, ip = get_request_information()
+
+    if IUserLoggedInEvent.providedBy(event):
+        action = 'login'
+        extras = ''
+    elif IUserLoggedOutEvent.providedBy(event):
+        action = 'logout'
+        extras = ''
+    elif IPrincipalCreatedEvent.providedBy(event):
+        action = 'create'
+        extras = 'principal=' + event.principal
+    elif IPrincipalDeletedEvent.providedBy(event):
+        action = 'remove'
+        extras = 'user=' + event.principal
+    elif IGroupDeletedEvent.providedBy(event):
+        action = 'remove'
+        extras = 'group=' + event.principal
+
+    log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
