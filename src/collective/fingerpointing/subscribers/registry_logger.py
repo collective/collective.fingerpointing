@@ -4,28 +4,30 @@ from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
-from plone.api.exc import InvalidParameterError
 from plone.registry.interfaces import IRecordModifiedEvent
+
+
+def safe_utf8(s):
+    if isinstance(s, unicode):
+        s = s.encode('utf-8')
+    return s
 
 
 def registry_logger(event):
     """Log registry events like records being modified."""
-    # subscriber is registered even if package has not yet been installed
-    # ignore any error caused by missing registry records
-    try:
-        record = IFingerPointingSettings.__identifier__ + '.audit_registry'
-        audit_registry = api.portal.get_registry_record(record)
-    except InvalidParameterError:
+    name = IFingerPointingSettings.__identifier__ + '.audit_registry'
+    audit_registry = api.portal.get_registry_record(name, default=False)
+    if not audit_registry:
         return
 
-    if audit_registry:
-        user, ip = get_request_information()
+    user, ip = get_request_information()
 
-        if IRecordModifiedEvent.providedBy(event):
-            action = 'modify'
-            extras = u'object={0} value={1}'.format(
-                event.record,
-                event.record.value,
-            )
+    if IRecordModifiedEvent.providedBy(event):
+        action = 'modify'
+        extras = 'object={0} value={1}'.format(
+            event.record, safe_utf8(event.record.value))
+    else:  # should never happen
+        action = '-'
+        extras = 'object' + event.record
 
-        log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
+    log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

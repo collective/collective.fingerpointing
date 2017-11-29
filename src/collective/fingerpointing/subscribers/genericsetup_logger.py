@@ -23,5 +23,5 @@ def profile_imports_logger(event):
 
     info = event.tool.getProfileInfo(event.profile_id)
     action = 'profile imported'
-    extras = u'id={id} version={version}'.format(**info)
+    extras = 'id={id} version={version}'.format(**info)
     log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

@@ -4,6 +4,9 @@ Changelog
 1.5rc2 (unreleased)
 -------------------
 
+- Code clean up and refactor, avoid ``UnicodeEncodeError`` on registry subscriber (refs. `#74 <https://github.com/collective/collective.fingerpointing/issues/74>`_).
+  [hvelarde]
+
 - Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls (implements `#32 <https://github.com/collective/collective.fingerpointing/issues/32>`_).
   [hvelarde]
 
