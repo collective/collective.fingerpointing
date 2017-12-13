@@ -51,6 +51,7 @@ setup(
         'Products.PlonePAS >=5.0.9',
         'Products.PluggableAuthService >=1.11.0',
         'setuptools',
+        'six',
         'zc.lockfile>=1.2.1',
         'zope.component',
         'zope.globalrequest',

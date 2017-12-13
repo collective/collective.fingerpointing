@@ -6,9 +6,11 @@ from collective.fingerpointing.utils import get_request_information
 from plone import api
 from plone.registry.interfaces import IRecordModifiedEvent
 
+import six
+
 
 def safe_utf8(s):
-    if isinstance(s, unicode):
+    if isinstance(s, six.text_type):
         s = s.encode('utf-8')
     return s
 
@@ -25,7 +27,9 @@ def registry_logger(event):
     if IRecordModifiedEvent.providedBy(event):
         action = 'modify'
         extras = 'object={0} value={1}'.format(
-            event.record, safe_utf8(event.record.value))
+            event.record,
+            safe_utf8(event.record.value),
+        )
     else:  # should never happen
         action = '-'
         extras = 'object' + event.record
