@@ -23,6 +23,12 @@ except pkg_resources.DistributionNotFound:
 else:
     from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE  # noqa: E501
 
+try:
+    pkg_resources.get_distribution('plone.app.iterate')
+except pkg_resources.DistributionNotFound:
+    HAS_ITERATE = False
+else:
+    HAS_ITERATE = True
 
 IS_PLONE_5 = api.env.plone_version().startswith('5')
 
@@ -52,10 +58,17 @@ class Fixture(PloneSandboxLayer):
 
     def setUpZope(self, app, configurationContext):
         self._setup_audit_log()
+        if HAS_ITERATE:
+            import plone.app.iterate
+            self.loadZCML(package=plone.app.iterate)
+
         import collective.fingerpointing
         self.loadZCML(package=collective.fingerpointing)
 
     def setUpPloneSite(self, portal):
+        if HAS_ITERATE:
+            self.applyProfile(portal, 'plone.app.iterate:plone.app.iterate')
+
         self.applyProfile(portal, 'collective.fingerpointing:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
 
