@@ -13,8 +13,6 @@ env:
 - PLONE_VERSION=5.1
 matrix:
   fast_finish: true
-before_install:
-- pip install coveralls pylint
 install:
 - sed -ie "s#test-4.3.x.cfg#test-$PLONE_VERSION.x.cfg#" buildout.cfg
 - python bootstrap.py
@@ -27,9 +25,10 @@ before_script:
 script:
 - bin/code-analysis
 - bin/test
-- pylint --py3k --disable=no-absolute-import src/collective/fingerpointing
+- bin/pylint --py3k --disable=no-absolute-import src/collective/fingerpointing
 after_success:
 - bin/createcoverage --output-dir=htmlcov
+- pip install coveralls
 - coveralls
 notifications:
   irc: irc.freenode.org#plone-testing
