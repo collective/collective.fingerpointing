@@ -36,7 +36,7 @@ def audit_log_files():
     # retrieve the list of audit log backup files
     logfiles = sorted(
         [f for f in glob(log_info.logfile + '.*') if '.lock' not in f],
-        reverse=True
+        reverse=True,
     )
     # include active audit log as first element
     if os.path.exists(log_info.logfile):

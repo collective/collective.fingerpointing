@@ -52,7 +52,6 @@ class IFingerPointingSettings(Interface):
         title=_(u'Audit Iterate?'),
         description=_(
             u'If plone.app.iterate is installed, '
-            u'log events like content editing checkouts and checkins.'
-        ),
+            u'log events like content editing checkouts and checkins.'),
         default=True,
     )
