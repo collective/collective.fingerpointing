@@ -14,8 +14,7 @@ class UtilsTestCase(unittest.TestCase):
     def test_get_request_information(self):
         from collective.fingerpointing import utils
         self.assertEqual(
-            utils.get_request_information(), ('test_user_1_', 'None')
-        )
+            utils.get_request_information(), ('test_user_1_', 'None'))
 
     def test_get_request_information_anonymous(self):
         from plone.app.testing import logout
@@ -27,8 +26,7 @@ class UtilsTestCase(unittest.TestCase):
         self.request.environ['HTTP_CF_CONNECTING_IP'] = '192.168.1.1'
         from collective.fingerpointing import utils
         self.assertEqual(
-            utils.get_request_information(), ('test_user_1_', '192.168.1.1')
-        )
+            utils.get_request_information(), ('test_user_1_', '192.168.1.1'))
 
     def test_audit_log_files(self):
         from collective.fingerpointing import utils

@@ -74,5 +74,4 @@ class LogView(BrowserView):
         if type_ == 'next':
             params['page'] = self.page + 1
         return self.base_url + '?' + '&'.join(
-            [k + '=' + str(v) for k, v in params.items()]
-        )
+            [k + '=' + str(v) for k, v in params.items()])

@@ -27,8 +27,7 @@ class LogInfo(object):
         self.logfile = config.get('audit-log', None)
         if self.logfile is None:
             commonlogger.warn(
-                'No audit log file specified; audit log view will be disabled'
-            )
+                'No audit log file specified; audit log view will be disabled')
             return None
         self.logger.setLevel(logging.INFO)
         # first remove old handler if set:
@@ -41,7 +40,7 @@ class LogInfo(object):
             self.logfile,
             maxBytes=maxBytes,
             backupCount=backupCount,
-            delay=True  # defer file creation to first emit
+            delay=True,  # defer file creation to first emit
         )
         formatter = logging.Formatter(logformat)
         self.handler.setFormatter(formatter)
@@ -69,7 +68,7 @@ class LogInfo(object):
                 # https://pypi.python.org/pypi/zc.lockfile#hostname-in-lock-file
                 lock = zc.lockfile.LockFile(
                     lockfilename,
-                    content_template='{pid};{hostname}'
+                    content_template='{pid};{hostname}',
                 )
                 try:
                     self.logger.info(*args, **kwargs)
