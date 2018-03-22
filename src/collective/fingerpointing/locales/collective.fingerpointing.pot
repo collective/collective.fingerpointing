@@ -1,10 +1,7 @@
-# --- PLEASE EDIT THE LINES BELOW CORRECTLY ---
-# SOME DESCRIPTIVE TITLE.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-11-27 16:14+0000\n"
+"POT-Creation-Date: 2018-03-22 13:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -15,7 +12,7 @@ msgstr ""
 "Language-Code: en\n"
 "Language-Name: English\n"
 "Preferred-Encodings: utf-8 latin1\n"
-"Domain: collective.fingerpointing\n"
+"Domain: DOMAIN\n"
 
 #: collective/fingerpointing/interfaces.py:17
 msgid "Audit Authentication Service?"
@@ -25,7 +22,7 @@ msgstr ""
 msgid "Audit Content Type Life Cycle?"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:43
+#: collective/fingerpointing/interfaces.py:52
 msgid "Audit Iterate?"
 msgstr ""
 
@@ -34,6 +31,10 @@ msgid "Audit Log"
 msgstr ""
 
 #: collective/fingerpointing/interfaces.py:37
+msgid "Audit Profile Imports?"
+msgstr ""
+
+#: collective/fingerpointing/interfaces.py:46
 msgid "Audit Registry?"
 msgstr ""
 
@@ -51,12 +52,16 @@ msgstr ""
 msgid "Finger Pointing"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:44
+#: collective/fingerpointing/interfaces.py:53
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr ""
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
+msgstr ""
+
+#: collective/fingerpointing/interfaces.py:38
+msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
 msgstr ""
 
 #: collective/fingerpointing/interfaces.py:18
@@ -67,7 +72,7 @@ msgstr ""
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:38
+#: collective/fingerpointing/interfaces.py:47
 msgid "Log registry events like records being modified."
 msgstr ""
 

@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2017-11-27 16:14+0000\n"
+"POT-Creation-Date: 2018-03-22 13:31+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -22,7 +22,7 @@ msgstr "Auditer le service d'authentification?"
 msgid "Audit Content Type Life Cycle?"
 msgstr "Auditer le cycle de vie des types de contenus?"
 
-#: collective/fingerpointing/interfaces.py:43
+#: collective/fingerpointing/interfaces.py:52
 msgid "Audit Iterate?"
 msgstr "Auditer l'outil \"Support des copies de travail\"?"
 
@@ -31,6 +31,10 @@ msgid "Audit Log"
 msgstr "Journal d'audit"
 
 #: collective/fingerpointing/interfaces.py:37
+msgid "Audit Profile Imports?"
+msgstr ""
+
+#: collective/fingerpointing/interfaces.py:46
 msgid "Audit Registry?"
 msgstr "Auditer le Registre de configuration?"
 
@@ -48,13 +52,17 @@ msgstr "Entrez un terme de recherche"
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/interfaces.py:44
+#: collective/fingerpointing/interfaces.py:53
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr "Si plone.app.iterate est installé, enregistrer les événements comme la création ou la validation de brouillons."
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
 msgstr "Suivre les différents événements et les écrire dans un fichier d'audit."
+
+#: collective/fingerpointing/interfaces.py:38
+msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
+msgstr ""
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."
@@ -64,7 +72,7 @@ msgstr "Enregistrer les événements liés à l'authentification comme la connex
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr "Enregistrer les événements se produisant sur les types de contenu comme la création, la modification ou la suppression."
 
-#: collective/fingerpointing/interfaces.py:38
+#: collective/fingerpointing/interfaces.py:47
 msgid "Log registry events like records being modified."
 msgstr "Enregistrer les événements du Registre de configuration tels que la modification d'un enregistrement."
 

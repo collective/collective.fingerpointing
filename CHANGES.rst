@@ -4,6 +4,9 @@ Changelog
 1.5rc2 (unreleased)
 -------------------
 
+- Update i18n, Brazilian Portuguese and Spanish translations.
+  [hvelarde]
+
 - Code clean up and refactor, avoid ``UnicodeEncodeError`` on registry subscriber (refs. `#74 <https://github.com/collective/collective.fingerpointing/issues/74>`_).
   [hvelarde]
 

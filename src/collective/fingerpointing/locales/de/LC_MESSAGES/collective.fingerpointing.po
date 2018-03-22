@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-11-27 16:14+0000\n"
+"POT-Creation-Date: 2018-03-22 13:31+0000\n"
 "PO-Revision-Date: 2016-03-17 21:47+0100\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -26,7 +26,7 @@ msgstr "Authentifizierungsdienst auditieren?"
 msgid "Audit Content Type Life Cycle?"
 msgstr "Lebenszyklus von Inhaltentypen auditieren?"
 
-#: collective/fingerpointing/interfaces.py:43
+#: collective/fingerpointing/interfaces.py:52
 msgid "Audit Iterate?"
 msgstr "Arbeitskopien auditieren?"
 
@@ -35,6 +35,10 @@ msgid "Audit Log"
 msgstr "Aktionsprotokoll"
 
 #: collective/fingerpointing/interfaces.py:37
+msgid "Audit Profile Imports?"
+msgstr ""
+
+#: collective/fingerpointing/interfaces.py:46
 msgid "Audit Registry?"
 msgstr "Konfigurationseinträge auditieren?"
 
@@ -52,13 +56,17 @@ msgstr "Suchbegriff eingeben"
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/interfaces.py:44
+#: collective/fingerpointing/interfaces.py:53
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr "Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, dann protokolliere Bearbeitungsereignisse wie Checkouts und Checkins."
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
 msgstr "Protokolliert relevante Ereignisse in einem Aktionsprotkoll (audit.log)"
+
+#: collective/fingerpointing/interfaces.py:38
+msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
+msgstr ""
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."
@@ -68,7 +76,7 @@ msgstr "Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Benu
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr "Protokolliert die Ereignisse im Lebenszyklus von Inhalten, wie Erstellen, Bearbeiten und Löschen."
 
-#: collective/fingerpointing/interfaces.py:38
+#: collective/fingerpointing/interfaces.py:47
 msgid "Log registry events like records being modified."
 msgstr "Protokolliert Änderungen der Konfigurationseinträge (Registry)."
 
