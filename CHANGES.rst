@@ -1,6 +1,12 @@
 Changelog
 =========
 
+1.6rc3 (unreleased)
+-------------------
+
+- Nothing changed yet.
+
+
 1.6rc2 (2018-03-22)
 -------------------
 
