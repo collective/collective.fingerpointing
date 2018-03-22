@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.5rc2 (unreleased)
+1.6rc1 (2018-03-22)
 -------------------
 
 - Update i18n, Brazilian Portuguese and Spanish translations.
