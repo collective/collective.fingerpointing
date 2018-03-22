@@ -4,7 +4,8 @@ Changelog
 1.6rc2 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Fix profile version number.
+  [hvelarde]
 
 
 1.6rc1 (2018-03-22)
