@@ -33,12 +33,15 @@ def pas_logger(event):
         extras = ''
     elif IPrincipalCreatedEvent.providedBy(event):
         action = 'create'
-        extras = 'principal=' + event.principal
+        extras = 'principal=' + str(event.principal)
     elif IPrincipalDeletedEvent.providedBy(event):
         action = 'remove'
-        extras = 'user=' + event.principal
+        extras = 'user=' + str(event.principal)
     elif IGroupDeletedEvent.providedBy(event):
         action = 'remove'
-        extras = 'group=' + event.principal
+        extras = 'group=' + str(event.principal)
+    else:  # should never happen
+        action = 'UNKNOWN'
+        extras = ''
 
     log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

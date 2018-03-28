@@ -4,7 +4,8 @@ Changelog
 1.6rc3 (unreleased)
 -------------------
 
-- Nothing changed yet.
+- Avoid ``TypeError`` on PAS events (fixes `#78 <https://github.com/collective/collective.fingerpointing/issues/78>`_).
+  [hvelarde]
 
 
 1.6rc2 (2018-03-22)
