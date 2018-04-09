@@ -7,6 +7,7 @@ This package would not have been possible without the contribution of the follow
 - René Jochum <rene@webmeisterei.com>
 - Harald Friessnegger (Webmeisterei GmbH)
 - Jens Klein (jens@bluedynamics.com)
+- Cleber J Santos (cleber@cleberjsantos.com.br)
 - Font Awesome (`icon`_)
 
 You can find an updated list of package contributors on `GitHub`_.
