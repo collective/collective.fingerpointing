@@ -29,16 +29,16 @@ class LogInfo(object):
             commonlogger.warn(
                 'No audit log file specified; audit log view will be disabled')
             return None
+
         self.logger.setLevel(logging.INFO)
         # first remove old handler if set:
         if self.handler is not None:
             self.logger.removeHandler(self.handler)
-        # if either of maxBytes or backupCount is zero, rollover never occurs
-        maxBytes = int(config.get('audit-log-max-size', 0))
+        # if backupCount is zero, rollover never occurs
         backupCount = int(config.get('audit-log-old-files', 0))
-        self.handler = logging.handlers.RotatingFileHandler(
+        self.handler = logging.handlers.TimedRotatingFileHandler(
             self.logfile,
-            maxBytes=maxBytes,
+            when='midnight',  # roll over at midnight
             backupCount=backupCount,
             delay=True,  # defer file creation to first emit
         )
@@ -46,6 +46,11 @@ class LogInfo(object):
         self.handler.setFormatter(formatter)
         self.logger.addHandler(self.handler)
         commonlogger.info('Logging audit information to ' + self.logfile)
+        if backupCount:
+            msg = 'At most {0} backup files will be kept'.format(backupCount)
+            commonlogger.info(msg)
+        else:
+            commonlogger.warn('No backup files will be kept')
 
     def __call__(self, *args, **kwargs):
         """Log information to a file handling access from multiple instances.

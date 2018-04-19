@@ -70,14 +70,11 @@ To enable logging to a separate file use the following configuration:
     zope-conf-additional +=
         <product-config collective.fingerpointing>
             audit-log ${buildout:directory}/var/log/audit.log
-            audit-log-max-size 10240
             audit-log-old-files 30
         </product-config>
 
 audit-log
     The filename of the audit log. Add file name to create Finger Pointing audit file.
-audit-log-max-size
-    Maximum size of audit log file (in bytes). Adding this max size enables log rotation.
 audit-log-old-files
     Number of previous log files to retain when log rotation is enabled. Defaults to 1.
 

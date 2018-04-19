@@ -78,14 +78,12 @@ class UtilsMultipleLogFilesTestCase(unittest.TestCase):
         import os
         for filename in audit_log_files():
             os.remove(filename)
-        fingerpointing_config['audit-log-max-size'] = 80
         fingerpointing_config['audit-log-old-files'] = 10
         log_info.configure(fingerpointing_config)
 
     def tearDown(self):
         from collective.fingerpointing.config import fingerpointing_config
         from collective.fingerpointing.logger import log_info
-        del fingerpointing_config['audit-log-max-size']
         log_info.configure(fingerpointing_config)
 
     def test_all_audit_log_lines(self):
@@ -93,6 +91,7 @@ class UtilsMultipleLogFilesTestCase(unittest.TestCase):
         # prepare some loglines to create 2 files
         log_info('1')
         log_info('2')
+        log_info.handler.doRollover()  # rotate manually
         log_info('3')
         log_info('4')
         # check for min 2 files
