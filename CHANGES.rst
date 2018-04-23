@@ -4,7 +4,8 @@ Changelog
 1.7 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Add uninstall information for control panel configlet.
+  [hvelarde]
 
 
 1.6 (2018-03-28)
