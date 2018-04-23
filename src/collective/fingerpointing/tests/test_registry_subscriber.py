@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
-from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.testing import INTEGRATION_TESTING
+from collective.fingerpointing.testing import QIBBB
 from logging import INFO
 from plone import api
 from plone.app.discussion.interfaces import IDiscussionSettings
@@ -13,14 +13,14 @@ from zope.component import getUtility
 import unittest
 
 
-class RegistrySubscribersTestCase(unittest.TestCase):
-
+class RegistrySubscribersTestCase(unittest.TestCase, QIBBB):
     """Tests for plone.app.registry subscribers."""
 
     layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
 
     def test_record_modified(self):
         with LogCapture('collective.fingerpointing', level=INFO) as log:
@@ -43,10 +43,7 @@ class RegistrySubscribersTestCase(unittest.TestCase):
     def test_susbcriber_ignored_when_package_not_installed(self):
         # registry events should not raise errors
         # if package is not installed
-        qi = self.portal['portal_quickinstaller']
-
-        with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+        self.uninstall()  # BBB: QI compatibility
 
         record = IDiscussionSettings.__identifier__ + '.globally_enabled'
         api.portal.set_registry_record(record, False)

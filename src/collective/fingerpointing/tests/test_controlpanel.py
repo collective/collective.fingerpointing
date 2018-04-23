@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
-from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
+from collective.fingerpointing.testing import QIBBB
 from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
@@ -10,7 +10,7 @@ from zope.component import getUtility
 import unittest
 
 
-class ControlPanelTestCase(unittest.TestCase):
+class ControlPanelTestCase(unittest.TestCase, QIBBB):
 
     layer = INTEGRATION_TESTING
 
@@ -37,22 +37,20 @@ class ControlPanelTestCase(unittest.TestCase):
         self.assertIn('fingerpointing', actions)
 
     def test_controlpanel_removed_on_uninstall(self):
-        qi = self.portal['portal_quickinstaller']
-
-        with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+        self.uninstall()  # BBB: QI compatibility
 
         actions = [
             a.getAction(self)['id'] for a in self.controlpanel.listActions()]
         self.assertNotIn('fingerpointing', actions)
 
 
-class RegistryTestCase(unittest.TestCase):
+class RegistryTestCase(unittest.TestCase, QIBBB):
 
     layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         self.registry = getUtility(IRegistry)
         self.settings = self.registry.forInterface(IFingerPointingSettings)
 
@@ -81,10 +79,7 @@ class RegistryTestCase(unittest.TestCase):
         self.assertEqual(self.settings.audit_iterate, True)
 
     def test_records_removed_on_uninstall(self):
-        qi = self.portal['portal_quickinstaller']
-
-        with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+        self.uninstall()  # BBB: QI compatibility
 
         records = [
             IFingerPointingSettings.__identifier__ + '.audit_pas',
@@ -94,6 +89,5 @@ class RegistryTestCase(unittest.TestCase):
             IFingerPointingSettings.__identifier__ + '.audit_registry',
             IFingerPointingSettings.__identifier__ + '.audit_iterate',
         ]
-
         for r in records:
             self.assertNotIn(r, self.registry)

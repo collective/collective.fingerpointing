@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 """Tests for lifecycle subscriber."""
-from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.testing import INTEGRATION_TESTING
+from collective.fingerpointing.testing import QIBBB
 from logging import INFO
-from plone import api
 from Products.PlonePAS.events import UserLoggedInEvent
 from Products.PlonePAS.events import UserLoggedOutEvent
 from Products.PluggableAuthService.events import GroupDeleted
@@ -15,13 +14,13 @@ from zope.event import notify
 import unittest
 
 
-class PasSubscribersTestCase(unittest.TestCase):
-
+class PasSubscribersTestCase(unittest.TestCase, QIBBB):
     """Tests for PluggableAuthService subscribers."""
 
     layer = INTEGRATION_TESTING
 
     def setUp(self):
+        self.portal = self.layer['portal']
         self.request = self.layer['request']
 
     def test_user_login(self):
@@ -67,11 +66,7 @@ class PasSubscribersTestCase(unittest.TestCase):
     def test_susbcriber_ignored_when_package_not_installed(self):
         # authentication events should not raise errors
         # if package is not installed
-        portal = self.layer['portal']
-        qi = portal['portal_quickinstaller']
-
-        with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+        self.uninstall()  # BBB: QI compatibility
 
         event = UserLoggedInEvent(self.request)
         notify(event)

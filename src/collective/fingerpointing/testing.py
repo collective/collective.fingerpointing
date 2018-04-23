@@ -3,6 +3,7 @@
 
 For Plone 5 we need to install plone.app.contenttypes.
 """
+from collective.fingerpointing.config import PROJECTNAME
 from plone import api
 from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
@@ -32,6 +33,21 @@ else:
 
 IS_PLONE_5 = api.env.plone_version().startswith('5')
 IS_BBB = api.env.plone_version().startswith(('4.3', '5.0'))
+
+
+class QIBBB:
+    """BBB: remove on deprecation of Plone 4.3 and 5.0."""
+    def uninstall(self):
+        if IS_BBB:
+            qi = self.portal['portal_quickinstaller']
+            with api.env.adopt_roles(['Manager']):
+                qi.uninstallProducts([PROJECTNAME])
+        else:
+            from Products.CMFPlone.utils import get_installer
+            qi = get_installer(self.portal, self.request)
+            with api.env.adopt_roles(['Manager']):
+                qi.uninstall_product(PROJECTNAME)
+        return qi
 
 
 class Fixture(PloneSandboxLayer):
