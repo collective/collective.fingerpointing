@@ -13,7 +13,7 @@ Changelog
 - Do not fail while logging uninstall profile information.
   [hvelarde]
 
-- Add uninstall information for control panel configlet.
+- Fix uninstall of control panel configlet under Plone 5.1.
   [hvelarde]
 
 
