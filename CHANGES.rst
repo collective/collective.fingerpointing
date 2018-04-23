@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.7 (unreleased)
+1.7 (2018-04-23)
 ----------------
 
 - Drop support for Plone 5.0.
