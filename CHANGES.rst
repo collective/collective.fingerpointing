@@ -4,6 +4,9 @@ Changelog
 1.7 (unreleased)
 ----------------
 
+- Do not fail while logging uninstall profile information.
+  [hvelarde]
+
 - Add uninstall information for control panel configlet.
   [hvelarde]
 

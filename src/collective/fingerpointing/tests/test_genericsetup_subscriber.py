@@ -3,7 +3,7 @@
 from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
-from collective.fingerpointing.testing import IS_PLONE_5
+from collective.fingerpointing.testing import IS_BBB
 from logging import INFO
 from plone import api
 from plone.app.testing import setRoles
@@ -23,14 +23,35 @@ class GenericSetupSubscribersTestCase(unittest.TestCase):
 
     def setUp(self):
         self.portal = self.layer['portal']
-        self.qi = self.portal['portal_quickinstaller']
+        self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
         # disable registry audit
         name = IFingerPointingSettings.__identifier__ + '.audit_registry'
         api.portal.set_registry_record(name, False)
 
+    @property
+    def qi(self):
+        if IS_BBB:
+            return self.portal['portal_quickinstaller']
+        else:
+            from Products.CMFPlone.utils import get_installer
+            return get_installer(self.portal, self.request)
+
+    @unittest.skipIf(IS_BBB, 'Plone >= 5.1')
     def test_profile_imports(self):
+        expected = (
+            ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=profile imported id=plone.session:default version=1001'),  # noqa: E501
+            ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=profile imported id=plone.session:uninstall version=-'),  # noqa: E501
+        )
+        with LogCapture('collective.fingerpointing', level=INFO) as log:
+            self.qi.install_product(ADD_ON)
+            self.qi.uninstall_product(ADD_ON)
+            log.check(*expected)
+
+    @unittest.skipUnless(IS_BBB, 'Plone < 5.1')
+    def test_profile_imports_BBB(self):
+        from collective.fingerpointing.testing import IS_PLONE_5
         if IS_PLONE_5:
             expected = (
                 ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=profile imported id=plone.session:default version=1000'),  # noqa: E501
@@ -46,9 +67,16 @@ class GenericSetupSubscribersTestCase(unittest.TestCase):
             self.qi.uninstallProducts([ADD_ON])
             log.check(*expected)
 
+    @unittest.skipIf(IS_BBB, 'Plone >= 5.1')
     def test_susbcriber_ignored_when_package_not_installed(self):
         # events should not raise errors if package is not installed
-        self.qi.uninstallProducts([PROJECTNAME])
+        self.qi.uninstall_product(PROJECTNAME)
+        self.qi.install_product(ADD_ON)
+        self.qi.uninstall_product(ADD_ON)
 
+    @unittest.skipUnless(IS_BBB, 'Plone < 5.1')
+    def test_susbcriber_ignored_when_package_not_installed_BBB(self):
+        # events should not raise errors if package is not installed
+        self.qi.uninstallProducts([PROJECTNAME])
         self.qi.installProduct(ADD_ON)
         self.qi.uninstallProducts([ADD_ON])
