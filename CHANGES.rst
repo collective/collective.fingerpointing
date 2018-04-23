@@ -4,6 +4,9 @@ Changelog
 1.7 (unreleased)
 ----------------
 
+- Drop support for Plone 5.0.
+  [hvelarde]
+
 - Avoid ``ComponentLookupError`` when adding a Plone site (fixes `#85 <https://github.com/collective/collective.fingerpointing/issues/85>`_).
   [hvelarde]
 

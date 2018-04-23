@@ -32,11 +32,11 @@ else:
     HAS_ITERATE = True
 
 IS_PLONE_5 = api.env.plone_version().startswith('5')
-IS_BBB = api.env.plone_version().startswith(('4.3', '5.0'))
+IS_BBB = api.env.plone_version().startswith('4.3')
 
 
 class QIBBB:
-    """BBB: remove on deprecation of Plone 4.3 and 5.0."""
+    """BBB: remove on deprecation of Plone 4.3."""
     def uninstall(self):
         if IS_BBB:
             qi = self.portal['portal_quickinstaller']

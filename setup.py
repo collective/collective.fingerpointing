@@ -20,7 +20,6 @@ setup(
         'Development Status :: 4 - Beta',
         'Environment :: Web Environment',
         'Framework :: Plone :: 4.3',
-        'Framework :: Plone :: 5.0',
         'Framework :: Plone :: 5.1',
         'Framework :: Plone',
         'Intended Audience :: System Administrators',

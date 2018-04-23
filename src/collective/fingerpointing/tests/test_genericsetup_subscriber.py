@@ -32,7 +32,7 @@ class GenericSetupSubscribersTestCase(unittest.TestCase):
 
     @property
     def qi(self):
-        if IS_BBB:
+        if IS_BBB:  # Plone 4.3
             return self.portal['portal_quickinstaller']
         else:
             from Products.CMFPlone.utils import get_installer
@@ -49,18 +49,11 @@ class GenericSetupSubscribersTestCase(unittest.TestCase):
             self.qi.uninstall_product(ADD_ON)
             log.check(*expected)
 
-    @unittest.skipUnless(IS_BBB, 'Plone < 5.1')
+    @unittest.skipUnless(IS_BBB, 'Plone 4.3')
     def test_profile_imports_BBB(self):
-        from collective.fingerpointing.testing import IS_PLONE_5
-        if IS_PLONE_5:
-            expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=profile imported id=plone.session:default version=1000'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=profile imported id=plone.session:uninstall version=1000'),  # noqa: E501
-            )
-        else:
-            expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=profile imported id=plone.session:default version=1000'),  # noqa: E501
-            )
+        expected = (
+            ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=profile imported id=plone.session:default version=1000'),  # noqa: E501
+        )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             self.qi.installProduct(ADD_ON)
@@ -74,7 +67,7 @@ class GenericSetupSubscribersTestCase(unittest.TestCase):
         self.qi.install_product(ADD_ON)
         self.qi.uninstall_product(ADD_ON)
 
-    @unittest.skipUnless(IS_BBB, 'Plone < 5.1')
+    @unittest.skipUnless(IS_BBB, 'Plone 4.3')
     def test_susbcriber_ignored_when_package_not_installed_BBB(self):
         # events should not raise errors if package is not installed
         self.qi.uninstallProducts([PROJECTNAME])
