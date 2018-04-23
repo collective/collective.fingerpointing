@@ -31,6 +31,7 @@ else:
     HAS_ITERATE = True
 
 IS_PLONE_5 = api.env.plone_version().startswith('5')
+IS_BBB = api.env.plone_version().startswith(('4.3', '5.0'))
 
 
 class Fixture(PloneSandboxLayer):

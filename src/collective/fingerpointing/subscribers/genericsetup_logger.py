@@ -23,5 +23,8 @@ def profile_imports_logger(event):
 
     info = event.tool.getProfileInfo(event.profile_id)
     action = 'profile imported'
-    extras = 'id={id} version={version}'.format(**info)
+    extras = 'id={0} version={1}'.format(
+        info['id'],
+        info.get('version', '-'),  # uninstall profiles have no version info
+    )
     log_info(AUDIT_MESSAGE.format(user, ip, action, extras))
