@@ -4,6 +4,11 @@ Changelog
 1.7 (unreleased)
 ----------------
 
+- Use ``TimedRotatingFileHandler`` instead of ``RotatingFileHandler``;
+  roll over will occur automatically at midnight;
+  ``audit-log-max-size`` option has no longer effect on the configuration.
+  [hvelarde]
+
 - Drop support for Plone 5.0.
   [hvelarde]
 
