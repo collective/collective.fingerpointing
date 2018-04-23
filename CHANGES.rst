@@ -4,6 +4,9 @@ Changelog
 1.7 (unreleased)
 ----------------
 
+- Avoid ``ComponentLookupError`` when adding a Plone site (fixes `#85 <https://github.com/collective/collective.fingerpointing/issues/85>`_).
+  [hvelarde]
+
 - Do not fail while logging uninstall profile information.
   [hvelarde]
 
@@ -204,7 +207,7 @@ Changelog
 - Make control panel configlet accesible to Site Administrator role (closes `#15`_).
   [hvelarde]
 
-- Avoid `ComponentLookupError` when removing a Plone site (fixes `#4`_).
+- Avoid ``ComponentLookupError`` when removing a Plone site (fixes `#4`_).
   [hvelarde]
 
 - Remove unused plone.directives.form dependency which pulled in Grok packages.

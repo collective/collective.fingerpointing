@@ -5,13 +5,18 @@ from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
+from zope.component.interfaces import ComponentLookupError
 
 
 def profile_imports_logger(event):
     """Log Generic Setup profile imports."""
     name = IFingerPointingSettings.__identifier__ + '.audit_profile_imports'
-    audit_profile_imports = api.portal.get_registry_record(name, default=False)
-    if not audit_profile_imports:
+    try:
+        audit_enabled = api.portal.get_registry_record(name, default=False)
+    except ComponentLookupError:  # adding Plone site
+        return
+
+    if not audit_enabled:
         return
 
     try:
