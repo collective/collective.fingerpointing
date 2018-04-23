@@ -1,4 +1,5 @@
 # -*- coding: utf-8 -*-
+# BBB: remove on deprecation of Plone 4.3 and 5.0
 from collective.fingerpointing.config import PROJECTNAME
 from plone import api
 

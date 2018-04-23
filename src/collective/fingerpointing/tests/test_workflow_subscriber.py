@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
 """Tests for workflow subscriber."""
-from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import IS_PLONE_5
+from collective.fingerpointing.testing import QIBBB
 from logging import INFO
 from plone import api
 from plone.app.testing import setRoles
@@ -13,14 +13,14 @@ from testfixtures import LogCapture
 import unittest
 
 
-class WorkflowSubscribersTestCase(unittest.TestCase):
-
+class WorkflowSubscribersTestCase(unittest.TestCase, QIBBB):
     """Tests content type life cycle subscribers."""
 
     layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         setRoles(self.portal, TEST_USER_ID, ['Manager'])
 
         # disable lifecycle audit
@@ -51,8 +51,7 @@ class WorkflowSubscribersTestCase(unittest.TestCase):
 
     def test_susbcriber_ignored_when_package_not_installed(self):
         # events should not raise errors if package is not installed
-        qi = self.portal['portal_quickinstaller']
-        qi.uninstallProducts(products=[PROJECTNAME])
+        self.uninstall()  # BBB: QI compatibility
 
         obj = api.content.create(self.portal, 'News Item', 'foo')
         api.content.transition(obj=obj, transition='submit')

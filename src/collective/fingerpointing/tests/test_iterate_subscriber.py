@@ -3,10 +3,10 @@
 
 Dexterity content types have different names.
 """
-from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import IS_PLONE_5
+from collective.fingerpointing.testing import QIBBB
 from logging import INFO
 from plone import api
 from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
@@ -15,13 +15,14 @@ from testfixtures import LogCapture
 import unittest
 
 
-class IterateSubscribersTestCase(unittest.TestCase):
+class IterateSubscribersTestCase(unittest.TestCase, QIBBB):
     """Tests for plone.app.iterate subscribers."""
 
     layer = INTEGRATION_TESTING
 
     def setUp(self):
         self.portal = self.layer['portal']
+        self.request = self.layer['request']
         self._disable_lifecycle_events()
 
         with api.env.adopt_roles(['Manager']):
@@ -68,9 +69,7 @@ class IterateSubscribersTestCase(unittest.TestCase):
 
     def test_susbcriber_ignored_when_package_not_installed(self):
         # iterate events should not raise errors if package not installed
-        qi = self.portal['portal_quickinstaller']
-        with api.env.adopt_roles(['Manager']):
-            qi.uninstallProducts(products=[PROJECTNAME])
+        self.uninstall()  # BBB: QI compatibility
 
         wc = ICheckinCheckoutPolicy(self.doc).checkout(self.folder)
         ICheckinCheckoutPolicy(wc).cancelCheckout()
