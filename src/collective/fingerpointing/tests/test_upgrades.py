@@ -82,7 +82,7 @@ class To2TestCase(BaseUpgradeTestCase):
         # run the upgrade step to validate the update
         self._do_upgrade(step)
         roles = self.portal.rolesOfPermission(permission)
-        roles = [r['name'] for r in roles if r['selected']]
+        roles = [r['name'] for r in roles if r['selected']]  # noqa: E501; pylint: disable=W1662
         self.assertListEqual(roles, ['Manager', 'Site Administrator'])
 
         permissions = user_actions['audit-log'].permissions
