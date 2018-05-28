@@ -29,8 +29,14 @@ script:
 - bin/test
 - bin/pylint --py3k --disable=no-absolute-import src/collective/fingerpointing
 after_success:
-- bin/createcoverage --output-dir=htmlcov
+- pip install coverage
+- coverage run bin/test
+# Coveralls
 - pip install coveralls
 - coveralls
+# Codacy
+- coverage xml
+- pip install codacy-coverage
+- python-codacy-coverage -r coverage.xml
 notifications:
   irc: irc.freenode.org#plone-testing
