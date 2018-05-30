@@ -140,7 +140,7 @@ class To4TestCase(BaseUpgradeTestCase):
         # check if the upgrade step is registered
         title = u'Add new field audit_workflow to configlet'
         step = self._get_upgrade_step_by_title(title)
-        assert step is not None
+        self.assertIsNotNone(step)
 
         from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
         from plone.registry.interfaces import IRegistry
