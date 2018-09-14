@@ -33,14 +33,16 @@ def audit_log_files():
     """Return a list with the current audit log and all of its
     backups. The list is sorted with newer files first.
     """
-    # retrieve the list of audit log backup files
-    logfiles = sorted(
-        [f for f in glob(log_info.logfile + '.*') if '.lock' not in f],
-        reverse=True,
-    )
-    # include active audit log as first element
-    if os.path.exists(log_info.logfile):
-        logfiles.insert(0, log_info.logfile)
+    logfiles = []
+    if log_info.has_log_file:
+        # retrieve the list of audit log backup files
+        logfiles = sorted(
+            [f for f in glob(log_info.logfile + '.*') if '.lock' not in f],
+            reverse=True,
+        )
+        # include active audit log as first element
+        if os.path.exists(log_info.logfile):
+            logfiles.insert(0, log_info.logfile)
     return logfiles
 
 
