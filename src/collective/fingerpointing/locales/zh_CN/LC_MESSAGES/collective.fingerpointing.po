@@ -32,7 +32,7 @@ msgstr "审核日志"
 
 #: collective/fingerpointing/interfaces.py:37
 msgid "Audit Profile Imports?"
-msgstr ""
+msgstr "审核配置文件导入"
 
 #: collective/fingerpointing/interfaces.py:46
 msgid "Audit Registry?"
@@ -40,11 +40,11 @@ msgstr "审核注册表"
 
 #: collective/fingerpointing/interfaces.py:31
 msgid "Audit Workflow Transitions?"
-msgstr ""
+msgstr "审核工作流转换"
 
 #: collective/fingerpointing/browser/logview.pt:34
 msgid "Enter a search term"
-msgstr ""
+msgstr "输入搜索词"
 
 #: collective/fingerpointing/controlpanel.py:12
 #: collective/fingerpointing/profiles.zcml:15
@@ -54,35 +54,35 @@ msgstr "Finger Pointing"
 
 #: collective/fingerpointing/interfaces.py:53
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
-msgstr "如果安装了 plone.app.iterate，记录事件例如内容编辑检入和检出。"
+msgstr "如果安装了 plone.app.iterate，记录事件，例如内容编辑检入和检出。"
 
 #: collective/fingerpointing/profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
-msgstr "Keep track of different events and write them down to an audit log."
+msgstr "跟踪不同的事件并将其写入审核日志。"
 
 #: collective/fingerpointing/interfaces.py:38
 msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
-msgstr ""
+msgstr "记录Generic Setup配置文件导入，有助于审核附加组件安装卸载。"
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."
-msgstr "记录身份验证事件例如用户登录和退出。"
+msgstr "记录身份验证事件，例如用户登录和退出。"
 
 #: collective/fingerpointing/interfaces.py:25
 msgid "Log content type life cycle events like object creation, modification and removal."
-msgstr "记录内容类型生命周期事件例如对象创建、修改和删除。"
+msgstr "记录内容类型生命周期事件，例如对象创建、修改和删除。"
 
 #: collective/fingerpointing/interfaces.py:47
 msgid "Log registry events like records being modified."
-msgstr "记录注册表事件例如修改记录。"
+msgstr "记录注册表事件，例如修改记录。"
 
 #: collective/fingerpointing/interfaces.py:32
 msgid "Log workflow transitions like object publishing."
-msgstr ""
+msgstr "记录工作流转换，例如对象发布。"
 
 #: collective/fingerpointing/browser/logview.pt:97
 msgid "No audit log file specified; audit log view is disabled."
-msgstr ""
+msgstr "未指定审核日志文件，审核日志视图已禁用。"
 
 #: collective/fingerpointing/controlpanel.py:13
 msgid "Settings for the collective.fingerpointing package"
@@ -90,7 +90,7 @@ msgstr "fingerpointing 设置"
 
 #: collective/fingerpointing/browser/logview.pt:72
 msgid "Size"
-msgstr ""
+msgstr "大小"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
@@ -102,7 +102,7 @@ msgstr "查看审核日志"
 
 #: collective/fingerpointing/browser/logview.pt:46
 msgid "clear"
-msgstr ""
+msgstr "清除"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
@@ -110,16 +110,17 @@ msgstr "collective.fingerpointing: uninstall"
 
 #: collective/fingerpointing/browser/logview.pt:42
 msgid "filter"
-msgstr ""
+msgstr "筛选"
 
 #: collective/fingerpointing/browser/logview.pt:56
 msgid "first"
-msgstr ""
+msgstr "第一页"
 
 #: collective/fingerpointing/browser/logview.pt:67
 msgid "next"
-msgstr ""
+msgstr "下一页"
 
 #: collective/fingerpointing/browser/logview.pt:61
 msgid "previous"
-msgstr ""
+msgstr "上一页"
+

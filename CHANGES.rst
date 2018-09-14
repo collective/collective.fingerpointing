@@ -4,7 +4,11 @@ Changelog
 1.8 (unreleased)
 ----------------
 
-- Nothing changed yet.
+- Avoid ``TypeError`` when View Audit Log (fixes `#91 <https://github.com/collective/collective.fingerpointing/issues/91>`_).
+  [jianaijun]
+
+- Update Chinese Simplified translation.
+  [jianaijun]
 
 
 1.7 (2018-04-23)
