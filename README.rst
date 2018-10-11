@@ -70,7 +70,7 @@ To enable logging to a separate file use the following configuration:
     zope-conf-additional +=
         <product-config collective.fingerpointing>
             audit-log ${buildout:directory}/var/log/audit.log
-            audit-log-max-size 10240
+            audit-log-max-size 10485760
             audit-log-old-files 30
         </product-config>
 
