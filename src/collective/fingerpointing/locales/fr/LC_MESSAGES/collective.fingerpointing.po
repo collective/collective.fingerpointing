@@ -32,7 +32,7 @@ msgstr "Journal d'audit"
 
 #: collective/fingerpointing/interfaces.py:37
 msgid "Audit Profile Imports?"
-msgstr ""
+msgstr "Auditer l'importation des profils?"
 
 #: collective/fingerpointing/interfaces.py:46
 msgid "Audit Registry?"
@@ -62,7 +62,7 @@ msgstr "Suivre les différents événements et les écrire dans un fichier d'aud
 
 #: collective/fingerpointing/interfaces.py:38
 msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
-msgstr ""
+msgstr "Enregistrer l'importation des profils de GenericSetup, ceci est utile pour suivre les installations/désinstallations de modules."
 
 #: collective/fingerpointing/interfaces.py:18
 msgid "Log authentication events like users logging in and loggin out."

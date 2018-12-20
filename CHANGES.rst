@@ -4,7 +4,8 @@ Changelog
 1.8.1 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Completed french translations.
+  [gbastien]
 
 
 1.8 (2018-10-11)
