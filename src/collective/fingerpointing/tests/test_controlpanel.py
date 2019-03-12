@@ -2,7 +2,6 @@
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import QIBBB
-from plone import api
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
@@ -18,12 +17,6 @@ class ControlPanelTestCase(unittest.TestCase, QIBBB):
         self.portal = self.layer['portal']
         self.request = self.layer['request']
         self.controlpanel = self.portal['portal_controlpanel']
-
-    def test_controlpanel_has_view(self):
-        view = api.content.get_view(
-            u'fingerpointing-settings', self.portal, self.request)
-        view = view.__of__(self.portal)
-        self.assertTrue(view())
 
     def test_controlpanel_view_is_protected(self):
         from AccessControl import Unauthorized

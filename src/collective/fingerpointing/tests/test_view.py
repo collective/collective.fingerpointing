@@ -16,10 +16,6 @@ class LogViewTestCase(unittest.TestCase):
         self.view = api.content.get_view(
             'fingerpointing-audit-log', self.portal, self.request)
 
-    def test_audit_log_view(self):
-        view = self.view.__of__(self.portal)
-        self.assertTrue(view())
-
     def test_audit_log_view_is_protected(self):
         from AccessControl import Unauthorized
         logout()
