@@ -4,6 +4,7 @@ from collective.fingerpointing.config import LOG_FORMAT
 from collective.fingerpointing.config import PROJECTNAME
 
 import logging
+import logging.handlers
 import time
 import zc.lockfile
 
