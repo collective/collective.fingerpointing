@@ -4,6 +4,9 @@ Changelog
 1.8.1 (unreleased)
 ------------------
 
+- Do not fail running ``plone-compile-resources`` together with fingerpointing installed in Plone 5.2.
+  [jensens]
+
 - Completed french translations.
   [gbastien]
 
