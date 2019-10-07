@@ -9,8 +9,8 @@ from plone.registry.interfaces import IRecordModifiedEvent
 import six
 
 
-def safe_utf8(s):
-    if isinstance(s, six.text_type):
+def _safe_native_string(s):
+    if six.PY2 and isinstance(s, six.text_type):
         s = s.encode('utf-8')
     return s
 
@@ -28,7 +28,7 @@ def registry_logger(event):
         action = 'modify'
         extras = 'object={0} value={1}'.format(
             event.record,
-            safe_utf8(event.record.value),
+            _safe_native_string(event.record.value),
         )
     else:  # should never happen
         action = '-'

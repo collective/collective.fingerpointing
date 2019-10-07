@@ -1,6 +1,7 @@
 language: python
 python: 2.7
 sudo: false
+dist: xenial
 cache:
   directories:
   - $HOME/.pylint.d
@@ -16,11 +17,13 @@ matrix:
   include:
   - python: 3.6
     env: PLONE_VERSION=5.2
+  - python: 3.7
+    env: PLONE_VERSION=5.2
 before_install:
 # FIXME: I have no idea how and why six==1.11.0 i being installed
 - pip uninstall -y six
 install:
-- sed -ie "s#test-4.3.x.cfg#test-$PLONE_VERSION.x.cfg#" buildout.cfg
+- sed -ie "s#test-5.2.x.cfg#test-$PLONE_VERSION.x.cfg#" buildout.cfg
 - python bootstrap.py
 - bin/buildout annotate
 - bin/buildout
