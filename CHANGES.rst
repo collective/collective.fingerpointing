@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.8.1 (unreleased)
+1.8.1 (2019-11-22)
 ------------------
 
 - Do not fail running ``plone-compile-resources`` together with fingerpointing installed in Plone 5.2.
