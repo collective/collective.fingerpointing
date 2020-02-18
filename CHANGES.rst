@@ -4,7 +4,8 @@ Changelog
 1.8.2 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- In ``workflow_logger`` display full path of object instead just object id.
+  [gbastien]
 
 
 1.8.1 (2019-11-22)
