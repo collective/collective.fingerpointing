@@ -18,7 +18,7 @@ def workflow_logger(event):
 
     action = 'workflow transition'
     extras = 'object={0} transition={1}'.format(
-        event.object,
+        repr(event.object),
         event.action,
     )
     log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

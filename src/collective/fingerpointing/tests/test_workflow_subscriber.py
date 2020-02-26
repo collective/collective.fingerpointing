@@ -31,15 +31,15 @@ class WorkflowSubscribersTestCase(unittest.TestCase, QIBBB):
 
         if IS_PLONE_5:
             expected = (
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=submit'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=publish'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at foo> transition=retract'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=submit'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=publish'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=retract'),  # noqa: E501
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at foo> transition=submit'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at foo> transition=publish'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at foo> transition=retract'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at /plone/foo> transition=submit'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at /plone/foo> transition=publish'),  # noqa: E501
+                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at /plone/foo> transition=retract'),  # noqa: E501
             )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:
