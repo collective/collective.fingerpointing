@@ -4,6 +4,9 @@ Changelog
 1.8.2 (unreleased)
 ------------------
 
+- Fix typo in French translation.
+  [laulaz]
+
 - In ``workflow_logger`` display full path of object instead just object id.
   [gbastien]
 
