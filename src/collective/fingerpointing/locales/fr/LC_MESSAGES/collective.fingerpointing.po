@@ -102,7 +102,7 @@ msgstr "Voir le journal d'audit"
 
 #: collective/fingerpointing/browser/logview.pt:46
 msgid "clear"
-msgstr "éffacer"
+msgstr "effacer"
 
 #: collective/fingerpointing/profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"

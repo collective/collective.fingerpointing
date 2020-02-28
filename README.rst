@@ -23,6 +23,18 @@ Other features included:
 - support for Cloudflare's ``CF-Connecting-IP`` request header to log real client IP addresses
 - support for automatic log rotation based on audit log file size
 
+Translations
+------------
+
+This product has been translated into
+
+- Brazilian Portuguese
+- Chinese Simplified
+- French
+- German
+- Spanish
+
+
 Mostly Harmless
 ===============
 
