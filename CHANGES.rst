@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.8.2 (unreleased)
+1.8.2 (2020-03-16)
 ------------------
 
 - Fix typo in French translation.
