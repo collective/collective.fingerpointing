@@ -4,7 +4,7 @@ Changelog
 1.8.3 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Fix ImportError in Plone 6.  [maurits]
 
 
 1.8.2 (2020-03-16)

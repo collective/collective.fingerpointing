@@ -5,7 +5,13 @@ from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
-from zope.component.interfaces import ComponentLookupError
+
+try:
+    # Plone 5.1+
+    from zope.interface.interfaces import ComponentLookupError
+except ImportError
+    # BBB Plone 5.0-
+    from zope.component.interfaces import ComponentLookupError
 
 
 def profile_imports_logger(event):
