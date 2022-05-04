@@ -13,7 +13,7 @@ from Products.PluggableAuthService.interfaces.events import IUserLoggedOutEvent
 try:
     # Plone 5.1+
     from zope.interface.interfaces import ComponentLookupError
-except ImportError
+except ImportError:
     # BBB Plone 5.0-
     from zope.component.interfaces import ComponentLookupError
 
