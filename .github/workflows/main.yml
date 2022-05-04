@@ -50,8 +50,7 @@ jobs:
     - name: Cache eggs
       uses: actions/cache@v3
       with:
-        path: |
-          ~/eggs
+        path: ~/eggs
         key: ${{ runner.os }}-eggs-${{ matrix.config[0] }}-${{ matrix.config[1] }}-${{ hashFiles('*cfg') }}
         restore-keys: |
           ${{ runner.os }}-eggs-${{ matrix.config[0] }}-${{ matrix.config[1] }}-
