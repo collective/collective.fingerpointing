@@ -5,11 +5,9 @@ For Plone 5 we need to install plone.app.contenttypes.
 """
 from collective.fingerpointing.config import PROJECTNAME
 from plone import api
-from plone.app.robotframework.testing import AUTOLOGIN_LIBRARY_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
-from plone.testing import z2
 
 import os
 import pkg_resources
@@ -31,8 +29,10 @@ except pkg_resources.DistributionNotFound:
 else:
     HAS_ITERATE = True
 
-IS_PLONE_5 = api.env.plone_version().startswith('5')
-IS_BBB = api.env.plone_version().startswith('4.3')
+plone_version = float(api.env.plone_version()[:3])
+IS_PLONE_6 = plone_version >= 6.0
+IS_PLONE_5 = plone_version >= 5.1
+IS_BBB = plone_version < 5.0
 
 
 class QIBBB:
@@ -101,8 +101,3 @@ INTEGRATION_TESTING = IntegrationTesting(
 
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,), name='collective.fingerpointing:Functional')
-
-ROBOT_TESTING = FunctionalTesting(
-    bases=(FIXTURE, AUTOLOGIN_LIBRARY_FIXTURE, z2.ZSERVER_FIXTURE),
-    name='collective.fingerpointing:Robot',
-)

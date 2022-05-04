@@ -1,4 +1,4 @@
-global-exclude *.pyc
 graft docs
 graft src
 include *.rst
+global-exclude *.pyc
