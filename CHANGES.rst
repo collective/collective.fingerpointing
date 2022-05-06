@@ -1,7 +1,7 @@
 Changelog
 =========
 
-1.8.3 (unreleased)
+1.8.3 (2022-05-06)
 ------------------
 
 - Setup CI: test in 4.3, 5.1, 5.2, 6.0.  [maurits]
