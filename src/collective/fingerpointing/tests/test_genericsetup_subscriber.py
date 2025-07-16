@@ -36,13 +36,13 @@ class GenericSetupSubscribersTestCase(unittest.TestCase):
         if IS_BBB:  # Plone 4.3
             return self.portal['portal_quickinstaller']
         else:
-            from Products.CMFPlone.utils import get_installer
+            from plone.base.utils import get_installer
             return get_installer(self.portal, self.request)
 
     @unittest.skipIf(IS_BBB, 'Plone >= 5.1')
     def test_profile_imports(self):
         if IS_PLONE_6:
-            version = 1002
+            version = 1003
         else:
             version = 1001
         expected = (

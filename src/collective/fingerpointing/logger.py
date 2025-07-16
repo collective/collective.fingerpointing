@@ -27,7 +27,7 @@ class LogInfo(object):
     def configure(self, config, logformat=LOG_FORMAT):
         self.logfile = config.get('audit-log', None)
         if self.logfile is None:
-            commonlogger.warn(
+            commonlogger.warning(
                 'No audit log file specified; audit log view will be disabled')
             return None
         self.logger.setLevel(logging.INFO)

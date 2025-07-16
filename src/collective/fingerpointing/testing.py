@@ -43,7 +43,7 @@ class QIBBB:
             with api.env.adopt_roles(['Manager']):
                 qi.uninstallProducts([PROJECTNAME])
         else:
-            from Products.CMFPlone.utils import get_installer
+            from plone.base.utils import get_installer
             qi = get_installer(self.portal, self.request)
             with api.env.adopt_roles(['Manager']):
                 qi.uninstall_product(PROJECTNAME)
@@ -84,7 +84,7 @@ class Fixture(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         if HAS_ITERATE:
-            self.applyProfile(portal, 'plone.app.iterate:plone.app.iterate')
+            self.applyProfile(portal, 'plone.app.iterate:default')
 
         self.applyProfile(portal, 'collective.fingerpointing:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')

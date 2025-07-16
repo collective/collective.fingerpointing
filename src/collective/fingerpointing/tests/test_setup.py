@@ -21,7 +21,7 @@ class InstallTestCase(unittest.TestCase):
 
     @unittest.skipIf(IS_BBB, 'Plone >= 5.1')
     def test_installed(self):
-        from Products.CMFPlone.utils import get_installer
+        from plone.base.utils import get_installer
         qi = get_installer(self.portal, self.request)
         self.assertTrue(qi.is_product_installed(PROJECTNAME))
 

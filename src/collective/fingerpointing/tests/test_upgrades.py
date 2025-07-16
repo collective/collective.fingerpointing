@@ -114,13 +114,13 @@ class To3TestCase(BaseUpgradeTestCase):
         # simulate state on previous version
         user_actions = self.portal['portal_actions'].user
         user_actions.moveObjectsDown('audit-log')
-        self.assertEqual(user_actions.keys()[-1], 'audit-log')
-        self.assertEqual(user_actions.keys()[-2], 'logout')
+        self.assertEqual(list(user_actions.keys())[-1], 'audit-log')
+        self.assertEqual(list(user_actions.keys())[-2], 'logout')
 
         # run the upgrade step to validate the update
         self._do_upgrade(step)
-        self.assertEqual(user_actions.keys()[-1], 'logout')
-        self.assertEqual(user_actions.keys()[-2], 'audit-log')
+        self.assertEqual(list(user_actions.keys())[-1], 'logout')
+        self.assertEqual(list(user_actions.keys())[-2], 'audit-log')
 
 
 class To4TestCase(BaseUpgradeTestCase):

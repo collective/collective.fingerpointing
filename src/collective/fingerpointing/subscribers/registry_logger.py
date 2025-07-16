@@ -9,9 +9,15 @@ from plone.registry.interfaces import IRecordModifiedEvent
 import six
 
 
+try:
+    from plone.base.utils import safe_text
+except ImportError:
+    from Products.CMFPlone.utils import safe_unicode as safe_text
+
+
 def _safe_native_string(s):
     if six.PY2 and isinstance(s, six.text_type):
-        s = s.encode('utf-8')
+        s = safe_text('utf-8')
     return s
 
 
