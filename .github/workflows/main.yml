@@ -1,59 +1,94 @@
-name: CI
+# This workflow will install Python dependencies, run tests and lint with a variety of Python versions
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Push tests
+# run-name: ${{ github.actor }} push tests
+
 on:
   push:
-    branches:
-      - 'master'
   pull_request:
-  # Allow to run this workflow manually from the Actions tab
-  workflow_dispatch:
+
 jobs:
-  build:
-    runs-on: ubuntu-latest
+  test:
+    runs-on: ubuntu-24.04
     strategy:
-      fail-fast: true
+      fail-fast: false
       matrix:
-        config:
-        # [Python version, tox env]
-        - ["2.7",  "py27-plone43"]
-        - ["2.7",  "py27-plone51"]
-        - ["2.7",  "py27-plone52"]
-        - ["3.6",  "py36-plone52"]
-        - ["3.7",  "py37-plone52"]
-        - ["3.8",  "py38-plone52"]
-        - ["3.7",  "py37-plone60"]
-        - ["3.8",  "py38-plone60"]
-        - ["3.9",  "py39-plone60"]
-    name: ${{ matrix.config[1] }}
+        include:
+         - python: "2.7.18"
+           plone: "4.3"
+         - python: "3.8.16"
+           plone: "5.2"
+         - python: "3.10.11"
+           plone: "6.0"
+         - python: "3.13.1"
+           plone: "6.1"
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up Python
-      uses: actions/setup-python@v2
-      with:
-        python-version: ${{ matrix.config[0] }}
-    - name: Pip cache
-      uses: actions/cache@v2
-      with:
-        path: ~/.cache/pip
-        key: ${{ runner.os }}-pip-${{ matrix.config[0] }}-${{ hashFiles('setup.*', 'tox.ini') }}
-        restore-keys: |
-          ${{ runner.os }}-pip-${{ matrix.config[0] }}-
-          ${{ runner.os }}-pip-
-    - name: Install dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install tox
-    - name: Prepare buildout egg cache
-      run: |
-        mkdir ~/.buildout
-        echo "[buildout]" >> ~/.buildout/default.cfg
-        echo "eggs-directory = ~/eggs" >> ~/.buildout/default.cfg
-    - name: Cache eggs
-      uses: actions/cache@v3
-      with:
-        path: ~/eggs
-        key: ${{ runner.os }}-eggs-${{ matrix.config[0] }}-${{ matrix.config[1] }}-${{ hashFiles('*cfg') }}
-        restore-keys: |
-          ${{ runner.os }}-eggs-${{ matrix.config[0] }}-${{ matrix.config[1] }}-
-          ${{ runner.os }}-eggs-${{ matrix.config[0] }}-
-    - name: Test
-      run: tox -e ${{ matrix.config[1] }}
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install dependencies
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y libjpeg62 libjpeg62-dev libbz2-dev
+      - name: Set up pyenv and Python
+        uses: "gabrielfalcao/pyenv-action@v18"
+        with:
+          default: "${{ matrix.python }}"
+      - name: Setup Env
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements-${{ matrix.plone }}.txt
+      - name: Cache eggs
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-eggs
+        with:
+          path: ~/buildout-cache/eggs
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ matrix.python }}-${{ matrix.plone }}
+      - name: buildout
+        run: |
+          sed -ie "s#test.cfg#test-${{matrix.plone}}.x.cfg#" gha.cfg
+          buildout -c gha.cfg annotate
+          buildout -c gha.cfg
+      - name: test
+        run: |
+          bin/test -t !robot
+  coverage:
+    runs-on: ubuntu-22.04
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - python: "3.13.1"
+            plone: "6.1"
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Set up pyenv and Python
+        uses: "gabrielfalcao/pyenv-action@v18"
+        with:
+          default: "${{ matrix.python }}"
+      - name: Setup Env
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements-${{matrix.plone}}.txt
+          pip install -U coveralls coverage
+      - name: Cache eggs
+        uses: actions/cache@v4
+        env:
+          cache-name: cache-eggs
+        with:
+          path: ~/buildout-cache/eggs
+          key: ${{ runner.os }}-test-${{ env.cache-name }}-${{ matrix.python }}-${{ matrix.plone }}
+      - name: buildout
+        run: |
+          sed -ie "s#test.cfg#test-${{matrix.plone}}.x.cfg#" gha.cfg
+          buildout -c gha.cfg
+      - name: test coverage
+        run: |
+          coverage run bin/test -t !robot
+      - name: Publish to Coveralls
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          coveralls --service=github

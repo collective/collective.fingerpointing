@@ -9,9 +9,15 @@ from plone.registry.interfaces import IRecordModifiedEvent
 import six
 
 
+try:
+    from plone.base.utils import safe_text
+except ImportError:
+    from Products.CMFPlone.utils import safe_unicode as safe_text
+
+
 def _safe_native_string(s):
     if six.PY2 and isinstance(s, six.text_type):
-        s = s.encode('utf-8')
+        s = safe_text('utf-8')
     return s
 
 
@@ -22,7 +28,12 @@ def registry_logger(event):
     if not audit_registry:
         return
 
-    user, ip = get_request_information()
+    try:
+        user, ip = get_request_information()
+    except AttributeError:
+        # XXX: getRequest() returns None instead actual request
+        #      on tests of this subscriber
+        user, ip = '-', '-'
 
     if IRecordModifiedEvent.providedBy(event):
         action = 'modify'
