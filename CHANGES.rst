@@ -4,7 +4,8 @@ Changelog
 1.8.4 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Avoid error with `registry_logger` in tests
+  [laulaz]
 
 
 1.8.3 (2022-05-06)

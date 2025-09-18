@@ -28,7 +28,12 @@ def registry_logger(event):
     if not audit_registry:
         return
 
-    user, ip = get_request_information()
+    try:
+        user, ip = get_request_information()
+    except AttributeError:
+        # XXX: getRequest() returns None instead actual request
+        #      on tests of this subscriber
+        user, ip = '-', '-'
 
     if IRecordModifiedEvent.providedBy(event):
         action = 'modify'
