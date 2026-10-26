@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: collective.fingerpointing\n"
-"POT-Creation-Date: 2018-03-22 13:31+0000\n"
+"POT-Creation-Date: 2026-10-26 09:11+0000\n"
 "PO-Revision-Date: 2016-08-08 8:58+0800\n"
 "Last-Translator: Jian Aijun <jianaijun@gmail.com>\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sf.net>\n"
@@ -14,113 +14,120 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/fingerpointing/interfaces.py:17
+#: ../interfaces.py:18
 msgid "Audit Authentication Service?"
 msgstr "审核认证服务"
 
-#: collective/fingerpointing/interfaces.py:24
+#: ../interfaces.py:34
 msgid "Audit Content Type Life Cycle?"
 msgstr "审核内容类型生命周期"
 
-#: collective/fingerpointing/interfaces.py:52
+#: ../interfaces.py:62
 msgid "Audit Iterate?"
 msgstr "审核工作副本"
 
-#: collective/fingerpointing/browser/logview.pt:18
+#: ../browser/logview.pt:18
 msgid "Audit Log"
 msgstr "审核日志"
 
-#: collective/fingerpointing/interfaces.py:37
+#: ../interfaces.py:47
 msgid "Audit Profile Imports?"
 msgstr "审核配置文件导入"
 
-#: collective/fingerpointing/interfaces.py:46
+#: ../interfaces.py:56
 msgid "Audit Registry?"
 msgstr "审核注册表"
 
-#: collective/fingerpointing/interfaces.py:31
+#: ../interfaces.py:26
+msgid "Audit Role Assignments?"
+msgstr ""
+
+#: ../interfaces.py:41
 msgid "Audit Workflow Transitions?"
 msgstr "审核工作流转换"
 
-#: collective/fingerpointing/browser/logview.pt:34
+#: ../browser/logview.pt:34
 msgid "Enter a search term"
 msgstr "输入搜索词"
 
-#: collective/fingerpointing/controlpanel.py:12
-#: collective/fingerpointing/profiles.zcml:15
-#: collective/fingerpointing/profiles/default/controlpanel.xml
+#: ../controlpanel.py:11
+#: ../profiles.zcml:15
+#: ../profiles/default/controlpanel.xml
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/interfaces.py:53
+#: ../interfaces.py:63
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr "如果安装了 plone.app.iterate，记录事件，例如内容编辑检入和检出。"
 
-#: collective/fingerpointing/profiles.zcml:15
+#: ../profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
 msgstr "跟踪不同的事件并将其写入审核日志。"
 
-#: collective/fingerpointing/interfaces.py:38
+#: ../interfaces.py:48
 msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
 msgstr "记录Generic Setup配置文件导入，有助于审核附加组件安装卸载。"
 
-#: collective/fingerpointing/interfaces.py:18
-msgid "Log authentication events like users logging in and loggin out."
-msgstr "记录身份验证事件，例如用户登录和退出。"
+#: ../interfaces.py:19
+msgid "Log authentication events like users logging in and loggin out, failed logins, password changes and group membership changes."
+msgstr ""
 
-#: collective/fingerpointing/interfaces.py:25
+#: ../interfaces.py:27
+msgid "Log changes to the global roles of users and groups, and to local roles on content (sharing)."
+msgstr ""
+
+#: ../interfaces.py:35
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr "记录内容类型生命周期事件，例如对象创建、修改和删除。"
 
-#: collective/fingerpointing/interfaces.py:47
+#: ../interfaces.py:57
 msgid "Log registry events like records being modified."
 msgstr "记录注册表事件，例如修改记录。"
 
-#: collective/fingerpointing/interfaces.py:32
+#: ../interfaces.py:42
 msgid "Log workflow transitions like object publishing."
 msgstr "记录工作流转换，例如对象发布。"
 
-#: collective/fingerpointing/browser/logview.pt:97
+#: ../browser/logview.pt:97
 msgid "No audit log file specified; audit log view is disabled."
 msgstr "未指定审核日志文件，审核日志视图已禁用。"
 
-#: collective/fingerpointing/controlpanel.py:13
+#: ../controlpanel.py:12
 msgid "Settings for the collective.fingerpointing package"
 msgstr "fingerpointing 设置"
 
-#: collective/fingerpointing/browser/logview.pt:72
+#: ../browser/logview.pt:72
 msgid "Size"
 msgstr "大小"
 
-#: collective/fingerpointing/profiles.zcml:24
+#: ../profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
 msgstr "Uninstall collective.fingerpointing."
 
-#: collective/fingerpointing/profiles/default/actions.xml
+#: ../profiles/default/actions.xml
 msgid "View Audit Log"
 msgstr "查看审核日志"
 
-#: collective/fingerpointing/browser/logview.pt:46
+#: ../browser/logview.pt:46
 msgid "clear"
 msgstr "清除"
 
-#: collective/fingerpointing/profiles.zcml:24
+#: ../profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: uninstall"
 
-#: collective/fingerpointing/browser/logview.pt:42
+#: ../browser/logview.pt:42
 msgid "filter"
 msgstr "筛选"
 
-#: collective/fingerpointing/browser/logview.pt:56
+#: ../browser/logview.pt:56
 msgid "first"
 msgstr "第一页"
 
-#: collective/fingerpointing/browser/logview.pt:67
+#: ../browser/logview.pt:67
 msgid "next"
 msgstr "下一页"
 
-#: collective/fingerpointing/browser/logview.pt:61
+#: ../browser/logview.pt:61
 msgid "previous"
 msgstr "上一页"
-

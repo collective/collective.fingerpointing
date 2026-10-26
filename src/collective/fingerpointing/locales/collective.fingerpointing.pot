@@ -1,7 +1,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
-"POT-Creation-Date: 2018-03-22 13:31+0000\n"
+"POT-Creation-Date: 2026-10-26 09:11+0000\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI +ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -14,112 +14,120 @@ msgstr ""
 "Preferred-Encodings: utf-8 latin1\n"
 "Domain: DOMAIN\n"
 
-#: collective/fingerpointing/interfaces.py:17
+#: ../interfaces.py:18
 msgid "Audit Authentication Service?"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:24
+#: ../interfaces.py:34
 msgid "Audit Content Type Life Cycle?"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:52
+#: ../interfaces.py:62
 msgid "Audit Iterate?"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:18
+#: ../browser/logview.pt:18
 msgid "Audit Log"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:37
+#: ../interfaces.py:47
 msgid "Audit Profile Imports?"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:46
+#: ../interfaces.py:56
 msgid "Audit Registry?"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:31
+#: ../interfaces.py:26
+msgid "Audit Role Assignments?"
+msgstr ""
+
+#: ../interfaces.py:41
 msgid "Audit Workflow Transitions?"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:34
+#: ../browser/logview.pt:34
 msgid "Enter a search term"
 msgstr ""
 
-#: collective/fingerpointing/controlpanel.py:12
-#: collective/fingerpointing/profiles.zcml:15
-#: collective/fingerpointing/profiles/default/controlpanel.xml
+#: ../controlpanel.py:11
+#: ../profiles.zcml:15
+#: ../profiles/default/controlpanel.xml
 msgid "Finger Pointing"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:53
+#: ../interfaces.py:63
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr ""
 
-#: collective/fingerpointing/profiles.zcml:15
+#: ../profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:38
+#: ../interfaces.py:48
 msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:18
-msgid "Log authentication events like users logging in and loggin out."
+#: ../interfaces.py:19
+msgid "Log authentication events like users logging in and loggin out, failed logins, password changes and group membership changes."
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:25
+#: ../interfaces.py:27
+msgid "Log changes to the global roles of users and groups, and to local roles on content (sharing)."
+msgstr ""
+
+#: ../interfaces.py:35
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:47
+#: ../interfaces.py:57
 msgid "Log registry events like records being modified."
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:32
+#: ../interfaces.py:42
 msgid "Log workflow transitions like object publishing."
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:97
+#: ../browser/logview.pt:97
 msgid "No audit log file specified; audit log view is disabled."
 msgstr ""
 
-#: collective/fingerpointing/controlpanel.py:13
+#: ../controlpanel.py:12
 msgid "Settings for the collective.fingerpointing package"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:72
+#: ../browser/logview.pt:72
 msgid "Size"
 msgstr ""
 
-#: collective/fingerpointing/profiles.zcml:24
+#: ../profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
 msgstr ""
 
-#: collective/fingerpointing/profiles/default/actions.xml
+#: ../profiles/default/actions.xml
 msgid "View Audit Log"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:46
+#: ../browser/logview.pt:46
 msgid "clear"
 msgstr ""
 
-#: collective/fingerpointing/profiles.zcml:24
+#: ../profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:42
+#: ../browser/logview.pt:42
 msgid "filter"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:56
+#: ../browser/logview.pt:56
 msgid "first"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:67
+#: ../browser/logview.pt:67
 msgid "next"
 msgstr ""
 
-#: collective/fingerpointing/browser/logview.pt:61
+#: ../browser/logview.pt:61
 msgid "previous"
 msgstr ""

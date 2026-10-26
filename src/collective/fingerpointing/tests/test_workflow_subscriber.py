@@ -1,9 +1,7 @@
-# -*- coding: utf-8 -*-
 """Tests for workflow subscriber."""
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
-from collective.fingerpointing.testing import IS_PLONE_5
-from collective.fingerpointing.testing import QIBBB
+from collective.fingerpointing.testing import UninstallMixin
 from logging import INFO
 from plone import api
 from plone.app.testing import setRoles
@@ -13,7 +11,7 @@ from testfixtures import LogCapture
 import unittest
 
 
-class WorkflowSubscribersTestCase(unittest.TestCase, QIBBB):
+class WorkflowSubscribersTestCase(unittest.TestCase, UninstallMixin):
     """Tests content type life cycle subscribers."""
 
     layer = INTEGRATION_TESTING
@@ -29,18 +27,11 @@ class WorkflowSubscribersTestCase(unittest.TestCase, QIBBB):
 
     def test_workflow_transitions(self):
 
-        if IS_PLONE_5:
-            expected = (
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=submit'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=publish'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=retract'),  # noqa: E501
-            )
-        else:
-            expected = (
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at /plone/foo> transition=submit'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at /plone/foo> transition=publish'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', u'user=test_user_1_ ip=None action=workflow transition object=<ATNewsItem at /plone/foo> transition=retract'),  # noqa: E501
-            )
+        expected = (
+            ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=submit'),  # noqa: E501
+            ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=publish'),  # noqa: E501
+            ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=retract'),  # noqa: E501
+        )
 
         with LogCapture('collective.fingerpointing', level=INFO) as log:
             obj = api.content.create(self.portal, 'News Item', 'foo')
@@ -51,7 +42,7 @@ class WorkflowSubscribersTestCase(unittest.TestCase, QIBBB):
 
     def test_susbcriber_ignored_when_package_not_installed(self):
         # events should not raise errors if package is not installed
-        self.uninstall()  # BBB: QI compatibility
+        self.uninstall()
 
         obj = api.content.create(self.portal, 'News Item', 'foo')
         api.content.transition(obj=obj, transition='submit')

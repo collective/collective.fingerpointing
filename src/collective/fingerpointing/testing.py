@@ -1,58 +1,33 @@
-# -*- coding: utf-8 -*-
-"""Setup testing infrastructure.
-
-For Plone 5 we need to install plone.app.contenttypes.
-"""
+"""Setup testing infrastructure."""
 from collective.fingerpointing.config import PROJECTNAME
 from plone import api
+from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
+from plone.base.utils import get_installer
 
+import importlib.util
 import os
-import pkg_resources
 import shutil
 import tempfile
 
 
-try:
-    pkg_resources.get_distribution('plone.app.contenttypes')
-except pkg_resources.DistributionNotFound:
-    from plone.app.testing import PLONE_FIXTURE
-else:
-    from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE  # noqa: E501
-
-try:
-    pkg_resources.get_distribution('plone.app.iterate')
-except pkg_resources.DistributionNotFound:
-    HAS_ITERATE = False
-else:
-    HAS_ITERATE = True
-
-plone_version = float(api.env.plone_version()[:3])
-IS_PLONE_6 = plone_version >= 6.0
-IS_PLONE_5 = plone_version >= 5.1
-IS_BBB = plone_version < 5.0
+HAS_ITERATE = importlib.util.find_spec('plone.app.iterate') is not None
 
 
-class QIBBB:
-    """BBB: remove on deprecation of Plone 4.3."""
+class UninstallMixin:
+
     def uninstall(self):
-        if IS_BBB:
-            qi = self.portal['portal_quickinstaller']
-            with api.env.adopt_roles(['Manager']):
-                qi.uninstallProducts([PROJECTNAME])
-        else:
-            from Products.CMFPlone.utils import get_installer
-            qi = get_installer(self.portal, self.request)
-            with api.env.adopt_roles(['Manager']):
-                qi.uninstall_product(PROJECTNAME)
+        qi = get_installer(self.portal, self.request)
+        with api.env.adopt_roles(['Manager']):
+            qi.uninstall_product(PROJECTNAME)
         return qi
 
 
 class Fixture(PloneSandboxLayer):
 
-    defaultBases = (PLONE_FIXTURE,)
+    defaultBases = (PLONE_APP_CONTENTTYPES_FIXTURE,)
 
     # XXX: this can probably be done in a different way
     def _setup_audit_log(self):
@@ -79,18 +54,22 @@ class Fixture(PloneSandboxLayer):
             import plone.app.iterate
             self.loadZCML(package=plone.app.iterate)
 
+        import plone.restapi
+        self.loadZCML(package=plone.restapi)
+
         import collective.fingerpointing
         self.loadZCML(package=collective.fingerpointing)
 
     def setUpPloneSite(self, portal):
         if HAS_ITERATE:
-            self.applyProfile(portal, 'plone.app.iterate:plone.app.iterate')
+            self.applyProfile(portal, 'plone.app.iterate:default')
 
+        self.applyProfile(portal, 'plone.restapi:default')
         self.applyProfile(portal, 'collective.fingerpointing:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
 
     def tearDown(self):
-        super(Fixture, self).tearDown()
+        super().tearDown()
         self._cleanup_audit_log()
 
 

@@ -13,15 +13,45 @@ Finger Pointing
 Life, the Universe, and Everything
 ==================================
 
-Finger Pointing is a basic audit logger that helps you keep record of events like user login/logout and content types objects life cycle.
-All events are logged into the standard Zope log and, optionally, to a dedicated audit log file.
+Finger Pointing is a NIS2 compliant audit logging tool for Plone websites.
+It records the security-relevant events of a site:
+
+- who logged in or out, and which logins failed;
+- who changed passwords, user properties, group memberships, and global or local roles;
+- who created, modified, removed, published, checked out or checked in content;
+- who changed the configuration of the site (registry records, add-on installs).
+
+Every event records the user, the IP address and what has changed, as plain text or as JSON.
+Finger Pointing is meant to be combined with log monitoring tools like SigNoz_, Grafana Loki, Graylog, Elastic or Wazuh:
+it writes the events to a separate audit log file, to syslog, or to standard output for container log collectors.
+Those tools take care of the parts of NIS2 that a website cannot do on its own:
+storing the logs centrally and out of reach of the site, retaining them, and alerting on suspicious activity.
 
 Other features included:
 
-- configurable via control panel configlet
+- configurable via control panel configlet, zope.conf or environment variables
 - log entries can be easily visualized by users with permissions to do so
-- support for Cloudflare's ``CF-Connecting-IP`` request header to log real client IP addresses
+- support for Cloudflare's ``CF-Connecting-IP`` and the ``X-Forwarded-For`` request headers to log real client IP addresses
 - support for automatic log rotation based on audit log file size
+
+.. _SigNoz: https://signoz.io
+
+Compatibility
+-------------
+
+Version 2.x supports:
+
+========= ====================
+Plone     Python
+========= ====================
+6.0       3.10, 3.11, 3.12
+6.1       3.10, 3.11, 3.12, 3.13
+6.2       3.10, 3.11, 3.12, 3.13, 3.14
+========= ====================
+
+Both Classic UI and Volto (through plone.restapi) are supported.
+
+Use version 1.8.x for Plone 4.3, 5.1, 5.2 and 6.0 on Python 2.7 or 3.6 – 3.9.
 
 Translations
 ------------
@@ -41,11 +71,8 @@ Mostly Harmless
 .. image:: http://img.shields.io/pypi/v/collective.fingerpointing.svg
    :target: https://pypi.python.org/pypi/collective.fingerpointing
 
-.. image:: https://img.shields.io/travis/collective/collective.fingerpointing/master.svg
-    :target: http://travis-ci.org/collective/collective.fingerpointing
-
-.. image:: https://img.shields.io/coveralls/collective/collective.fingerpointing/master.svg
-    :target: https://coveralls.io/r/collective/collective.fingerpointing
+.. image:: https://github.com/collective/collective.fingerpointing/actions/workflows/main.yml/badge.svg
+    :target: https://github.com/collective/collective.fingerpointing/actions/workflows/main.yml
 
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 
@@ -54,7 +81,12 @@ Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 Known Issues
 ------------
 
-Running your site behind a CDN may result in inconsistent IP addresses being logged.
+Running your site behind a CDN or proxy that does not set ``CF-Connecting-IP`` or ``X-Forwarded-For`` may result in inconsistent IP addresses being logged.
+``X-Forwarded-For`` is logged as is, so it may contain a list of addresses.
+
+The registry audit logs the new value of every record that is modified.
+If your site stores secrets like API keys in the registry, they end up in the audit log;
+disable "Audit Registry?" in the control panel if that is a problem.
 
 Don't Panic
 ===========
@@ -62,9 +94,15 @@ Don't Panic
 Installation
 ------------
 
-To enable this package in a buildout-based installation:
+Add ``collective.fingerpointing`` to the dependencies of your project, for instance in ``pyproject.toml``:
 
-Edit your buildout.cfg and add the following to it:
+.. code-block:: toml
+
+    dependencies = [
+        "collective.fingerpointing",
+    ]
+
+Or, in a buildout-based installation, to the eggs of your instance:
 
 .. code-block:: ini
 
@@ -73,31 +111,184 @@ Edit your buildout.cfg and add the following to it:
     eggs =
         collective.fingerpointing
 
+Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+
+Check the box next to Finger Pointing and click the 'Activate' button.
+
+When you upgrade from 1.x, run the upgrade step of Finger Pointing in the 'Add-ons' control panel:
+it adds the setting for the new role audit.
+
+Configuration
+-------------
+
 By default, Finger Pointing logs audit events to the Zope event log only.
-To enable logging to a separate file use the following configuration:
+Use the settings below to write them to a dedicated destination.
+Audit events are also logged to the Zope event log, except with the ``stream`` handler.
+
+Set them in ``zope.conf``:
 
 .. code-block:: ini
 
-    [instance]
-    zope-conf-additional +=
-        <product-config collective.fingerpointing>
-            audit-log ${buildout:directory}/var/log/audit.log
-            audit-log-max-size 10485760
-            audit-log-old-files 30
-        </product-config>
+    <product-config collective.fingerpointing>
+        audit-log /var/log/plone/audit.log
+        audit-log-max-size 10485760
+        audit-log-old-files 30
+    </product-config>
 
+For buildout, add this to ``zope-conf-additional`` of your instance part.
+
+Or set them as environment variables, which is easier in containers:
+the name of the variable is the name of the setting in uppercase, with dashes replaced by underscores and a ``FINGERPOINTING_`` prefix.
+Environment variables override the settings in ``zope.conf``.
+
+.. code-block:: shell
+
+    FINGERPOINTING_AUDIT_LOG_HANDLER=stream
+    FINGERPOINTING_AUDIT_LOG_FORMAT=json
+
+When the instance is generated by cookiecutter-zope-instance (``instance.yaml``), use its ``environment`` setting:
+
+.. code-block:: yaml
+
+    default_context:
+        environment:
+            FINGERPOINTING_AUDIT_LOG_HANDLER: stream
+            FINGERPOINTING_AUDIT_LOG_FORMAT: json
+
+audit-log-handler
+    Where to write audit events: ``file``, ``syslog`` or ``stream``.
+    Defaults to ``file`` when ``audit-log`` is set; without either setting, audit events are only logged to the Zope event log.
+
+    ``file``
+        A dedicated audit log file, named by ``audit-log``.
+        This is the only handler that enables the audit log view.
+    ``syslog``
+        A syslog server, see ``audit-syslog-address``.
+        Messages are tagged with ``collective.fingerpointing``.
+    ``stream``
+        Standard output, for container log collectors.
+        Audit events are then *not* logged to the Zope event log as well, as that usually goes to standard output too.
+audit-log-format
+    ``text`` (the default): ``user=admin ip=10.0.0.1 action=login``, as in Finger Pointing 1.x.
+    ``json``: one JSON object per line, see `Log formats`_.
 audit-log
     The filename of the audit log. Add file name to create Finger Pointing audit file.
 audit-log-max-size
     Maximum size of audit log file (in bytes). Adding this max size enables log rotation.
 audit-log-old-files
     Number of previous log files to retain when log rotation is enabled. Defaults to 1.
+audit-syslog-address
+    ``host:port``, ``host`` (port 514), ``[ipv6]:port`` or the path of a unix socket like ``/dev/log``.
+    Defaults to ``localhost``.
+audit-syslog-socktype
+    ``udp`` (the default) or ``tcp``.
+    Prefer ``tcp``: UDP silently drops messages when the network or the syslog server is busy.
+    Over TCP each message ends with a newline (RFC 6587 non-transparent framing), which rsyslog, syslog-ng and the OpenTelemetry Collector accept.
+audit-syslog-facility
+    The syslog facility, like ``user`` (the default), ``auth``, ``authpriv`` or ``local0`` – ``local7``.
 
-After updating the configuration you need to run ''bin/buildout'', which will take care of updating your system.
+If Finger Pointing cannot connect to the syslog server at startup, it logs an error and falls back to the Zope event log, rather than keeping Zope from starting.
 
-Go to the 'Site Setup' page in a Plone site and click on the 'Add-ons' link.
+Log formats
+-----------
 
-Check the box next to Finger Pointing and click the 'Activate' button.
+The ``text`` format is the format of Finger Pointing 1.x:
+
+.. code-block:: console
+
+    2026-10-26 10:24:19,717 - INFO - user=admin ip=10.0.0.1 action=login
+    2026-10-26 10:24:28,415 - WARNING - user=- ip=10.0.0.2 action=login failed login=admin
+    2026-10-26 10:25:02,108 - INFO - user=admin ip=10.0.0.1 action=local roles change object=<Folder at /plone/news> principal=editors roles=Editor,Reader old_roles=Reader
+
+The ``json`` format writes one object per line, with the details of the event under ``details`` and content objects as their path, UID and type:
+
+.. code-block:: json
+
+    {"timestamp": "2026-10-26T09:25:02.108Z", "level": "INFO", "logger": "collective.fingerpointing", "action": "local roles change", "user": "admin", "ip": "10.0.0.1", "method": "POST", "url": "https://example.org/++api++/news/@sharing", "details": {"object": {"path": "/plone/news", "uid": "6f1c9b3e0f6a4a5c9e1d2b7a8c3d4e5f", "type": "Folder"}, "principal": "editors", "roles": ["Editor", "Reader"], "old_roles": ["Reader"]}}
+
+Failed logins are logged with level ``WARNING``, all other events with level ``INFO``.
+Values are written on a single line: newlines in user input, like a login name, are escaped in the text format.
+Passwords are never logged, and for property changes only the names of the properties are logged, not their values.
+
+Audit events
+------------
+
+Each group of events can be switched on and off in the control panel.
+
+Audit Authentication Service
+    - ``login``: login, through the Classic UI login form or the ``@login`` endpoint (Volto)
+    - ``logout``: logout
+    - ``login failed``: failed login, through the Classic UI login form or the ``@login`` endpoint
+    - ``create``: user or group created
+    - ``remove``: user or group removed
+    - ``add to group``, ``remove from group``: user added to or removed from a group
+    - ``password change``: password changed or reset
+    - ``properties change``: user properties changed, like the email address
+Audit Role Assignments
+    - ``roles change``: global roles of a user or group changed
+    - ``local roles change``: local roles changed, through the Classic UI sharing view or the ``@sharing`` endpoint (Volto)
+    - ``local roles inheritance``: inheritance of local roles switched on or off
+Audit Content Type Life Cycle
+    - ``create``, ``modify``, ``remove``: content created, modified or removed
+Audit Workflow Transitions
+    - ``workflow transition``: workflow transition, like publishing
+Audit Profile Imports
+    - ``profile imported``: Generic Setup profile imported, like add-on installs and uninstalls
+Audit Registry
+    - ``modify``: registry record modified, like settings in control panels
+Audit Iterate
+    - ``checkout``, ``checkin``, ``cancel checkout``: working copies of plone.app.iterate
+
+Plone does not fire events for failed logins and global role changes, and its event for local role changes does not tell what has changed.
+Finger Pointing detects failed logins from the request, and patches the role manager of PlonePAS and the sharing view of plone.app.workflow to fire events of its own for role changes:
+``IPrincipalRolesModifiedEvent``, ``ILocalRolesModifiedEvent`` and ``ILocalRolesInheritanceModifiedEvent`` in ``collective.fingerpointing.interfaces``.
+Other packages can subscribe to these as well.
+
+Sending audit events to a log monitoring tool
+---------------------------------------------
+
+When Plone runs in containers whose logs are already collected, by Grafana Alloy, the OpenTelemetry Collector, Fluent Bit or the like, the simplest setup is:
+
+.. code-block:: shell
+
+    FINGERPOINTING_AUDIT_LOG_HANDLER=stream
+    FINGERPOINTING_AUDIT_LOG_FORMAT=json
+
+Every audit event is then one JSON line in the container log.
+Recognise them by ``"logger": "collective.fingerpointing"`` and parse them as JSON, so you can query and alert on fields like ``action`` and ``ip``.
+For instance with Grafana Alloy and Loki:
+
+.. code-block:: text
+
+    loki.process "containers" {
+        stage.match {
+            selector = `{service=~".+_backend"} |= "\"logger\": \"collective.fingerpointing\""`
+
+            stage.json {
+                expressions = { action = "", level = "", user = "", ip = "" }
+            }
+            // a few dozen values: fine as labels
+            stage.labels {
+                values = { action = "", level = "" }
+            }
+            // too many values for labels
+            stage.structured_metadata {
+                values = { user = "", ip = "" }
+            }
+        }
+
+        forward_to = [loki.write.default.receiver]
+    }
+
+Alternatively, send audit events to the syslog receiver of a collector, so they are kept apart from the other logs:
+
+.. code-block:: shell
+
+    FINGERPOINTING_AUDIT_LOG_HANDLER=syslog
+    FINGERPOINTING_AUDIT_LOG_FORMAT=json
+    FINGERPOINTING_AUDIT_SYSLOG_ADDRESS=alloy:1514
+    FINGERPOINTING_AUDIT_SYSLOG_SOCKTYPE=tcp
+    FINGERPOINTING_AUDIT_SYSLOG_FACILITY=authpriv
 
 Usage
 -----
@@ -115,22 +306,17 @@ Finger Pointing will start logging the selected events:
 
 .. code-block:: console
 
-    # bin/instance fg
-    2016-09-26 15:23:36 INFO ZServer HTTP server started at Mon Sep 26 15:23:36 2016
-        Hostname: 0.0.0.0
-        Port: 8080
-    2016-09-26 15:23:41 INFO collective.fingerpointing Logging audit information to /home/hvelarde/collective/fingerpointing/var/log/audit.log
-    2016-09-26 15:23:49 INFO Plone OpenID system packages not installed, OpenID support not available
-    2016-09-26 15:23:56 INFO Zope Ready to handle requests
-    2016-09-26 15:24:19 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logout
-    2016-09-26 15:24:28 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=login
+    2026-10-26 10:23:41 INFO    [fingerpointing common] Logging audit information to /var/log/plone/audit.log
+    2026-10-26 10:23:56 INFO    [Zope] Ready to handle requests
+    2026-10-26 10:24:19 INFO    [collective.fingerpointing] user=admin ip=127.0.0.1 action=logout
+    2026-10-26 10:24:28 INFO    [collective.fingerpointing] user=admin ip=127.0.0.1 action=login
 
-These events are also logged in `var/log/audit.log`:
+These events are also logged in the audit log file:
 
 .. code-block:: console
 
-    2016-09-26 15:24:19,717 - INFO - user=admin ip=127.0.0.1 action=logout
-    2016-09-26 15:24:28,415 - INFO - user=admin ip=127.0.0.1 action=login
+    2026-10-26 10:24:19,717 - INFO - user=admin ip=127.0.0.1 action=logout
+    2026-10-26 10:24:28,415 - INFO - user=admin ip=127.0.0.1 action=login
 
 An audit log view is available in the user menu to users with the `collective.fingerpointing: View Audit Log` permission:
 
@@ -142,17 +328,15 @@ An audit log view is available in the user menu to users with the `collective.fi
 
     The Finger Pointing audit log view.
 
-If you didn't specify a Finger Pointing audit log file name,  you'll see a warning.
-However, audit events will be normally logged to the Zope event log:
+The audit log view is only available with the ``file`` handler.
+Without an audit log file you'll see a warning in the event log at startup;
+audit events will be normally logged to the Zope event log.
 
-.. code-block:: console
+Development
+-----------
 
-    # bin/instance fg
-    2016-09-26 15:58:32 INFO ZServer HTTP server started at Mon Sep 26 15:58:32 2016
-        Hostname: 0.0.0.0
-        Port: 8080
-    2016-09-26 15:58:35 WARNING collective.fingerpointing No audit log file specified; audit log view will be disabled
-    2016-09-26 15:58:40 INFO Plone OpenID system packages not installed, OpenID support not available
-    2016-09-26 15:58:45 INFO Zope Ready to handle requests
-    2016-09-26 15:58:48 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=logout
-    2016-09-26 15:58:54 INFO collective.fingerpointing user=admin ip=127.0.0.1 action=login
+Run the tests against the constraints of a Plone release with tox, for instance:
+
+.. code-block:: shell
+
+    uvx --with tox-uv tox -e py313-plone62

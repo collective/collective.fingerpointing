@@ -1,11 +1,28 @@
-# -*- coding: utf-8 -*-
+from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
 from file_read_backwards import FileReadBackwards
 from glob import glob
 from plone import api
+from plone.api.exc import CannotGetPortalError
 from zope.globalrequest import getRequest
+from zope.interface.interfaces import ComponentLookupError
 
 import os
+
+
+def audit_enabled(setting):
+    """Return True if auditing is enabled for this control panel setting,
+    e.g. 'audit_pas'.
+
+    Return False while there is no Plone site, like when adding a site or
+    adding users from the command line, and when the package is not
+    installed.
+    """
+    name = IFingerPointingSettings.__identifier__ + '.' + setting
+    try:
+        return api.portal.get_registry_record(name, default=False)
+    except (CannotGetPortalError, ComponentLookupError):
+        return False
 
 
 def get_request_information():
@@ -13,8 +30,11 @@ def get_request_information():
     request = getRequest()
     try:
         user_id = api.user.get_current().getMemberId()
-    except AttributeError:
-        user_id = '-'  # anonymous user
+    except (AttributeError, CannotGetPortalError):
+        user_id = '-'  # anonymous user, or no Plone site
+
+    if request is None:  # e.g. scripts run with zconsole
+        return user_id, '-'
 
     # honor Cloudflare real client IP address request header if present
     # see: https://support.cloudflare.com/hc/en-us/articles/200170986
@@ -61,5 +81,4 @@ def all_audit_log_lines():
     - File is read reversed (backwards)
     """
     for logfile in audit_log_files():
-        for line in audit_log_lines_of(logfile):
-            yield line
+        yield from audit_log_lines_of(logfile)

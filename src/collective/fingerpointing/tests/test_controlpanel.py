@@ -1,7 +1,6 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
-from collective.fingerpointing.testing import QIBBB
+from collective.fingerpointing.testing import UninstallMixin
 from plone.app.testing import logout
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
@@ -9,7 +8,7 @@ from zope.component import getUtility
 import unittest
 
 
-class ControlPanelTestCase(unittest.TestCase, QIBBB):
+class ControlPanelTestCase(unittest.TestCase, UninstallMixin):
 
     layer = INTEGRATION_TESTING
 
@@ -30,14 +29,14 @@ class ControlPanelTestCase(unittest.TestCase, QIBBB):
         self.assertIn('fingerpointing', actions)
 
     def test_controlpanel_removed_on_uninstall(self):
-        self.uninstall()  # BBB: QI compatibility
+        self.uninstall()
 
         actions = [
             a.getAction(self)['id'] for a in self.controlpanel.listActions()]
         self.assertNotIn('fingerpointing', actions)
 
 
-class RegistryTestCase(unittest.TestCase, QIBBB):
+class RegistryTestCase(unittest.TestCase, UninstallMixin):
 
     layer = INTEGRATION_TESTING
 
@@ -50,6 +49,10 @@ class RegistryTestCase(unittest.TestCase, QIBBB):
     def test_audit_pas_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'audit_pas'))
         self.assertEqual(self.settings.audit_pas, True)
+
+    def test_audit_roles_record_in_registry(self):
+        self.assertTrue(hasattr(self.settings, 'audit_roles'))
+        self.assertEqual(self.settings.audit_roles, True)
 
     def test_audit_lifecycle_record_in_registry(self):
         self.assertTrue(hasattr(self.settings, 'audit_lifecycle'))
@@ -72,10 +75,11 @@ class RegistryTestCase(unittest.TestCase, QIBBB):
         self.assertEqual(self.settings.audit_iterate, True)
 
     def test_records_removed_on_uninstall(self):
-        self.uninstall()  # BBB: QI compatibility
+        self.uninstall()
 
         records = [
             IFingerPointingSettings.__identifier__ + '.audit_pas',
+            IFingerPointingSettings.__identifier__ + '.audit_roles',
             IFingerPointingSettings.__identifier__ + '.audit_lifecycle',
             IFingerPointingSettings.__identifier__ + '.audit_workflow',
             IFingerPointingSettings.__identifier__ + '.audit_profile_imports',

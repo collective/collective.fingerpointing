@@ -3,7 +3,7 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-03-22 13:31+0000\n"
+"POT-Creation-Date: 2026-10-26 09:11+0000\n"
 "PO-Revision-Date: 2016-03-17 21:47+0100\n"
 "Last-Translator: Harald Friessnegger <harald@webmeisterei.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
@@ -18,112 +18,120 @@ msgstr ""
 "Language: de\n"
 "X-Generator: Lokalize 2.0\n"
 
-#: collective/fingerpointing/interfaces.py:17
+#: ../interfaces.py:18
 msgid "Audit Authentication Service?"
 msgstr "Authentifizierungsdienst auditieren?"
 
-#: collective/fingerpointing/interfaces.py:24
+#: ../interfaces.py:34
 msgid "Audit Content Type Life Cycle?"
 msgstr "Lebenszyklus von Inhaltentypen auditieren?"
 
-#: collective/fingerpointing/interfaces.py:52
+#: ../interfaces.py:62
 msgid "Audit Iterate?"
 msgstr "Arbeitskopien auditieren?"
 
-#: collective/fingerpointing/browser/logview.pt:18
+#: ../browser/logview.pt:18
 msgid "Audit Log"
 msgstr "Aktionsprotokoll"
 
-#: collective/fingerpointing/interfaces.py:37
+#: ../interfaces.py:47
 msgid "Audit Profile Imports?"
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:46
+#: ../interfaces.py:56
 msgid "Audit Registry?"
 msgstr "Konfigurationseinträge auditieren?"
 
-#: collective/fingerpointing/interfaces.py:31
+#: ../interfaces.py:26
+msgid "Audit Role Assignments?"
+msgstr ""
+
+#: ../interfaces.py:41
 msgid "Audit Workflow Transitions?"
 msgstr "Arbeitsablauf Aktionen auditieren?"
 
-#: collective/fingerpointing/browser/logview.pt:34
+#: ../browser/logview.pt:34
 msgid "Enter a search term"
 msgstr "Suchbegriff eingeben"
 
-#: collective/fingerpointing/controlpanel.py:12
-#: collective/fingerpointing/profiles.zcml:15
-#: collective/fingerpointing/profiles/default/controlpanel.xml
+#: ../controlpanel.py:11
+#: ../profiles.zcml:15
+#: ../profiles/default/controlpanel.xml
 msgid "Finger Pointing"
 msgstr "Finger Pointing"
 
-#: collective/fingerpointing/interfaces.py:53
+#: ../interfaces.py:63
 msgid "If plone.app.iterate is installed, log events like content editing checkouts and checkins."
 msgstr "Wenn Arbeitskopien (plone.app.iterate) aktiviert sind, dann protokolliere Bearbeitungsereignisse wie Checkouts und Checkins."
 
-#: collective/fingerpointing/profiles.zcml:15
+#: ../profiles.zcml:15
 msgid "Keep track of different events and write them down to an audit log."
 msgstr "Protokolliert relevante Ereignisse in einem Aktionsprotkoll (audit.log)"
 
-#: collective/fingerpointing/interfaces.py:38
+#: ../interfaces.py:48
 msgid "Log Generic Setup profile imports; this is useful to audit add-on installs/uninstalls."
 msgstr ""
 
-#: collective/fingerpointing/interfaces.py:18
-msgid "Log authentication events like users logging in and loggin out."
-msgstr "Protokolliert Ereignisse der Benutzerverwaltung (An- und Abmeldung, Benutzer hinzufügen oder löschen)."
+#: ../interfaces.py:19
+msgid "Log authentication events like users logging in and loggin out, failed logins, password changes and group membership changes."
+msgstr ""
 
-#: collective/fingerpointing/interfaces.py:25
+#: ../interfaces.py:27
+msgid "Log changes to the global roles of users and groups, and to local roles on content (sharing)."
+msgstr ""
+
+#: ../interfaces.py:35
 msgid "Log content type life cycle events like object creation, modification and removal."
 msgstr "Protokolliert die Ereignisse im Lebenszyklus von Inhalten, wie Erstellen, Bearbeiten und Löschen."
 
-#: collective/fingerpointing/interfaces.py:47
+#: ../interfaces.py:57
 msgid "Log registry events like records being modified."
 msgstr "Protokolliert Änderungen der Konfigurationseinträge (Registry)."
 
-#: collective/fingerpointing/interfaces.py:32
+#: ../interfaces.py:42
 msgid "Log workflow transitions like object publishing."
 msgstr "Protokolliert Arbeitsablauf Übergänge, wie z.B. das Veröffentlichen von Inhalten."
 
-#: collective/fingerpointing/browser/logview.pt:97
+#: ../browser/logview.pt:97
 msgid "No audit log file specified; audit log view is disabled."
 msgstr "Keine Protokoll-Datei angegeben, die Aktionsprotokoll Ansicht ist deaktiviert."
 
-#: collective/fingerpointing/controlpanel.py:13
+#: ../controlpanel.py:12
 msgid "Settings for the collective.fingerpointing package"
 msgstr "Einstellungen für die Erweiterung collective.fingerpointing"
 
-#: collective/fingerpointing/browser/logview.pt:72
+#: ../browser/logview.pt:72
 msgid "Size"
 msgstr ""
 
-#: collective/fingerpointing/profiles.zcml:24
+#: ../profiles.zcml:24
 msgid "Uninstall collective.fingerpointing."
 msgstr "collective.fingerpointing deinstallieren."
 
-#: collective/fingerpointing/profiles/default/actions.xml
+#: ../profiles/default/actions.xml
 msgid "View Audit Log"
 msgstr "Aktionsprotokoll anzeigen"
 
-#: collective/fingerpointing/browser/logview.pt:46
+#: ../browser/logview.pt:46
 msgid "clear"
 msgstr "Zurücksetzen"
 
-#: collective/fingerpointing/profiles.zcml:24
+#: ../profiles.zcml:24
 msgid "collective.fingerpointing: uninstall"
 msgstr "collective.fingerpointing: Deinstallation"
 
-#: collective/fingerpointing/browser/logview.pt:42
+#: ../browser/logview.pt:42
 msgid "filter"
 msgstr "Filtern"
 
-#: collective/fingerpointing/browser/logview.pt:56
+#: ../browser/logview.pt:56
 msgid "first"
 msgstr "Erste"
 
-#: collective/fingerpointing/browser/logview.pt:67
+#: ../browser/logview.pt:67
 msgid "next"
 msgstr "Nächste"
 
-#: collective/fingerpointing/browser/logview.pt:61
+#: ../browser/logview.pt:61
 msgid "previous"
 msgstr "Vorherige"

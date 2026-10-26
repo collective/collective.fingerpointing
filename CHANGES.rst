@@ -1,10 +1,70 @@
 Changelog
 =========
 
-1.8.4 (unreleased)
-------------------
+2.0.0a1 (unreleased)
+--------------------
 
-- Nothing changed yet.
+Breaking changes:
+
+- Support Plone 6.0, 6.1 and 6.2 on Python 3.10 – 3.14 only.
+  Use 1.8.x for Plone 4.3 – 6.0 on Python 2.7 or 3.6 – 3.9.
+  Removed Archetypes support and the Plone 4.3 ``Extensions/Install.py``.
+  [jladage]
+
+- Use a native (PEP 420) namespace package: ``pkg_resources`` is gone from setuptools 81, which Plone 6.1 and 6.2 use.
+  [jladage]
+
+- Newlines in logged values are escaped in the text format, so user input like a login name cannot forge audit log lines.
+  This changes how multi-line registry values are logged.
+  [jladage]
+
+New features:
+
+- Position Finger Pointing as NIS2 audit logging for Plone, to be combined with log monitoring tools like SigNoz.
+  [jladage]
+
+- Add ``audit-log-handler`` setting to write audit events to a file (the default), to syslog over UDP or TCP, or to standard output for container log collectors.
+  [jladage]
+
+- Add ``audit-log-format`` setting: ``text`` (the default, as before) or ``json``, one object per line with the details of the event.
+  [jladage]
+
+- All settings can also be set with ``FINGERPOINTING_*`` environment variables, which override ``zope.conf``.
+  [jladage]
+
+- Log failed logins, through the Classic UI login form and the ``@login`` REST API endpoint used by Volto, with level ``WARNING``.
+  [jladage]
+
+- Log group creation, group membership changes, password changes and changes to user properties.
+  Only the names of changed properties are logged, never passwords or property values.
+  [jladage]
+
+- Add "Audit Role Assignments" setting (upgrade step to profile version 6), to log changes to global roles of users and groups, to local roles through the sharing view and the ``@sharing`` REST API endpoint, and to local role inheritance.
+  Plone fires no events for global role changes, and its event for local role changes does not tell what has changed, so Finger Pointing patches the PlonePAS role manager and the sharing view to fire ``IPrincipalRolesModifiedEvent``, ``ILocalRolesModifiedEvent`` and ``ILocalRolesInheritanceModifiedEvent``.
+  [jladage]
+
+- Add ``log_info.audit(user, ip, action, details)`` to log audit events with structured details from other packages.
+  Calling ``log_info(message)`` still works.
+  [jladage]
+
+Bug fixes:
+
+- Fix tests on Plone 6.1+: the profile of plone.app.iterate is now called ``default``, and plone.app.discussion is no longer part of Plone.
+  [jladage]
+
+- Write the audit log file as UTF-8, whatever the locale.
+  [jladage]
+
+- Remove the old handler when the logger is reconfigured without an audit log file.
+  [jladage]
+
+- Do not fail when an event is fired outside a request or a Plone site, like in scripts.
+  [jladage]
+
+Internal:
+
+- Test with tox against the constraints of each Plone release, instead of buildout.
+  [jladage]
 
 
 1.8.3 (2022-05-06)

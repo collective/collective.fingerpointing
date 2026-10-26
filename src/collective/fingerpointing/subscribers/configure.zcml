@@ -28,26 +28,56 @@
       handler=".pas_logger"
       />
 
-  <!-- Archetypes -->
   <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectAddedEvent"
-      handler=".lifecycle_logger"
+      for="Products.PluggableAuthService.interfaces.events.IGroupCreatedEvent"
+      handler=".pas_logger"
       />
 
   <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectModifiedEvent"
-      handler=".lifecycle_logger"
+      for="Products.PluggableAuthService.interfaces.events.IPrincipalAddedToGroupEvent"
+      handler=".pas_logger"
       />
 
   <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectRemovedEvent"
-      handler=".lifecycle_logger"
+      for="Products.PluggableAuthService.interfaces.events.IPrincipalRemovedFromGroupEvent"
+      handler=".pas_logger"
+      />
+
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.ICredentialsUpdatedEvent"
+      handler=".pas_logger"
+      />
+
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IPropertiesUpdatedEvent"
+      handler=".pas_logger"
+      />
+
+  <!-- Failed logins: PAS does not fire an event for these -->
+  <subscriber
+      for="ZPublisher.interfaces.IPubAfterTraversal"
+      handler=".failed_login_logger"
+      />
+
+  <subscriber
+      for="ZPublisher.interfaces.IPubBeforeCommit"
+      handler=".failed_api_login_logger"
+      />
+
+  <!-- Role changes: fired by collective.fingerpointing.patches -->
+  <subscriber
+      for="collective.fingerpointing.interfaces.IPrincipalRolesModifiedEvent"
+      handler=".roles_logger"
+      />
+
+  <subscriber
+      for="collective.fingerpointing.interfaces.ILocalRolesModifiedEvent"
+      handler=".roles_logger"
+      />
+
+  <subscriber
+      for="collective.fingerpointing.interfaces.ILocalRolesInheritanceModifiedEvent"
+      handler=".roles_logger"
       />
 
   <!-- Dexterity -->

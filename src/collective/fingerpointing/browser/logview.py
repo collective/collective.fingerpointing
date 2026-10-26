@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import all_audit_log_lines
 from Products.Five.browser import BrowserView
@@ -54,7 +53,7 @@ class LogView(BrowserView):
     def build_audit_log(self):
         """Triggers build and sets attributes for use in template.
         """
-        lines = [l for l in self._batched_audit_log_lines()]
+        lines = [*self._batched_audit_log_lines()]
         self.audit_log = '\n'.join(lines)
         self.has_next = len(lines) == self.size
         self.has_prev = self.page > 1
