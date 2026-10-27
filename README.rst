@@ -44,9 +44,9 @@ Version 2.x supports:
 ========= ====================
 Plone     Python
 ========= ====================
-6.0       3.10, 3.11, 3.12
-6.1       3.10, 3.11, 3.12, 3.13
-6.2       3.10, 3.11, 3.12, 3.13, 3.14
+6.0       3.11, 3.12
+6.1       3.11, 3.12, 3.13
+6.2       3.11, 3.12, 3.13, 3.14
 ========= ====================
 
 Both Classic UI and Volto (through plone.restapi) are supported.
@@ -243,6 +243,10 @@ Plone does not fire events for failed logins and global role changes, and its ev
 Finger Pointing detects failed logins from the request, and patches the role manager of PlonePAS and the sharing view of plone.app.workflow to fire events of its own for role changes:
 ``IPrincipalRolesModifiedEvent``, ``ILocalRolesModifiedEvent`` and ``ILocalRolesInheritanceModifiedEvent`` in ``collective.fingerpointing.interfaces``.
 Other packages can subscribe to these as well.
+
+With Products.PluggableAuthService 4.3 or later, which fires role events of its own, Finger Pointing uses those instead of patching ``assignRoleToPrincipal`` and ``removeRoleFromPrincipal``.
+PlonePAS sets all roles of a user at once in ``assignRolesToPrincipal`` (used by the Users and Groups control panel and ``@users``) without these events, so that method is still patched.
+With an older Products.PluggableAuthService, Finger Pointing logs a warning at startup to pin it to 4.3 or newer.
 
 Sending audit events to a log monitoring tool
 ---------------------------------------------

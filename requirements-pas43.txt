@@ -1,0 +1,4 @@
+# Test with the role events of Products.PluggableAuthService 4.3, which no
+# Plone release pins yet: installed over the Plone constraints by the pas43
+# environments in tox.ini.
+Products.PluggableAuthService==4.3

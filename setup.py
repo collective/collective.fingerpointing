@@ -31,7 +31,6 @@ setup(
         'License :: OSI Approved :: GNU General Public License v2 (GPLv2)',
         'Operating System :: OS Independent',
         'Programming Language :: Python :: 3 :: Only',
-        'Programming Language :: Python :: 3.10',
         'Programming Language :: Python :: 3.11',
         'Programming Language :: Python :: 3.12',
         'Programming Language :: Python :: 3.13',
@@ -49,7 +48,7 @@ setup(
     package_dir={'': 'src'},
     include_package_data=True,
     zip_safe=False,
-    python_requires='>=3.10',
+    python_requires='>=3.11',
     install_requires=[
         'file_read_backwards',
         'plone.api >=2.0',

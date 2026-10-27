@@ -1,4 +1,5 @@
 """Tests for role change subscribers."""
+from collective.fingerpointing import patches
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import FUNCTIONAL_TESTING
 from collective.fingerpointing.testing import INTEGRATION_TESTING
@@ -58,6 +59,29 @@ class RolesSubscribersTestCase(unittest.TestCase, UninstallMixin):
             log.check(
                 ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=roles change principal=bob roles=Member,Reviewer old_roles=Member'),  # noqa: E501
                 ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=roles change principal=bob roles=Member old_roles=Member,Reviewer'),  # noqa: E501
+            )
+
+    @unittest.skipIf(
+        patches.IRoleAssignedToPrincipalEvent is None,
+        'Products.PluggableAuthService < 4.3 fires no role events')
+    def test_pas_role_events(self):
+        from Products.PlonePAS.plugins.role import GroupAwareRoleManager
+        from Products.PluggableAuthService.events import RoleAssignedToPrincipal  # noqa: E501
+        from zope.event import notify
+
+        # PAS fires the events: no need to patch these methods
+        for name in ('assignRoleToPrincipal', 'removeRoleFromPrincipal'):
+            method = getattr(GroupAwareRoleManager, name)
+            self.assertFalse(hasattr(method, '__wrapped__'), name)
+        # PlonePAS sets all roles at once, without them
+        self.assertTrue(
+            hasattr(GroupAwareRoleManager.assignRolesToPrincipal, '__wrapped__'))
+
+        # an event of another role manager than the one of the site
+        with LogCapture('collective.fingerpointing', level=INFO) as log:
+            notify(RoleAssignedToPrincipal('bob', 'Reviewer'))
+            log.check(
+                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=roles change principal=bob roles=Reviewer old_roles='),  # noqa: E501
             )
 
     def test_local_roles(self):

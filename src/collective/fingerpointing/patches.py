@@ -2,7 +2,10 @@
 
 - Global roles: every change made through the Users and Groups control panel,
   the ``@users``/``@groups`` REST API endpoints or ``portal_groups`` ends up in
-  the role manager plugin of PlonePAS.
+  the role manager plugin of PlonePAS. Since Products.PluggableAuthService 4.3
+  its ``assignRoleToPrincipal`` and ``removeRoleFromPrincipal`` fire events of
+  their own, which ``pas_role_event_handler`` translates; PlonePAS sets all
+  roles of a principal at once in ``assignRolesToPrincipal``, without them.
 - Local roles: the Classic UI sharing view and the ``@sharing`` REST API
   endpoint both use the methods of the sharing view. Both fire
   ``LocalrolesModifiedEvent`` afterwards, but that does not tell what has
@@ -13,9 +16,18 @@ from collective.fingerpointing.events import LocalRolesModifiedEvent
 from collective.fingerpointing.events import PrincipalRolesModifiedEvent
 from contextlib import contextmanager
 from functools import wraps
+from plone import api
+from plone.api.exc import CannotGetPortalError
 from zope.event import notify
 
 import logging
+
+
+try:
+    from Products.PluggableAuthService.interfaces.events import IRoleAssignedToPrincipalEvent  # noqa: E501
+    from Products.PluggableAuthService.interfaces.events import IRoleRemovedFromPrincipalEvent  # noqa: E501
+except ImportError:  # Products.PluggableAuthService < 4.3
+    IRoleAssignedToPrincipalEvent = IRoleRemovedFromPrincipalEvent = None
 
 
 logger = logging.getLogger('fingerpointing common')
@@ -61,21 +73,47 @@ def local_roles_change(context):
                 context, principal_id, old_roles, new_roles))
 
 
+def site_role_manager():
+    try:
+        acl_users = api.portal.get_tool('acl_users')
+    except CannotGetPortalError:
+        return None
+    return getattr(acl_users, 'portal_role_manager', None)
+
+
+def pas_role_event_handler(event):
+    """Fire PrincipalRolesModifiedEvent, with the roles before and after,
+    for the role events of Products.PluggableAuthService 4.3 and later.
+    """
+    if IRoleAssignedToPrincipalEvent is None:
+        return
+    assigned = IRoleAssignedToPrincipalEvent.providedBy(event)
+    if not assigned and not IRoleRemovedFromPrincipalEvent.providedBy(event):
+        return
+    role = event.role_id
+    if role in VIRTUAL_ROLES:
+        return
+    plugin = site_role_manager()
+    # the event is fired after the change
+    new_roles = global_roles(plugin, event.principal) if plugin is not None else ()
+    if (role in new_roles) != assigned:
+        # fired by another role manager than the one of the site:
+        # only report the change itself
+        new_roles = (role,) if assigned else ()
+    if assigned:
+        old_roles = tuple(sorted(set(new_roles) - {role}))
+    else:
+        old_roles = tuple(sorted(set(new_roles) | {role}))
+    notify(PrincipalRolesModifiedEvent(event.principal, old_roles, new_roles))
+
+
 def patch_role_manager():
     from Products.PlonePAS.plugins.role import GroupAwareRoleManager
 
     if getattr(GroupAwareRoleManager, PATCHED, False):
         return
 
-    original_assign_role = GroupAwareRoleManager.assignRoleToPrincipal
     original_assign_roles = GroupAwareRoleManager.assignRolesToPrincipal
-    original_remove_role = GroupAwareRoleManager.removeRoleFromPrincipal
-
-    @wraps(original_assign_role)
-    def assignRoleToPrincipal(self, role_id, principal_id, REQUEST=None):
-        with global_roles_change(self, principal_id):
-            return original_assign_role(
-                self, role_id, principal_id, REQUEST=REQUEST)
 
     # this one is wrapped by AccessControl's postonly, which needs REQUEST
     @wraps(original_assign_roles)
@@ -83,14 +121,31 @@ def patch_role_manager():
         with global_roles_change(self, principal_id):
             return original_assign_roles(self, roles, principal_id, REQUEST)
 
-    @wraps(original_remove_role)
-    def removeRoleFromPrincipal(self, role_id, principal_id):
-        with global_roles_change(self, principal_id):
-            return original_remove_role(self, role_id, principal_id)
-
-    GroupAwareRoleManager.assignRoleToPrincipal = assignRoleToPrincipal
     GroupAwareRoleManager.assignRolesToPrincipal = assignRolesToPrincipal
-    GroupAwareRoleManager.removeRoleFromPrincipal = removeRoleFromPrincipal
+
+    if IRoleAssignedToPrincipalEvent is None:
+        # BBB: Products.PluggableAuthService < 4.3 fires no role events
+        logger.warning(
+            'Products.PluggableAuthService < 4.3 fires no role events, so '
+            'the role manager is patched instead. Pin '
+            'Products.PluggableAuthService to 4.3 or newer.')
+        original_assign_role = GroupAwareRoleManager.assignRoleToPrincipal
+        original_remove_role = GroupAwareRoleManager.removeRoleFromPrincipal
+
+        @wraps(original_assign_role)
+        def assignRoleToPrincipal(self, role_id, principal_id, REQUEST=None):
+            with global_roles_change(self, principal_id):
+                return original_assign_role(
+                    self, role_id, principal_id, REQUEST=REQUEST)
+
+        @wraps(original_remove_role)
+        def removeRoleFromPrincipal(self, role_id, principal_id):
+            with global_roles_change(self, principal_id):
+                return original_remove_role(self, role_id, principal_id)
+
+        GroupAwareRoleManager.assignRoleToPrincipal = assignRoleToPrincipal
+        GroupAwareRoleManager.removeRoleFromPrincipal = removeRoleFromPrincipal
+
     setattr(GroupAwareRoleManager, PATCHED, True)
 
 

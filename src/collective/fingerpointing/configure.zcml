@@ -23,6 +23,13 @@
   <include package=".browser" />
   <include package=".subscribers" />
 
+  <!-- Role events of Products.PluggableAuthService 4.3+, see patches.py;
+       IPASEvent also exists in older versions. -->
+  <subscriber
+      for="Products.PluggableAuthService.interfaces.events.IPASEvent"
+      handler=".patches.pas_role_event_handler"
+      />
+
   <include file="profiles.zcml" />
 
 </configure>

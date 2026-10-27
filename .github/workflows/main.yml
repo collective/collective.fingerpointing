@@ -14,13 +14,14 @@ jobs:
       matrix:
         config:
         # [Python version, tox env]
-        - ["3.10", "py310-plone60"]
+        - ["3.11", "py311-plone60"]
         - ["3.12", "py312-plone60"]
-        - ["3.10", "py310-plone61"]
+        - ["3.11", "py311-plone61"]
         - ["3.13", "py313-plone61"]
-        - ["3.10", "py310-plone62"]
+        - ["3.11", "py311-plone62"]
         - ["3.13", "py313-plone62"]
         - ["3.14", "py314-plone62"]
+        - ["3.13", "py313-plone62-pas43"]
     name: ${{ matrix.config[1] }}
     steps:
     - uses: actions/checkout@v4

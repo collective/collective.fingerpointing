@@ -6,7 +6,7 @@ Changelog
 
 Breaking changes:
 
-- Support Plone 6.0, 6.1 and 6.2 on Python 3.10 – 3.14 only.
+- Support Plone 6.0, 6.1 and 6.2 on Python 3.11 – 3.14 only.
   Use 1.8.x for Plone 4.3 – 6.0 on Python 2.7 or 3.6 – 3.9.
   Removed Archetypes support and the Plone 4.3 ``Extensions/Install.py``.
   [jladage]
@@ -41,6 +41,8 @@ New features:
 
 - Add "Audit Role Assignments" setting (upgrade step to profile version 6), to log changes to global roles of users and groups, to local roles through the sharing view and the ``@sharing`` REST API endpoint, and to local role inheritance.
   Plone fires no events for global role changes, and its event for local role changes does not tell what has changed, so Finger Pointing patches the PlonePAS role manager and the sharing view to fire ``IPrincipalRolesModifiedEvent``, ``ILocalRolesModifiedEvent`` and ``ILocalRolesInheritanceModifiedEvent``.
+  With Products.PluggableAuthService 4.3 or later, use its ``IRoleAssignedToPrincipalEvent`` and ``IRoleRemovedFromPrincipalEvent`` instead of patching ``assignRoleToPrincipal`` and ``removeRoleFromPrincipal``.
+  With older versions, log a warning at startup to pin Products.PluggableAuthService to 4.3 or newer.
   [jladage]
 
 - Add ``log_info.audit(user, ip, action, details)`` to log audit events with structured details from other packages.
