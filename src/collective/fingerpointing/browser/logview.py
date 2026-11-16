@@ -54,7 +54,7 @@ class LogView(BrowserView):
     def build_audit_log(self):
         """Triggers build and sets attributes for use in template.
         """
-        lines = [l for l in self._batched_audit_log_lines()]
+        lines = list(self._batched_audit_log_lines())
         self.audit_log = '\n'.join(lines)
         self.has_next = len(lines) == self.size
         self.has_prev = self.page > 1

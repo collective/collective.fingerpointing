@@ -10,6 +10,7 @@ from Products.PluggableAuthService.interfaces.events import IPrincipalDeletedEve
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedOutEvent
 
+
 try:
     # Plone 5.1+
     from zope.interface.interfaces import ComponentLookupError
