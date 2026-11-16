@@ -18,8 +18,12 @@ include/
 lib/
 local/
 local.cfg
-Makefile
 parts/
 src/collective.*
 src/plone.*
 var/
+.plone-version
+.plone*
+.python-version
+checkversion*.html
+pyvenv.cfg
