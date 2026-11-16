@@ -1,8 +1,8 @@
-# -*- coding: utf-8 -*-
 """Tests for iterate subscribers.
 
 Dexterity content types have different names.
 """
+
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import UninstallMixin

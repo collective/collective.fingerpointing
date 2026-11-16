@@ -1,9 +1,9 @@
-# -*- coding: utf-8 -*-
 """Tests for lifecycle subscriber.
 
 Events are slightly different among Archetypes and Dexterity.
 Also, Dexterity content types have different names.
 """
+
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import UninstallMixin
 from logging import INFO

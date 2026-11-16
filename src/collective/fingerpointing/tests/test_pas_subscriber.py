@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Tests for lifecycle subscriber."""
+
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import UninstallMixin
 from logging import INFO

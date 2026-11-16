@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from plone import api
 from plone.app.testing import logout

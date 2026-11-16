@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Tests for Generic Setup subscriber."""
+
 from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
@@ -11,7 +11,6 @@ from plone.base.utils import get_installer
 from testfixtures import LogCapture
 
 import unittest
-
 
 ADD_ON = "plone.session"
 

@@ -1,7 +1,5 @@
-# -*- coding: utf-8 -*-
 from setuptools import find_packages
 from setuptools import setup
-
 
 version = "2.0.0.dev0"
 description = "Keep track of different events and write them down to an audit log."
@@ -28,7 +26,11 @@ setup(
         "License :: OSI Approved :: GNU General Public License v2 (GPLv2)",
         "Operating System :: OS Independent",
         "Programming Language :: Python :: 3",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
+        "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
         "Programming Language :: Python",
         "Topic :: Software Development :: Libraries :: Python Modules",
         "Topic :: System :: Logging",
@@ -51,26 +53,25 @@ setup(
         "plone.base",
         "Products.CMFPlone",
         "Products.GenericSetup",
-        "Products.PlonePAS >=5.0.9",
         "Products.PluggableAuthService >=1.11.0",
         "zc.lockfile>=1.2.1",
-        "zope.component",
         "zope.globalrequest",
         "zope.i18nmessageid",
         "zope.interface",
         "zope.lifecycleevent",
         "zope.schema",
+        "Zope",
     ],
     extras_require={
         "test": [
             "AccessControl",
             "plone.app.contenttypes",
-            "plone.app.dexterity",
             "plone.app.iterate",
             "plone.app.robotframework",
             "plone.app.testing",
             "plone.browserlayer",
             "plone.testing",
+            "Products.PlonePAS",
             "robotsuite",
             "testfixtures",
             "zope.component",

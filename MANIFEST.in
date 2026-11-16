@@ -1,4 +1,5 @@
 graft docs
 graft src
-include *.rst
+include *.cfg *.rst *.in Makefile requirements-*.txt
 global-exclude *.pyc
+exclude .eslintrc

@@ -1,17 +1,19 @@
-<?xml version="1.0"?>
-<object name="portal_controlpanel"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    i18n:domain="collective.fingerpointing"
-    purge="False">
-    <configlet title="Finger Pointing"
-        action_id="fingerpointing"
-        appId="collective.fingerpointing"
-        category="Products"
-        condition_expr=""
-        url_expr="string:${portal_url}/@@fingerpointing-settings"
-        icon_expr="string:${portal_url}/++resource++collective.fingerpointing/fingerpointing-icon.png"
-        visible="True"
-        i18n:attributes="title">
-      <permission>collective.fingerpointing: Setup</permission>
-    </configlet>
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        name="portal_controlpanel"
+        purge="False"
+        i18n:domain="collective.fingerpointing"
+>
+  <configlet action_id="fingerpointing"
+             appId="collective.fingerpointing"
+             category="Products"
+             condition_expr=""
+             icon_expr="string:${portal_url}/++resource++collective.fingerpointing/fingerpointing-icon.png"
+             title="Finger Pointing"
+             url_expr="string:${portal_url}/@@fingerpointing-settings"
+             visible="True"
+             i18n:attributes="title"
+  >
+    <permission>collective.fingerpointing: Setup</permission>
+  </configlet>
 </object>

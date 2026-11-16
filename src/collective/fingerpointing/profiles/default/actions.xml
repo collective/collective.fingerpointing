@@ -1,16 +1,28 @@
-<?xml version="1.0"?>
-<object name="portal_actions" meta_type="Plone Actions Tool"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n">
-  <object name="user" meta_type="CMF Action Category">
-    <object name="audit-log" meta_type="CMF Action" i18n:domain="collective.fingerpointing" insert-before="logout">
-      <property name="title" i18n:translate="">View Audit Log</property>
-      <property name="description" i18n:translate=""></property>
+<?xml version="1.0" encoding="utf-8"?>
+<object xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+        meta_type="Plone Actions Tool"
+        name="portal_actions"
+>
+  <object meta_type="CMF Action Category"
+          name="user"
+  >
+    <object insert-before="logout"
+            meta_type="CMF Action"
+            name="audit-log"
+            i18n:domain="collective.fingerpointing"
+    >
+      <property name="title"
+                i18n:translate=""
+      >View Audit Log</property>
+      <property name="description"
+                i18n:translate=""
+      />
       <property name="url_expr">string:${portal_url}/@@fingerpointing-audit-log</property>
-      <property name="link_target"></property>
-      <property name="icon_expr"></property>
-      <property name="available_expr"></property>
+      <property name="link_target" />
+      <property name="icon_expr" />
+      <property name="available_expr" />
       <property name="permissions">
-        <element value="collective.fingerpointing: View Audit Log"/>
+        <element value="collective.fingerpointing: View Audit Log" />
       </property>
       <property name="visible">True</property>
     </object>

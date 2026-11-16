@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Event subscriber handler for IProfileImportedEvent."""
+
 from collective.fingerpointing.config import AUDIT_MESSAGE
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
@@ -28,7 +28,7 @@ def profile_imports_logger(event):
 
     info = event.tool.getProfileInfo(event.profile_id)
     action = "profile imported"
-    extras = "id={0} version={1}".format(
+    extras = "id={} version={}".format(
         info["id"],
         info.get("version", "-"),  # uninstall profiles have no version info
     )

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import UninstallMixin
 from logging import INFO
@@ -35,11 +34,11 @@ class RegistrySubscribersTestCase(unittest.TestCase, UninstallMixin):
     def test_new_record_modified(self):
         registry = getUtility(IRegistry)
         registry.records["collective.fingerpointing.new_field"] = Record(
-            field.TextLine(title=u"New field")
+            field.TextLine(title="New field")
         )
         with LogCapture("collective.fingerpointing", level=INFO) as log:
             api.portal.set_registry_record(
-                "collective.fingerpointing.new_field", u"Descrição"
+                "collective.fingerpointing.new_field", "Descrição"
             )  # noqa: E501
             log.check(
                 (

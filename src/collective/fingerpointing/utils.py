@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.logger import log_info
 from file_read_backwards import FileReadBackwards
 from glob import glob
@@ -60,5 +59,4 @@ def all_audit_log_lines():
     - File is read reversed (backwards)
     """
     for logfile in audit_log_files():
-        for line in audit_log_lines_of(logfile):
-            yield line
+        yield from audit_log_lines_of(logfile)

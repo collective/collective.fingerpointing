@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Each audit setting of the control panel turns its subscriber off."""
+
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from logging import INFO

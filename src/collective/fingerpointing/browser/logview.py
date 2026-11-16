@@ -1,8 +1,6 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import all_audit_log_lines
 from Products.Five.browser import BrowserView
-
 
 DEFAULT_SIZE = 100
 

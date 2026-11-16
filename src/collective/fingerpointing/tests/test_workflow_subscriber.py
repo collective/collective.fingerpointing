@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Tests for workflow subscriber."""
+
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import UninstallMixin
@@ -32,17 +32,17 @@ class WorkflowSubscribersTestCase(unittest.TestCase, UninstallMixin):
             (
                 "collective.fingerpointing",
                 "INFO",
-                u"user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=submit",
+                "user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=submit",
             ),  # noqa: E501
             (
                 "collective.fingerpointing",
                 "INFO",
-                u"user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=publish",
+                "user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=publish",
             ),  # noqa: E501
             (
                 "collective.fingerpointing",
                 "INFO",
-                u"user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=retract",
+                "user=test_user_1_ ip=None action=workflow transition object=<NewsItem at /plone/foo> transition=retract",
             ),  # noqa: E501
         )
 

@@ -1,6 +1,4 @@
-# -*- coding: utf-8 -*-
 from App.config import getConfiguration
-
 
 PROJECTNAME = "collective.fingerpointing"
 AUDIT_MESSAGE = "user={0} ip={1} action={2} {3}"

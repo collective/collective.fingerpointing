@@ -15,6 +15,9 @@ Changelog
 - Use ``importlib.metadata`` instead of ``pkg_resources``.
   [chris-adam]
 
+- Added plone.meta configuration (tox, pre-commit, GitHub Actions).
+  [chris-adam]
+
 
 1.8.3 (2022-05-06)
 ------------------
@@ -260,7 +263,7 @@ Changelog
 - Add a view for the audit.log file `@@fingerpointing-audit-log` and link it to portal_actions.
   [pcdummy, hvelarde]
 
-- Make control panel configlet accesible to Site Administrator role (closes `#15`_).
+- Make control panel configlet accessible to Site Administrator role (closes `#15`_).
   [hvelarde]
 
 - Avoid ``ComponentLookupError`` when removing a Plone site (fixes `#4`_).

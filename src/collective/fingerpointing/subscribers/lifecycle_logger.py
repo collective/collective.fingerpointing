@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.config import AUDIT_MESSAGE
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info

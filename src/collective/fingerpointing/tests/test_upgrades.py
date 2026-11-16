@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from plone import api
 
@@ -8,7 +7,7 @@ import unittest
 class BaseUpgradeTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
-    profile_id = u"collective.fingerpointing:default"
+    profile_id = "collective.fingerpointing:default"
 
     def setUp(self):
         self.portal = self.layer["portal"]
@@ -45,7 +44,7 @@ class To2TestCase(BaseUpgradeTestCase):
 
     def test_update_configlet(self):
         # check if the upgrade step is registered
-        title = u"Update control panel configlet"
+        title = "Update control panel configlet"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
@@ -63,7 +62,7 @@ class To2TestCase(BaseUpgradeTestCase):
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u"Update user actions"
+        title = "Update user actions"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
@@ -108,7 +107,7 @@ class To3TestCase(BaseUpgradeTestCase):
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u"Update user actions"
+        title = "Update user actions"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
@@ -139,11 +138,13 @@ class To4TestCase(BaseUpgradeTestCase):
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u"Add new field audit_workflow to configlet"
+        title = "Add new field audit_workflow to configlet"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
-        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
+        from collective.fingerpointing.interfaces import (  # noqa: E501
+            IFingerPointingSettings,
+        )
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
 
@@ -178,11 +179,13 @@ class To5TestCase(BaseUpgradeTestCase):
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u"Add new field audit_profile_imports to configlet"
+        title = "Add new field audit_profile_imports to configlet"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
-        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
+        from collective.fingerpointing.interfaces import (  # noqa: E501
+            IFingerPointingSettings,
+        )
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
 

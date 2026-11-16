@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.config import fingerpointing_config
 from collective.fingerpointing.config import LOG_FORMAT
 from collective.fingerpointing.config import PROJECTNAME
@@ -8,11 +7,10 @@ import logging.handlers
 import time
 import zc.lockfile
 
-
 commonlogger = logging.getLogger("fingerpointing common")
 
 
-class LogInfo(object):
+class LogInfo:
     def __init__(self, config, logformat=LOG_FORMAT):
         self.logger = logging.getLogger(PROJECTNAME)
         self.logfile = None

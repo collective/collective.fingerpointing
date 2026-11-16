@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Setup testing infrastructure."""
+
 from collective.fingerpointing import get_version
 from collective.fingerpointing import PackageNotFoundError
 from collective.fingerpointing.config import PROJECTNAME
@@ -21,7 +21,6 @@ from zope.globalrequest import setRequest
 import os
 import shutil
 import tempfile
-
 
 try:
     get_version("plone.app.iterate")
@@ -105,7 +104,7 @@ class Fixture(PloneSandboxLayer):
         setRequest(None)
 
     def tearDown(self):
-        super(Fixture, self).tearDown()
+        super().tearDown()
         self._cleanup_audit_log()
 
 

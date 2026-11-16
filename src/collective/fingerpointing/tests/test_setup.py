@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Ensure add-on is properly installed and uninstalled."""
+
 from collective.fingerpointing.config import PROJECTNAME
 from collective.fingerpointing.interfaces import IBrowserLayer
 from collective.fingerpointing.testing import INTEGRATION_TESTING

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.config import AUDIT_MESSAGE
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
@@ -13,7 +12,7 @@ from zope.interface.interfaces import ComponentLookupError
 
 
 def pas_logger(event):
-    """Log authentication events like users logging in and loggin out."""
+    """Log authentication events like users logging in and logging out."""
     name = IFingerPointingSettings.__identifier__ + ".audit_pas"
     try:
         audit_pas = api.portal.get_registry_record(name, default=False)

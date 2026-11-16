@@ -1,5 +1,5 @@
-# -*- coding: utf-8 -*-
 """Event subscriber handler for IActionSucceededEvent."""
+
 from collective.fingerpointing.config import AUDIT_MESSAGE
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
@@ -17,7 +17,7 @@ def workflow_logger(event):
     user, ip = get_request_information()
 
     action = "workflow transition"
-    extras = "object={0} transition={1}".format(
+    extras = "object={} transition={}".format(
         repr(event.object),
         event.action,
     )

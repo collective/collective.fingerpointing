@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.config import AUDIT_MESSAGE
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
@@ -18,7 +17,7 @@ def registry_logger(event):
 
     if IRecordModifiedEvent.providedBy(event):
         action = "modify"
-        extras = "object={0} value={1}".format(
+        extras = "object={} value={}".format(
             event.record,
             event.record.value,
         )
