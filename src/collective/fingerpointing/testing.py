@@ -3,6 +3,8 @@
 
 For Plone 5 we need to install plone.app.contenttypes.
 """
+from collective.fingerpointing import get_version
+from collective.fingerpointing import PackageNotFoundError
 from collective.fingerpointing.config import PROJECTNAME
 from plone import api
 from plone.app.testing import FunctionalTesting
@@ -10,21 +12,20 @@ from plone.app.testing import IntegrationTesting
 from plone.app.testing import PloneSandboxLayer
 
 import os
-import pkg_resources
 import shutil
 import tempfile
 
 
 try:
-    pkg_resources.get_distribution('plone.app.contenttypes')
-except pkg_resources.DistributionNotFound:
+    get_version('plone.app.contenttypes')
+except PackageNotFoundError:
     from plone.app.testing import PLONE_FIXTURE
 else:
     from plone.app.contenttypes.testing import PLONE_APP_CONTENTTYPES_FIXTURE as PLONE_FIXTURE  # noqa: E501
 
 try:
-    pkg_resources.get_distribution('plone.app.iterate')
-except pkg_resources.DistributionNotFound:
+    get_version('plone.app.iterate')
+except PackageNotFoundError:
     HAS_ITERATE = False
 else:
     HAS_ITERATE = True
