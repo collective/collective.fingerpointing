@@ -20,30 +20,66 @@ class LifeCycleSubscribersTestCase(unittest.TestCase, QIBBB):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
-        with api.env.adopt_roles(['Manager']):
-            self.folder = api.content.create(self.portal, 'Folder', 'folder')
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        with api.env.adopt_roles(["Manager"]):
+            self.folder = api.content.create(self.portal, "Folder", "folder")
 
     def test_file_lifecicle(self):
         if IS_PLONE_5:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<File at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<File at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=create object=<File at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove object=<File at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>",
+                ),  # noqa: E501
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATFile at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFile at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATFile at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=create object=<ATFile at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFile at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove object=<ATFile at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>",
+                ),  # noqa: E501
             )
 
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            obj = api.content.create(self.folder, 'File', 'foo')
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            obj = api.content.create(self.folder, "File", "foo")
             obj.reindexObject()
             api.content.delete(obj)
             log.check(*expected)
@@ -51,22 +87,58 @@ class LifeCycleSubscribersTestCase(unittest.TestCase, QIBBB):
     def test_folder_lifecicle(self):
         if IS_PLONE_5:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<Folder at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<Folder at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=create object=<Folder at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove object=<Folder at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>",
+                ),  # noqa: E501
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATFolder at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATFolder at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=create object=<ATFolder at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove object=<ATFolder at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>",
+                ),  # noqa: E501
             )
 
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            obj = api.content.create(self.folder, 'Folder', 'foo')
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            obj = api.content.create(self.folder, "Folder", "foo")
             obj.reindexObject()
             api.content.delete(obj)
             log.check(*expected)
@@ -74,22 +146,58 @@ class LifeCycleSubscribersTestCase(unittest.TestCase, QIBBB):
     def test_image_lifecicle(self):
         if IS_PLONE_5:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<Image at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<Image at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=create object=<Image at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove object=<Image at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<Folder at /plone/folder>",
+                ),  # noqa: E501
             )
         else:
             expected = (
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create object=<ATImage at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATImage at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove object=<ATImage at /plone/folder/foo>'),  # noqa: E501
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=create object=<ATImage at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATImage at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove object=<ATImage at /plone/folder/foo>",
+                ),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=modify object=<ATFolder at /plone/folder>",
+                ),  # noqa: E501
             )
 
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            obj = api.content.create(self.folder, 'Image', 'foo')
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            obj = api.content.create(self.folder, "Image", "foo")
             obj.reindexObject()
             api.content.delete(obj)
             log.check(*expected)
@@ -99,6 +207,6 @@ class LifeCycleSubscribersTestCase(unittest.TestCase, QIBBB):
         # if package is not installed
         self.uninstall()  # BBB: QI compatibility
 
-        obj = api.content.create(self.folder, 'Folder', 'foo')
+        obj = api.content.create(self.folder, "Folder", "foo")
         obj.reindexObject()
         api.content.delete(obj)

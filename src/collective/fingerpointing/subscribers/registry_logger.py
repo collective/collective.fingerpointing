@@ -11,13 +11,13 @@ import six
 
 def _safe_native_string(s):
     if six.PY2 and isinstance(s, six.text_type):
-        s = s.encode('utf-8')
+        s = s.encode("utf-8")
     return s
 
 
 def registry_logger(event):
     """Log registry events like records being modified."""
-    name = IFingerPointingSettings.__identifier__ + '.audit_registry'
+    name = IFingerPointingSettings.__identifier__ + ".audit_registry"
     audit_registry = api.portal.get_registry_record(name, default=False)
     if not audit_registry:
         return
@@ -27,16 +27,16 @@ def registry_logger(event):
     except AttributeError:
         # XXX: getRequest() returns None instead actual request
         #      on tests of this subscriber
-        user, ip = '-', '-'
+        user, ip = "-", "-"
 
     if IRecordModifiedEvent.providedBy(event):
-        action = 'modify'
-        extras = 'object={0} value={1}'.format(
+        action = "modify"
+        extras = "object={0} value={1}".format(
             event.record,
             _safe_native_string(event.record.value),
         )
     else:  # should never happen
-        action = '-'
-        extras = 'object' + event.record
+        action = "-"
+        extras = "object" + event.record
 
     log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

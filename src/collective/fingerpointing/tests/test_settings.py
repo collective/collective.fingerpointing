@@ -17,7 +17,8 @@ import unittest
 def _disable(*names):
     for name in names:
         api.portal.set_registry_record(
-            IFingerPointingSettings.__identifier__ + '.' + name, False)
+            IFingerPointingSettings.__identifier__ + "." + name, False
+        )
 
 
 class SettingsTestCase(unittest.TestCase):
@@ -25,57 +26,62 @@ class SettingsTestCase(unittest.TestCase):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
-        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
+        setRoles(self.portal, TEST_USER_ID, ["Manager"])
         # registry changes made by the tests themselves are not audited
-        _disable('audit_registry')
+        _disable("audit_registry")
 
     def test_audit_pas_disabled(self):
-        _disable('audit_pas')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
+        _disable("audit_pas")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
             notify(UserLoggedInEvent(api.user.get_current()))
             log.check()
 
     def test_audit_lifecycle_disabled(self):
-        _disable('audit_lifecycle')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            obj = api.content.create(self.portal, 'Folder', 'foo')
+        _disable("audit_lifecycle")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            obj = api.content.create(self.portal, "Folder", "foo")
             api.content.delete(obj)
             log.check()
 
     def test_audit_workflow_disabled(self):
-        _disable('audit_lifecycle', 'audit_workflow')
-        obj = api.content.create(self.portal, 'News Item', 'foo')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            api.content.transition(obj=obj, transition='publish')
+        _disable("audit_lifecycle", "audit_workflow")
+        obj = api.content.create(self.portal, "News Item", "foo")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            api.content.transition(obj=obj, transition="publish")
             log.check()
 
     def test_audit_registry_disabled(self):
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            _disable('audit_pas')
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            _disable("audit_pas")
             log.check()
 
     def test_audit_iterate_disabled(self):
-        _disable('audit_lifecycle', 'audit_iterate')
-        doc = api.content.create(self.portal, 'Document', 'doc')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
+        _disable("audit_lifecycle", "audit_iterate")
+        doc = api.content.create(self.portal, "Document", "doc")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
             wc = ICheckinCheckoutPolicy(doc).checkout(self.portal)
             ICheckinCheckoutPolicy(wc).cancelCheckout()
             log.check()
 
     def test_audit_profile_imports_disabled(self):
-        _disable('audit_profile_imports')
-        setup_tool = api.portal.get_tool('portal_setup')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            setup_tool.runAllImportStepsFromProfile('profile-collective.fingerpointing:default')
+        _disable("audit_profile_imports")
+        setup_tool = api.portal.get_tool("portal_setup")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            setup_tool.runAllImportStepsFromProfile(
+                "profile-collective.fingerpointing:default"
+            )
             log.check()
 
     def test_audit_profile_imports_enabled(self):
         # control of the test above: the same import is audited when enabled
-        setup_tool = api.portal.get_tool('portal_setup')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
-            setup_tool.runAllImportStepsFromProfile('profile-collective.fingerpointing:default')
+        setup_tool = api.portal.get_tool("portal_setup")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
+            setup_tool.runAllImportStepsFromProfile(
+                "profile-collective.fingerpointing:default"
+            )
         self.assertIn(
-            'action=profile imported id=collective.fingerpointing:default',
-            [r.getMessage() for r in log.records][-1])
+            "action=profile imported id=collective.fingerpointing:default",
+            [r.getMessage() for r in log.records][-1],
+        )

@@ -12,7 +12,7 @@ try:
     # plone.app.iterate is dependency of the "Plone" package, but not of
     # the Products.CMFPlone. So dependend on the way Plone is installed it
     # might be not available.
-    pkg_resources.get_distribution('plone.app.iterate')
+    pkg_resources.get_distribution("plone.app.iterate")
 except pkg_resources.DistributionNotFound:
     pass
 else:

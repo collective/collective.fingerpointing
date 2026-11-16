@@ -20,47 +20,67 @@ class PasSubscribersTestCase(unittest.TestCase, QIBBB):
     layer = INTEGRATION_TESTING
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.request = self.layer['request']
+        self.portal = self.layer["portal"]
+        self.request = self.layer["request"]
 
     def test_user_login(self):
         event = UserLoggedInEvent(self.request)
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=login '),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=login ",
+                ),  # noqa: E501
             )
 
     def test_user_logout(self):
         event = UserLoggedOutEvent(self.request)
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=logout '),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=logout ",
+                ),  # noqa: E501
             )
 
     def test_user_created(self):
-        event = PrincipalCreated('foo')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
+        event = PrincipalCreated("foo")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=create principal=foo'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=create principal=foo",
+                ),  # noqa: E501
             )
 
     def test_user_removed(self):
-        event = PrincipalDeleted('foo')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
+        event = PrincipalDeleted("foo")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove user=foo'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove user=foo",
+                ),  # noqa: E501
             )
 
     def test_group_removed(self):
-        event = GroupDeleted('bar')
-        with LogCapture('collective.fingerpointing', level=INFO) as log:
+        event = GroupDeleted("bar")
+        with LogCapture("collective.fingerpointing", level=INFO) as log:
             notify(event)
             log.check(
-                ('collective.fingerpointing', 'INFO', 'user=test_user_1_ ip=None action=remove group=bar'),  # noqa: E501
+                (
+                    "collective.fingerpointing",
+                    "INFO",
+                    "user=test_user_1_ ip=None action=remove group=bar",
+                ),  # noqa: E501
             )
 
     def test_susbcriber_ignored_when_package_not_installed(self):
@@ -72,7 +92,7 @@ class PasSubscribersTestCase(unittest.TestCase, QIBBB):
         notify(event)
         event = UserLoggedOutEvent(self.request)
         notify(event)
-        event = PrincipalCreated('foo')
+        event = PrincipalCreated("foo")
         notify(event)
-        event = PrincipalDeleted('foo')
+        event = PrincipalDeleted("foo")
         notify(event)

@@ -19,7 +19,7 @@ def lifecycle_logger(obj, event):
     """Log content type life cycle events like object creation,
     modification and removal.
     """
-    name = IFingerPointingSettings.__identifier__ + '.audit_lifecycle'
+    name = IFingerPointingSettings.__identifier__ + ".audit_lifecycle"
     try:
         audit_lifecycle = api.portal.get_registry_record(name, default=False)
     except ComponentLookupError:  # Plone site removed
@@ -31,13 +31,13 @@ def lifecycle_logger(obj, event):
     user, ip = get_request_information()
 
     if IObjectAddedEvent.providedBy(event):
-        action = 'create'
+        action = "create"
     elif IObjectModifiedEvent.providedBy(event):
-        action = 'modify'
+        action = "modify"
     elif IObjectRemovedEvent.providedBy(event):
-        action = 'remove'
+        action = "remove"
     else:  # should never happen
-        action = '-'
+        action = "-"
 
-    extras = 'object=' + repr(obj)
+    extras = "object=" + repr(obj)
     log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

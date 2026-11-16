@@ -9,8 +9,8 @@ class FingerPointingSettingsEditForm(controlpanel.RegistryEditForm):
     """Control panel edit form."""
 
     schema = IFingerPointingSettings
-    label = _(u'Finger Pointing')
-    description = _(u'Settings for the collective.fingerpointing package')
+    label = _(u"Finger Pointing")
+    description = _(u"Settings for the collective.fingerpointing package")
 
 
 class FingerPointingSettingsControlPanel(controlpanel.ControlPanelFormWrapper):

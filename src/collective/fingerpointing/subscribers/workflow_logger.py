@@ -9,15 +9,15 @@ from plone import api
 
 def workflow_logger(event):
     """Log workflow transitions."""
-    name = IFingerPointingSettings.__identifier__ + '.audit_workflow'
+    name = IFingerPointingSettings.__identifier__ + ".audit_workflow"
     audit_workflow = api.portal.get_registry_record(name, default=False)
     if not audit_workflow:
         return
 
     user, ip = get_request_information()
 
-    action = 'workflow transition'
-    extras = 'object={0} transition={1}'.format(
+    action = "workflow transition"
+    extras = "object={0} transition={1}".format(
         repr(event.object),
         event.action,
     )

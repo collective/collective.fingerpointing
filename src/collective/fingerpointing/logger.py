@@ -9,11 +9,10 @@ import time
 import zc.lockfile
 
 
-commonlogger = logging.getLogger('fingerpointing common')
+commonlogger = logging.getLogger("fingerpointing common")
 
 
 class LogInfo(object):
-
     def __init__(self, config, logformat=LOG_FORMAT):
         self.logger = logging.getLogger(PROJECTNAME)
         self.logfile = None
@@ -25,18 +24,19 @@ class LogInfo(object):
         return bool(self.logfile)
 
     def configure(self, config, logformat=LOG_FORMAT):
-        self.logfile = config.get('audit-log', None)
+        self.logfile = config.get("audit-log", None)
         if self.logfile is None:
             commonlogger.warning(
-                'No audit log file specified; audit log view will be disabled')
+                "No audit log file specified; audit log view will be disabled"
+            )
             return None
         self.logger.setLevel(logging.INFO)
         # first remove old handler if set:
         if self.handler is not None:
             self.logger.removeHandler(self.handler)
         # if either of maxBytes or backupCount is zero, rollover never occurs
-        maxBytes = int(config.get('audit-log-max-size', 0))
-        backupCount = int(config.get('audit-log-old-files', 0))
+        maxBytes = int(config.get("audit-log-max-size", 0))
+        backupCount = int(config.get("audit-log-old-files", 0))
         self.handler = logging.handlers.RotatingFileHandler(
             self.logfile,
             maxBytes=maxBytes,
@@ -46,7 +46,7 @@ class LogInfo(object):
         formatter = logging.Formatter(logformat)
         self.handler.setFormatter(formatter)
         self.logger.addHandler(self.handler)
-        commonlogger.info('Logging audit information to ' + self.logfile)
+        commonlogger.info("Logging audit information to " + self.logfile)
 
     def __call__(self, *args, **kwargs):
         """Log information to a file handling access from multiple instances.
@@ -58,7 +58,7 @@ class LogInfo(object):
             return
 
         # otherwise, try to lock the self.logfile then writing to it
-        lockfilename = self.logfile + '.lock'
+        lockfilename = self.logfile + ".lock"
         n = 0
 
         while 1:
@@ -69,7 +69,7 @@ class LogInfo(object):
                 # https://pypi.python.org/pypi/zc.lockfile#hostname-in-lock-file
                 lock = zc.lockfile.LockFile(
                     lockfilename,
-                    content_template='{pid};{hostname}',
+                    content_template="{pid};{hostname}",
                 )
                 try:
                     self.logger.info(*args, **kwargs)
