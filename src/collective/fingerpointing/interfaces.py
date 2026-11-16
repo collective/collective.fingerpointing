@@ -19,6 +19,7 @@ class IFingerPointingSettings(Interface):
             u"Log authentication events like users logging in and loggin out."
         ),  # noqa: E501
         default=True,
+        required=False,
     )
 
     audit_lifecycle = schema.Bool(
@@ -27,12 +28,14 @@ class IFingerPointingSettings(Interface):
             u"Log content type life cycle events like object creation, modification and removal."
         ),  # noqa: E501
         default=True,
+        required=False,
     )
 
     audit_workflow = schema.Bool(
         title=_(u"Audit Workflow Transitions?"),
         description=_(u"Log workflow transitions like object publishing."),
         default=True,
+        required=False,
     )
 
     audit_profile_imports = schema.Bool(
@@ -42,12 +45,14 @@ class IFingerPointingSettings(Interface):
             u"this is useful to audit add-on installs/uninstalls.",
         ),
         default=True,
+        required=False,
     )
 
     audit_registry = schema.Bool(
         title=_(u"Audit Registry?"),
         description=_(u"Log registry events like records being modified."),
         default=True,
+        required=False,
     )
 
     audit_iterate = schema.Bool(
@@ -57,4 +62,5 @@ class IFingerPointingSettings(Interface):
             u"log events like content editing checkouts and checkins."
         ),
         default=True,
+        required=False,
     )

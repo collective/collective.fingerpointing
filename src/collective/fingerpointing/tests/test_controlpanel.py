@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
-from collective.fingerpointing.testing import QIBBB
+from collective.fingerpointing.testing import UninstallMixin
 from plone.app.testing import logout
 from plone.app.testing import setRoles
 from plone.app.testing import TEST_USER_ID
@@ -11,7 +11,7 @@ from zope.component import getUtility
 import unittest
 
 
-class ControlPanelTestCase(unittest.TestCase, QIBBB):
+class ControlPanelTestCase(unittest.TestCase, UninstallMixin):
 
     layer = INTEGRATION_TESTING
 
@@ -41,18 +41,25 @@ class ControlPanelTestCase(unittest.TestCase, QIBBB):
         ):
             self.assertIn("form.widgets." + name, html)
 
+    def test_settings_can_be_turned_off(self):
+        # a required Bool renders a checkbox the browser refuses to uncheck
+        from zope.schema import getFields
+
+        for name, field in getFields(IFingerPointingSettings).items():
+            self.assertFalse(field.required, name)
+
     def test_controlpanel_installed(self):
         actions = [a.getAction(self)["id"] for a in self.controlpanel.listActions()]
         self.assertIn("fingerpointing", actions)
 
     def test_controlpanel_removed_on_uninstall(self):
-        self.uninstall()  # BBB: QI compatibility
+        self.uninstall()
 
         actions = [a.getAction(self)["id"] for a in self.controlpanel.listActions()]
         self.assertNotIn("fingerpointing", actions)
 
 
-class RegistryTestCase(unittest.TestCase, QIBBB):
+class RegistryTestCase(unittest.TestCase, UninstallMixin):
 
     layer = INTEGRATION_TESTING
 
@@ -87,7 +94,7 @@ class RegistryTestCase(unittest.TestCase, QIBBB):
         self.assertEqual(self.settings.audit_iterate, True)
 
     def test_records_removed_on_uninstall(self):
-        self.uninstall()  # BBB: QI compatibility
+        self.uninstall()
 
         records = [
             IFingerPointingSettings.__identifier__ + ".audit_pas",

@@ -9,14 +9,7 @@ from Products.PluggableAuthService.interfaces.events import IPrincipalCreatedEve
 from Products.PluggableAuthService.interfaces.events import IPrincipalDeletedEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedInEvent
 from Products.PluggableAuthService.interfaces.events import IUserLoggedOutEvent
-
-
-try:
-    # Plone 5.1+
-    from zope.interface.interfaces import ComponentLookupError
-except ImportError:
-    # BBB Plone 5.0-
-    from zope.component.interfaces import ComponentLookupError
+from zope.interface.interfaces import ComponentLookupError
 
 
 def pas_logger(event):

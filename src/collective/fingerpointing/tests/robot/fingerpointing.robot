@@ -49,11 +49,12 @@ The audit log does not contain
 
 Open the settings from the site setup
     Go to  ${PLONE_URL}/@@overview-controlpanel
-    Click link  css=a[href$="/@@fingerpointing-settings"]
+    Click link  css=a[href$="/@@fingerpointing-settings"]:not(.dropdown-item)
     Wait until page contains element  css=#form-widgets-audit_lifecycle-0
 
 Turn off the setting
     [Arguments]  ${name}
+    The patterns are initialized
     Unselect checkbox  css=#form-widgets-${name}-0
     Save the form
     The status message contains  Changes saved

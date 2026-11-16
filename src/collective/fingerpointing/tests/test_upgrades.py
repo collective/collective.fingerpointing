@@ -143,9 +143,7 @@ class To4TestCase(BaseUpgradeTestCase):
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
-        from collective.fingerpointing.interfaces import (
-            IFingerPointingSettings,
-        )  # noqa: E501
+        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
 
@@ -184,9 +182,7 @@ class To5TestCase(BaseUpgradeTestCase):
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
-        from collective.fingerpointing.interfaces import (
-            IFingerPointingSettings,
-        )  # noqa: E501
+        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
 

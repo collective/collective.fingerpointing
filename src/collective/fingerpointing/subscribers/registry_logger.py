@@ -6,14 +6,6 @@ from collective.fingerpointing.utils import get_request_information
 from plone import api
 from plone.registry.interfaces import IRecordModifiedEvent
 
-import six
-
-
-def _safe_native_string(s):
-    if six.PY2 and isinstance(s, six.text_type):
-        s = s.encode("utf-8")
-    return s
-
 
 def registry_logger(event):
     """Log registry events like records being modified."""
@@ -22,18 +14,13 @@ def registry_logger(event):
     if not audit_registry:
         return
 
-    try:
-        user, ip = get_request_information()
-    except AttributeError:
-        # XXX: getRequest() returns None instead actual request
-        #      on tests of this subscriber
-        user, ip = "-", "-"
+    user, ip = get_request_information()
 
     if IRecordModifiedEvent.providedBy(event):
         action = "modify"
         extras = "object={0} value={1}".format(
             event.record,
-            _safe_native_string(event.record.value),
+            event.record.value,
         )
     else:  # should never happen
         action = "-"

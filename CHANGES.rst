@@ -1,11 +1,19 @@
 Changelog
 =========
 
-1.8.4 (unreleased)
+2.0.0 (unreleased)
 ------------------
 
-- Avoid error with `registry_logger` in tests
-  [laulaz]
+- Plone 6.2 compatibility, drop Plone 4.3, 5.x and Python 2 support;
+  based on the work started by @laulaz on `plone6`.
+  [laulaz, chris-adam]
+
+- The audit settings are not required anymore: Plone 6 refused to save the
+  control panel with a setting turned off.
+  [chris-adam]
+
+- Use ``importlib.metadata`` instead of ``pkg_resources``.
+  [chris-adam]
 
 
 1.8.3 (2022-05-06)

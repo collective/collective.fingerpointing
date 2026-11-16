@@ -34,21 +34,19 @@
             <input type="text"
                    name="query"
                    value=""
-                   class=""
+                   class="form-control"
                    placeholder="Enter a search term"
                    i18n:attributes="placeholder"
                    tal:attributes="value python:view.query" />
-            <span class="input-group-btn">
-              <input class=""
+            <input class="btn btn-primary"
                      type="submit"
                      value="filter"
                      i18n:attributes="value"/>
               <a href=""
-                class="plone-btn plone-btn-default"
+                class="btn btn-secondary"
                 role="button"
                 i18n:translate=""
                 tal:attributes="href python:view.base_url">clear</a>
-            </span>
         </form>
         <br />
         <p class="fingerpointing-pagination field">

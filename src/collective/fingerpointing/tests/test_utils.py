@@ -66,6 +66,7 @@ class UtilsOneLargeLogFileTestCase(unittest.TestCase):
         from collective.fingerpointing.config import fingerpointing_config
         from collective.fingerpointing.logger import log_info
         from collective.fingerpointing.utils import audit_log_files
+
         import os
 
         for filename in audit_log_files():
@@ -98,6 +99,7 @@ class UtilsMultipleLogFilesTestCase(unittest.TestCase):
         from collective.fingerpointing.config import fingerpointing_config
         from collective.fingerpointing.logger import log_info
         from collective.fingerpointing.utils import audit_log_files
+
         import os
 
         for filename in audit_log_files():

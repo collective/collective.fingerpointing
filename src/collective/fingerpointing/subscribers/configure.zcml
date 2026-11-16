@@ -28,28 +28,6 @@
       handler=".pas_logger"
       />
 
-  <!-- Archetypes -->
-  <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectAddedEvent"
-      handler=".lifecycle_logger"
-      />
-
-  <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectModifiedEvent"
-      handler=".lifecycle_logger"
-      />
-
-  <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectRemovedEvent"
-      handler=".lifecycle_logger"
-      />
-
   <!-- Dexterity -->
   <subscriber
       zcml:condition="installed plone.app.dexterity"

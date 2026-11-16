@@ -11,14 +11,14 @@
 
   <browser:page
       name="fingerpointing-settings"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      for="plone.base.interfaces.IPloneSiteRoot"
       class="collective.fingerpointing.controlpanel.FingerPointingSettingsControlPanel"
       permission="collective.fingerpointing.Setup"
       />
 
   <browser:page
       name="fingerpointing-audit-log"
-      for="Products.CMFPlone.interfaces.IPloneSiteRoot"
+      for="plone.base.interfaces.IPloneSiteRoot"
       class="collective.fingerpointing.browser.logview.LogView"
       template="logview.pt"
       permission="collective.fingerpointing.viewauditlog"

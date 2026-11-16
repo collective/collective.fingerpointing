@@ -4,15 +4,10 @@ from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
 from collective.fingerpointing.utils import get_request_information
 from plone import api
+from zope.interface.interfaces import ComponentLookupError
 from zope.lifecycleevent import IObjectAddedEvent
 from zope.lifecycleevent import IObjectModifiedEvent
 from zope.lifecycleevent import IObjectRemovedEvent
-
-
-try:
-    from zope.interface.interfaces import ComponentLookupError
-except ImportError:
-    from zope.component.interfaces import ComponentLookupError
 
 
 def lifecycle_logger(obj, event):

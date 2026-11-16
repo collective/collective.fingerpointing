@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 """Tests for lifecycle subscriber."""
 from collective.fingerpointing.testing import INTEGRATION_TESTING
-from collective.fingerpointing.testing import QIBBB
+from collective.fingerpointing.testing import UninstallMixin
 from logging import INFO
 from Products.PlonePAS.events import UserLoggedInEvent
 from Products.PlonePAS.events import UserLoggedOutEvent
@@ -14,7 +14,7 @@ from zope.event import notify
 import unittest
 
 
-class PasSubscribersTestCase(unittest.TestCase, QIBBB):
+class PasSubscribersTestCase(unittest.TestCase, UninstallMixin):
     """Tests for PluggableAuthService subscribers."""
 
     layer = INTEGRATION_TESTING
@@ -86,7 +86,7 @@ class PasSubscribersTestCase(unittest.TestCase, QIBBB):
     def test_susbcriber_ignored_when_package_not_installed(self):
         # authentication events should not raise errors
         # if package is not installed
-        self.uninstall()  # BBB: QI compatibility
+        self.uninstall()
 
         event = UserLoggedInEvent(self.request)
         notify(event)

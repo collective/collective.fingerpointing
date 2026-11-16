@@ -1,9 +1,8 @@
 # -*- coding: utf-8 -*-
 from collective.fingerpointing.testing import INTEGRATION_TESTING
-from collective.fingerpointing.testing import QIBBB
+from collective.fingerpointing.testing import UninstallMixin
 from logging import INFO
 from plone import api
-from plone.app.discussion.interfaces import IDiscussionSettings
 from plone.registry import field
 from plone.registry.interfaces import IRegistry
 from plone.registry.record import Record
@@ -13,7 +12,7 @@ from zope.component import getUtility
 import unittest
 
 
-class RegistrySubscribersTestCase(unittest.TestCase, QIBBB):
+class RegistrySubscribersTestCase(unittest.TestCase, UninstallMixin):
     """Tests for plone.app.registry subscribers."""
 
     layer = INTEGRATION_TESTING
@@ -24,13 +23,12 @@ class RegistrySubscribersTestCase(unittest.TestCase, QIBBB):
 
     def test_record_modified(self):
         with LogCapture("collective.fingerpointing", level=INFO) as log:
-            record = IDiscussionSettings.__identifier__ + ".globally_enabled"
-            api.portal.set_registry_record(record, False)
+            api.portal.set_registry_record("plone.site_title", "Audited")
             log.check(
                 (
                     "collective.fingerpointing",
                     "INFO",
-                    "user=test_user_1_ ip=None action=modify object=<Record plone.app.discussion.interfaces.IDiscussionSettings.globally_enabled> value=False",
+                    "user=test_user_1_ ip=None action=modify object=<Record plone.site_title> value=Audited",
                 ),  # noqa: E501
             )
 
@@ -54,7 +52,6 @@ class RegistrySubscribersTestCase(unittest.TestCase, QIBBB):
     def test_susbcriber_ignored_when_package_not_installed(self):
         # registry events should not raise errors
         # if package is not installed
-        self.uninstall()  # BBB: QI compatibility
+        self.uninstall()
 
-        record = IDiscussionSettings.__identifier__ + ".globally_enabled"
-        api.portal.set_registry_record(record, False)
+        api.portal.set_registry_record("plone.site_title", "Not audited")
