@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.config import AUDIT_MESSAGE
 from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.logger import log_info
@@ -13,7 +12,7 @@ def iterate_logger(event):
     """Log events like content editing checkouts and checkins, if
     plone.app.iterate is installed.
     """
-    name = IFingerPointingSettings.__identifier__ + '.audit_iterate'
+    name = IFingerPointingSettings.__identifier__ + ".audit_iterate"
     audit_iterate = api.portal.get_registry_record(name, default=False)
     if not audit_iterate:
         return
@@ -21,19 +20,16 @@ def iterate_logger(event):
     user, ip = get_request_information()
 
     if ICheckoutEvent.providedBy(event):
-        action = 'checkout'
-        extras = 'object={0} working_copy={1}'.format(
-            event.object, event.working_copy)
+        action = "checkout"
+        extras = f"object={event.object} working_copy={event.working_copy}"
     elif ICheckinEvent.providedBy(event):
-        action = 'checkin'
-        extras = 'object={0} baseline={1}'.format(
-            event.object, event.baseline)
+        action = "checkin"
+        extras = f"object={event.object} baseline={event.baseline}"
     elif ICancelCheckoutEvent.providedBy(event):
-        action = 'cancel checkout'
-        extras = 'object={0} baseline={1}'.format(
-            event.object, event.baseline)
+        action = "cancel checkout"
+        extras = f"object={event.object} baseline={event.baseline}"
     else:  # should never happen
-        action = '-'
-        extras = 'object=' + repr(event.object)
+        action = "-"
+        extras = "object=" + repr(event.object)
 
     log_info(AUDIT_MESSAGE.format(user, ip, action, extras))

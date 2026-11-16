@@ -1,100 +1,148 @@
-<html
-    xmlns="http://www.w3.org/1999/xhtml" xml:lang="en"
-    xmlns:tal="http://xml.zope.org/namespaces/tal"
-    xmlns:metal="http://xml.zope.org/namespaces/metal"
-    xmlns:i18n="http://xml.zope.org/namespaces/i18n"
-    lang="en"
-    metal:use-macro="context/main_template/macros/master"
-    i18n:domain="collective.fingerpointing">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:i18n="http://xml.zope.org/namespaces/i18n"
+      xmlns:metal="http://xml.zope.org/namespaces/metal"
+      xmlns:tal="http://xml.zope.org/namespaces/tal"
+      lang="en"
+      metal:use-macro="context/main_template/macros/master"
+      xml:lang="en"
+      i18n:domain="collective.fingerpointing"
+>
   <head>
     <metal:block metal:fill-slot="top_slot"
-        tal:define="dummy python:request.set('disable_border', 1);
-                    disable_column_one python:request.set('disable_plone.leftcolumn', 1);
-                    disable_column_two python:request.set('disable_plone.rightcolumn', 1);"
-        />
+                 tal:define="
+                   dummy python:request.set('disable_border', 1);
+                   disable_column_one python:request.set('disable_plone.leftcolumn', 1);
+                   disable_column_two python:request.set('disable_plone.rightcolumn', 1);
+                 "
+    />
   </head>
   <body>
     <metal:title metal:fill-slot="content-title">
-      <h1 class="documentFirstHeading" i18n:translate="">
+      <h1 class="documentFirstHeading"
+          i18n:translate=""
+      >
         Audit Log
       </h1>
     </metal:title>
 
     <metal:content-core metal:fill-slot="content-core">
-      <tal:block tal:condition="python:view.available"
-                 tal:define="dummy python:view.build_audit_log()">
-        <form method="get"
+      <tal:block tal:define="
+                   dummy python:view.build_audit_log();
+                 "
+                 tal:condition="python:view.available"
+      >
+        <form class="input-group"
               action=""
-              class="input-group"
-              tal:attributes="action python:view.base_url">
-            <input type="hidden"
-                   name="size"
-                   value=""
-                   tal:attributes="value python:view.size" />
-            <input type="text"
-                   name="query"
-                   value=""
-                   class=""
-                   placeholder="Enter a search term"
-                   i18n:attributes="placeholder"
-                   tal:attributes="value python:view.query" />
-            <span class="input-group-btn">
-              <input class=""
-                     type="submit"
-                     value="filter"
-                     i18n:attributes="value"/>
-              <a href=""
-                class="plone-btn plone-btn-default"
-                role="button"
-                i18n:translate=""
-                tal:attributes="href python:view.base_url">clear</a>
-            </span>
+              method="get"
+              tal:attributes="
+                action python:view.base_url;
+              "
+        >
+          <input name="size"
+                 type="hidden"
+                 value=""
+                 tal:attributes="
+                   value python:view.size;
+                 "
+          />
+          <input class="form-control"
+                 name="query"
+                 placeholder="Enter a search term"
+                 type="text"
+                 value=""
+                 tal:attributes="
+                   value python:view.query;
+                 "
+                 i18n:attributes="placeholder"
+          />
+          <input class="btn btn-primary"
+                 type="submit"
+                 value="filter"
+                 i18n:attributes="value"
+          />
+          <a class="btn btn-secondary"
+             href=""
+             role="button"
+             tal:attributes="
+               href python:view.base_url;
+             "
+             i18n:translate=""
+          >clear</a>
         </form>
         <br />
         <p class="fingerpointing-pagination field">
           <!-- Needs some love CSS-wise -->
-          [<a href=""
-              class="first"
-              i18n:translate=""
-              tal:omit-tag="python:not view.has_prev"
-              tal:attributes="href python:view.pagination_url('first')">first</a>]
-          [<a href="#"
-              class="previous"
-              i18n:translate=""
-              tal:omit-tag="python:not view.has_prev"
-              tal:attributes="href python:view.pagination_url('prev')">previous</a>]
-          <span class="current-page" tal:content="python:view.page">#</span>
-          [<a href="#"
-              class="last"
-              i18n:translate=""
-              tal:omit-tag="python:not view.has_next"
-              tal:attributes="href python:view.pagination_url('next')">next</a>]
-          &mdash; <span i18n:translate="">Size</span>:
-          <a href="#"
-              class="size"
-              tal:attributes="href python:view.pagination_url('size', 50)"
-              tal:omit-tag="python:view.size==50">50</a>
-          <a href="#"
-              class="size"
-              tal:attributes="href python:view.pagination_url('size', 100)"
-              tal:omit-tag="python:view.size==100">100</a>
-          <a href="#"
-              class="size"
-              tal:attributes="href python:view.pagination_url('size', 200)"
-              tal:omit-tag="python:view.size==200">200</a>
-          <a href="#"
-              class="size"
-              tal:attributes="href python:view.pagination_url('size', 500)"
-              tal:omit-tag="python:view.size==500">500</a>
-          <a href="#"
-              class="size"
-              tal:attributes="href python:view.pagination_url('size', 1000)"
-              tal:omit-tag="python:view.size==1000">1000</a>
+          [<a class="first"
+             href=""
+             tal:omit-tag="python:not view.has_prev"
+             tal:attributes="
+               href python:view.pagination_url('first');
+             "
+             i18n:translate=""
+          >first</a>]
+          [<a class="previous"
+             href="#"
+             tal:omit-tag="python:not view.has_prev"
+             tal:attributes="
+               href python:view.pagination_url('prev');
+             "
+             i18n:translate=""
+          >previous</a>]
+          <span class="current-page"
+                tal:content="python:view.page"
+          >#</span>
+          [<a class="last"
+             href="#"
+             tal:omit-tag="python:not view.has_next"
+             tal:attributes="
+               href python:view.pagination_url('next');
+             "
+             i18n:translate=""
+          >next</a>]
+          &mdash;
+          <span i18n:translate="">Size</span>:
+          <a class="size"
+             href="#"
+             tal:omit-tag="python:view.size==50"
+             tal:attributes="
+               href python:view.pagination_url('size', 50);
+             "
+          >50</a>
+          <a class="size"
+             href="#"
+             tal:omit-tag="python:view.size==100"
+             tal:attributes="
+               href python:view.pagination_url('size', 100);
+             "
+          >100</a>
+          <a class="size"
+             href="#"
+             tal:omit-tag="python:view.size==200"
+             tal:attributes="
+               href python:view.pagination_url('size', 200);
+             "
+          >200</a>
+          <a class="size"
+             href="#"
+             tal:omit-tag="python:view.size==500"
+             tal:attributes="
+               href python:view.pagination_url('size', 500);
+             "
+          >500</a>
+          <a class="size"
+             href="#"
+             tal:omit-tag="python:view.size==1000"
+             tal:attributes="
+               href python:view.pagination_url('size', 1000);
+             "
+          >1000</a>
 
         </p>
-        <pre tal:content="python:view.audit_log" ></pre>
+        <pre tal:content="python:view.audit_log"></pre>
       </tal:block>
-      <p tal:condition="python:not view.available" i18n:translate="">
+      <p tal:condition="python:not view.available"
+         i18n:translate=""
+      >
         No audit log file specified; audit log view is disabled.
       </p>
     </metal:content-core>

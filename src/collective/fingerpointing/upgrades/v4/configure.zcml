@@ -1,11 +1,13 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:genericsetup="http://namespaces.zope.org/genericsetup">
+    xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
+    >
 
   <genericsetup:upgradeSteps
+      profile="collective.fingerpointing:default"
       source="3"
       destination="4"
-      profile="collective.fingerpointing:default">
+      >
 
     <genericsetup:upgradeDepends
         title="Add new field audit_workflow to configlet"

@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from plone import api
 
@@ -8,32 +7,32 @@ import unittest
 class BaseUpgradeTestCase(unittest.TestCase):
 
     layer = INTEGRATION_TESTING
-    profile_id = u'collective.fingerpointing:default'
+    profile_id = "collective.fingerpointing:default"
 
     def setUp(self):
-        self.portal = self.layer['portal']
-        self.setup = self.portal['portal_setup']
+        self.portal = self.layer["portal"]
+        self.setup = self.portal["portal_setup"]
         self.setup.setLastVersionForProfile(self.profile_id, self.from_)
 
     def _get_upgrade_step_by_title(self, title):
         """Return the upgrade step that matches the title specified."""
         self.setup.setLastVersionForProfile(self.profile_id, self.from_)
         upgrades = self.setup.listUpgrades(self.profile_id)
-        steps = [s for s in upgrades[0] if s['title'] == title]
+        steps = [s for s in upgrades[0] if s["title"] == title]
         return steps[0] if steps else None
 
     def _do_upgrade(self, step):
         """Execute an upgrade step."""
-        request = self.layer['request']
-        request.form['profile_id'] = self.profile_id
-        request.form['upgrades'] = [step['id']]
+        request = self.layer["request"]
+        request.form["profile_id"] = self.profile_id
+        request.form["upgrades"] = [step["id"]]
         self.setup.manage_doUpgrades(request=request)
 
 
 class To2TestCase(BaseUpgradeTestCase):
 
-    from_ = '1'
-    to_ = '2'
+    from_ = "1"
+    to_ = "2"
 
     def test_profile_version(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -45,57 +44,58 @@ class To2TestCase(BaseUpgradeTestCase):
 
     def test_update_configlet(self):
         # check if the upgrade step is registered
-        title = u'Update control panel configlet'
+        title = "Update control panel configlet"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
         # simulate state on previous version
-        cptool = api.portal.get_tool('portal_controlpanel')
-        configlet = cptool.getActionObject('Products/fingerpointing')
-        configlet.permissions = old_permissions = ('cmf.ManagePortal',)
+        cptool = api.portal.get_tool("portal_controlpanel")
+        configlet = cptool.getActionObject("Products/fingerpointing")
+        configlet.permissions = old_permissions = ("cmf.ManagePortal",)
         self.assertEqual(configlet.getPermissions(), old_permissions)
 
         # run the upgrade step to validate the update
         self._do_upgrade(step)
-        configlet = cptool.getActionObject('Products/fingerpointing')
-        new_permissions = ('collective.fingerpointing: Setup',)
+        configlet = cptool.getActionObject("Products/fingerpointing")
+        new_permissions = ("collective.fingerpointing: Setup",)
         self.assertEqual(configlet.getPermissions(), new_permissions)
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u'Update user actions'
+        title = "Update user actions"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
         # simulate state on previous version
-        permission = 'collective.fingerpointing: View Audit Log'
-        self.portal.manage_permission(
-            permission_to_manage=permission, roles=[])
+        permission = "collective.fingerpointing: View Audit Log"
+        self.portal.manage_permission(permission_to_manage=permission, roles=[])
         roles = self.portal.rolesOfPermission(permission)
-        roles = [r['name'] for r in roles if r['selected']]
+        roles = [r["name"] for r in roles if r["selected"]]
         self.assertListEqual(roles, [])
 
-        user_actions = self.portal['portal_actions'].user
-        del user_actions['audit-log']
-        self.assertNotIn('audit-log', user_actions)
+        user_actions = self.portal["portal_actions"].user
+        del user_actions["audit-log"]
+        self.assertNotIn("audit-log", user_actions)
 
         # run the upgrade step to validate the update
         self._do_upgrade(step)
         roles = self.portal.rolesOfPermission(permission)
-        roles = [r['name'] for r in roles if r['selected']]  # noqa: E501; pylint: disable=W1662
-        self.assertListEqual(roles, ['Manager', 'Site Administrator'])
+        roles = [
+            r["name"] for r in roles if r["selected"]
+        ]  # noqa: E501; pylint: disable=W1662
+        self.assertListEqual(roles, ["Manager", "Site Administrator"])
 
-        permissions = user_actions['audit-log'].permissions
+        permissions = user_actions["audit-log"].permissions
         expected = (permission,)
         self.assertEqual(permissions, expected)
-        url_expr = user_actions['audit-log'].url_expr
-        self.assertIn('/@@fingerpointing-audit-log', url_expr)
+        url_expr = user_actions["audit-log"].url_expr
+        self.assertIn("/@@fingerpointing-audit-log", url_expr)
 
 
 class To3TestCase(BaseUpgradeTestCase):
 
-    from_ = '2'
-    to_ = '3'
+    from_ = "2"
+    to_ = "3"
 
     def test_profile_version(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -107,26 +107,26 @@ class To3TestCase(BaseUpgradeTestCase):
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u'Update user actions'
+        title = "Update user actions"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
         # simulate state on previous version
-        user_actions = self.portal['portal_actions'].user
-        user_actions.moveObjectsDown('audit-log')
-        self.assertEqual(user_actions.keys()[-1], 'audit-log')
-        self.assertEqual(user_actions.keys()[-2], 'logout')
+        user_actions = self.portal["portal_actions"].user
+        user_actions.moveObjectsDown("audit-log")
+        self.assertEqual(list(user_actions.keys())[-1], "audit-log")
+        self.assertEqual(list(user_actions.keys())[-2], "logout")
 
         # run the upgrade step to validate the update
         self._do_upgrade(step)
-        self.assertEqual(user_actions.keys()[-1], 'logout')
-        self.assertEqual(user_actions.keys()[-2], 'audit-log')
+        self.assertEqual(list(user_actions.keys())[-1], "logout")
+        self.assertEqual(list(user_actions.keys())[-2], "audit-log")
 
 
 class To4TestCase(BaseUpgradeTestCase):
 
-    from_ = '3'
-    to_ = '4'
+    from_ = "3"
+    to_ = "4"
 
     def test_profile_version(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -138,17 +138,20 @@ class To4TestCase(BaseUpgradeTestCase):
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u'Add new field audit_workflow to configlet'
+        title = "Add new field audit_workflow to configlet"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
-        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
+        from collective.fingerpointing.interfaces import (  # noqa: E501
+            IFingerPointingSettings,
+        )
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
+
         registry = getUtility(IRegistry)
 
         # simulate state on previous version
-        record = IFingerPointingSettings.__identifier__ + '.audit_workflow'
+        record = IFingerPointingSettings.__identifier__ + ".audit_workflow"
         del registry.records[record]
 
         with self.assertRaises(KeyError):
@@ -157,14 +160,14 @@ class To4TestCase(BaseUpgradeTestCase):
         # execute upgrade step and verify changes were applied
         self._do_upgrade(step)
         settings = registry.forInterface(IFingerPointingSettings)
-        self.assertTrue(hasattr(settings, 'audit_workflow'))
+        self.assertTrue(hasattr(settings, "audit_workflow"))
         self.assertEqual(settings.audit_workflow, True)
 
 
 class To5TestCase(BaseUpgradeTestCase):
 
-    from_ = '4'
-    to_ = '5'
+    from_ = "4"
+    to_ = "5"
 
     def test_profile_version(self):
         version = self.setup.getLastVersionForProfile(self.profile_id)[0]
@@ -176,17 +179,22 @@ class To5TestCase(BaseUpgradeTestCase):
 
     def test_update_user_actions(self):
         # check if the upgrade step is registered
-        title = u'Add new field audit_profile_imports to configlet'
+        title = "Add new field audit_profile_imports to configlet"
         step = self._get_upgrade_step_by_title(title)
         self.assertIsNotNone(step)
 
-        from collective.fingerpointing.interfaces import IFingerPointingSettings  # noqa: E501
+        from collective.fingerpointing.interfaces import (  # noqa: E501
+            IFingerPointingSettings,
+        )
         from plone.registry.interfaces import IRegistry
         from zope.component import getUtility
+
         registry = getUtility(IRegistry)
 
         # simulate state on previous version
-        record = IFingerPointingSettings.__identifier__ + '.audit_profile_imports'  # noqa: E501
+        record = (
+            IFingerPointingSettings.__identifier__ + ".audit_profile_imports"
+        )  # noqa: E501
         del registry.records[record]
 
         with self.assertRaises(KeyError):
@@ -195,5 +203,5 @@ class To5TestCase(BaseUpgradeTestCase):
         # execute upgrade step and verify changes were applied
         self._do_upgrade(step)
         settings = registry.forInterface(IFingerPointingSettings)
-        self.assertTrue(hasattr(settings, 'audit_profile_imports'))
+        self.assertTrue(hasattr(settings, "audit_profile_imports"))
         self.assertEqual(settings.audit_profile_imports, True)

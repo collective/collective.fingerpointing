@@ -1,4 +1,3 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing.logger import log_info
 from file_read_backwards import FileReadBackwards
 from glob import glob
@@ -14,17 +13,17 @@ def get_request_information():
     try:
         user_id = api.user.get_current().getMemberId()
     except AttributeError:
-        user_id = '-'  # anonymous user
+        user_id = "-"  # anonymous user
 
     # honor Cloudflare real client IP address request header if present
     # see: https://support.cloudflare.com/hc/en-us/articles/200170986
-    if 'HTTP_CF_CONNECTING_IP' in request.environ:
-        ip = request.environ['HTTP_CF_CONNECTING_IP']
+    if "HTTP_CF_CONNECTING_IP" in request.environ:
+        ip = request.environ["HTTP_CF_CONNECTING_IP"]
     # Common proxy configuration
-    elif 'HTTP_X_FORWARDED_FOR' in request.environ:
-        ip = request.environ['HTTP_X_FORWARDED_FOR']
+    elif "HTTP_X_FORWARDED_FOR" in request.environ:
+        ip = request.environ["HTTP_X_FORWARDED_FOR"]
     else:
-        ip = request.getClientAddr() or 'None'  # return 'None' on tests
+        ip = request.getClientAddr() or "None"  # return 'None' on tests
 
     return user_id, ip
 
@@ -37,7 +36,7 @@ def audit_log_files():
     if log_info.has_log_file:
         # retrieve the list of audit log backup files
         logfiles = sorted(
-            [f for f in glob(log_info.logfile + '.*') if '.lock' not in f],
+            [f for f in glob(log_info.logfile + ".*") if ".lock" not in f],
             reverse=True,
         )
         # include active audit log as first element
@@ -47,9 +46,8 @@ def audit_log_files():
 
 
 def audit_log_lines_of(logfile):
-    """Generator for log lines of a log file reversed.
-    """
-    with FileReadBackwards(logfile, encoding='utf-8') as frb:
+    """Generator for log lines of a log file reversed."""
+    with FileReadBackwards(logfile, encoding="utf-8") as frb:
         for line in frb:
             yield line.strip()
 
@@ -61,5 +59,4 @@ def all_audit_log_lines():
     - File is read reversed (backwards)
     """
     for logfile in audit_log_files():
-        for line in audit_log_lines_of(logfile):
-            yield line
+        yield from audit_log_lines_of(logfile)

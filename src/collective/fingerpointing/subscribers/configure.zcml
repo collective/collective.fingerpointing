@@ -1,6 +1,7 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
-    xmlns:zcml="http://namespaces.zope.org/zcml">
+    xmlns:zcml="http://namespaces.zope.org/zcml"
+    >
 
   <!-- PluggableAuthService -->
   <subscriber
@@ -28,48 +29,26 @@
       handler=".pas_logger"
       />
 
-  <!-- Archetypes -->
-  <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectAddedEvent"
-      handler=".lifecycle_logger"
-      />
-
-  <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectModifiedEvent"
-      handler=".lifecycle_logger"
-      />
-
-  <subscriber
-      zcml:condition="installed Products.Archetypes"
-      for="Products.Archetypes.interfaces.IBaseObject
-           zope.lifecycleevent.IObjectRemovedEvent"
-      handler=".lifecycle_logger"
-      />
-
   <!-- Dexterity -->
   <subscriber
-      zcml:condition="installed plone.app.dexterity"
       for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.IObjectAddedEvent"
       handler=".lifecycle_logger"
+      zcml:condition="installed plone.app.dexterity"
       />
 
   <subscriber
-      zcml:condition="installed plone.app.dexterity"
       for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.IObjectModifiedEvent"
       handler=".lifecycle_logger"
+      zcml:condition="installed plone.app.dexterity"
       />
 
   <subscriber
-      zcml:condition="installed plone.app.dexterity"
       for="plone.dexterity.interfaces.IDexterityContent
            zope.lifecycleevent.IObjectRemovedEvent"
       handler=".lifecycle_logger"
+      zcml:condition="installed plone.app.dexterity"
       />
 
   <!-- plone.app.registry -->
@@ -80,21 +59,21 @@
 
   <!-- plone.app.iterate -->
   <subscriber
-      zcml:condition="installed plone.app.iterate"
       for="plone.app.iterate.interfaces.ICheckoutEvent"
       handler=".iterate_logger"
+      zcml:condition="installed plone.app.iterate"
       />
 
   <subscriber
-      zcml:condition="installed plone.app.iterate"
       for="plone.app.iterate.interfaces.ICheckinEvent"
       handler=".iterate_logger"
+      zcml:condition="installed plone.app.iterate"
       />
 
   <subscriber
-      zcml:condition="installed plone.app.iterate"
       for="plone.app.iterate.interfaces.ICancelCheckoutEvent"
       handler=".iterate_logger"
+      zcml:condition="installed plone.app.iterate"
       />
 
   <!-- Workflow -->

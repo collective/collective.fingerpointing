@@ -2,12 +2,14 @@
     xmlns="http://namespaces.zope.org/zope"
     xmlns:genericsetup="http://namespaces.zope.org/genericsetup"
     xmlns:i18n="http://namespaces.zope.org/i18n"
-    i18n_domain="collective.fingerpointing">
+    i18n_domain="collective.fingerpointing"
+    >
 
   <genericsetup:upgradeSteps
+      profile="collective.fingerpointing:default"
       source="2"
       destination="3"
-      profile="collective.fingerpointing:default">
+      >
 
     <genericsetup:upgradeStep
         title="Update user actions"

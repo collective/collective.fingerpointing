@@ -1,10 +1,12 @@
-<?xml version="1.0"?>
-<object name="portal_controlpanel" purge="False">
-  <configlet title="Finger Pointing"
-      action_id="fingerpointing"
-      appId="collective.fingerpointing"
-      category="Products"
-      remove="true"
-      />
+<?xml version="1.0" encoding="utf-8"?>
+<object name="portal_controlpanel"
+        purge="False"
+>
+  <configlet action_id="fingerpointing"
+             appId="collective.fingerpointing"
+             category="Products"
+             remove="true"
+             title="Finger Pointing"
+  />
 
 </object>

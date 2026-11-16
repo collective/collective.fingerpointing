@@ -41,11 +41,8 @@ Mostly Harmless
 .. image:: http://img.shields.io/pypi/v/collective.fingerpointing.svg
    :target: https://pypi.python.org/pypi/collective.fingerpointing
 
-.. image:: https://img.shields.io/travis/collective/collective.fingerpointing/master.svg
-    :target: http://travis-ci.org/collective/collective.fingerpointing
-
-.. image:: https://img.shields.io/coveralls/collective/collective.fingerpointing/master.svg
-    :target: https://coveralls.io/r/collective/collective.fingerpointing
+.. image:: https://github.com/collective/collective.fingerpointing/actions/workflows/meta.yml/badge.svg?branch=master
+    :target: https://github.com/collective/collective.fingerpointing/actions/workflows/meta.yml
 
 Got an idea? Found a bug? Let us know by `opening a support ticket`_.
 

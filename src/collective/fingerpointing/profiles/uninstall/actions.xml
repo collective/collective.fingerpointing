@@ -1,6 +1,13 @@
-<?xml version="1.0"?>
-<object name="portal_actions" meta_type="Plone Actions Tool">
-  <object name="user" meta_type="CMF Action Category">
-    <object name="audit-log" meta_type="CMF Action" remove="true" />
+<?xml version="1.0" encoding="utf-8"?>
+<object meta_type="Plone Actions Tool"
+        name="portal_actions"
+>
+  <object meta_type="CMF Action Category"
+          name="user"
+  >
+    <object meta_type="CMF Action"
+            name="audit-log"
+            remove="true"
+    />
   </object>
 </object>

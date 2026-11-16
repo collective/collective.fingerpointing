@@ -1,10 +1,25 @@
 Changelog
 =========
 
-1.8.4 (unreleased)
+2.0.0 (unreleased)
 ------------------
 
-- Nothing changed yet.
+- Plone 6.2 compatibility, drop Plone 4.3, 5.x and Python 2 support;
+  based on the work started by @laulaz on `plone6`.
+  [laulaz, chris-adam]
+
+- The audit settings are not required anymore: Plone 6 refused to save the
+  control panel with a setting turned off.
+  [chris-adam]
+
+- Use ``importlib.metadata`` instead of ``pkg_resources``.
+  [chris-adam]
+
+- Added plone.meta configuration (tox, pre-commit, GitHub Actions).
+  [chris-adam]
+
+- Switched to PEP 420 native namespace packages.
+  [chris-adam]
 
 
 1.8.3 (2022-05-06)
@@ -251,7 +266,7 @@ Changelog
 - Add a view for the audit.log file `@@fingerpointing-audit-log` and link it to portal_actions.
   [pcdummy, hvelarde]
 
-- Make control panel configlet accesible to Site Administrator role (closes `#15`_).
+- Make control panel configlet accessible to Site Administrator role (closes `#15`_).
   [hvelarde]
 
 - Avoid ``ComponentLookupError`` when removing a Plone site (fixes `#4`_).

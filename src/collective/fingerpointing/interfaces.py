@@ -1,57 +1,63 @@
-# -*- coding: utf-8 -*-
 from collective.fingerpointing import _
-from zope import schema
 from zope.interface import Interface
+from zope.schema import Bool
 
 
 class IBrowserLayer(Interface):
-
     """A layer specific for this add-on product."""
 
 
 class IFingerPointingSettings(Interface):
-
     """Schema for the control panel form."""
 
-    audit_pas = schema.Bool(
-        title=_(u'Audit Authentication Service?'),
+    audit_pas = Bool(
+        title=_("Audit Authentication Service?"),
         description=_(
-            u'Log authentication events like users logging in and loggin out.'),   # noqa: E501
+            "Log authentication events like users logging in and loggin out."
+        ),  # noqa: E501
         default=True,
+        required=False,
     )
 
-    audit_lifecycle = schema.Bool(
-        title=_(u'Audit Content Type Life Cycle?'),
+    audit_lifecycle = Bool(
+        title=_("Audit Content Type Life Cycle?"),
         description=_(
-            u'Log content type life cycle events like object creation, modification and removal.'),  # noqa: E501
+            "Log content type life cycle events like object creation, modification and removal."
+        ),  # noqa: E501
         default=True,
+        required=False,
     )
 
-    audit_workflow = schema.Bool(
-        title=_(u'Audit Workflow Transitions?'),
-        description=_(u'Log workflow transitions like object publishing.'),
+    audit_workflow = Bool(
+        title=_("Audit Workflow Transitions?"),
+        description=_("Log workflow transitions like object publishing."),
         default=True,
+        required=False,
     )
 
-    audit_profile_imports = schema.Bool(
-        title=_(u'Audit Profile Imports?'),
+    audit_profile_imports = Bool(
+        title=_("Audit Profile Imports?"),
         description=_(
-            u'Log Generic Setup profile imports; '
-            u'this is useful to audit add-on installs/uninstalls.',
+            "Log Generic Setup profile imports; "
+            "this is useful to audit add-on installs/uninstalls.",
         ),
         default=True,
+        required=False,
     )
 
-    audit_registry = schema.Bool(
-        title=_(u'Audit Registry?'),
-        description=_(u'Log registry events like records being modified.'),
+    audit_registry = Bool(
+        title=_("Audit Registry?"),
+        description=_("Log registry events like records being modified."),
         default=True,
+        required=False,
     )
 
-    audit_iterate = schema.Bool(
-        title=_(u'Audit Iterate?'),
+    audit_iterate = Bool(
+        title=_("Audit Iterate?"),
         description=_(
-            u'If plone.app.iterate is installed, '
-            u'log events like content editing checkouts and checkins.'),
+            "If plone.app.iterate is installed, "
+            "log events like content editing checkouts and checkins."
+        ),
         default=True,
+        required=False,
     )
