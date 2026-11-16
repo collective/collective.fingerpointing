@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-from setuptools import find_packages
+from setuptools import find_namespace_packages
 from setuptools import setup
 
 
@@ -41,9 +41,8 @@ setup(
     author='Hector Velarde',
     author_email='hector.velarde@gmail.com',
     url='https://github.com/collective/collective.fingerpointing',
-    packages=find_packages('src'),
+    packages=find_namespace_packages('src'),
     package_dir={'': 'src'},
-    namespace_packages=['collective'],
     include_package_data=True,
     zip_safe=False,
     install_requires=[
