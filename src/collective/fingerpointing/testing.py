@@ -5,9 +5,16 @@ For Plone 5 we need to install plone.app.contenttypes.
 """
 from collective.fingerpointing.config import PROJECTNAME
 from plone import api
+from plone.app.robotframework.testing import REMOTE_LIBRARY_BUNDLE_FIXTURE
 from plone.app.testing import FunctionalTesting
 from plone.app.testing import IntegrationTesting
+from plone.app.testing import login
+from plone.app.testing import logout
 from plone.app.testing import PloneSandboxLayer
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
+from plone.app.testing import TEST_USER_NAME
+from zope.globalrequest import setRequest
 
 import os
 import pkg_resources
@@ -30,6 +37,16 @@ else:
     HAS_ITERATE = True
 
 plone_version = float(api.env.plone_version()[:3])
+
+if plone_version >= 5.2:
+    from plone.testing.zope import WSGI_SERVER_FIXTURE as SERVER_FIXTURE
+else:
+    from plone.testing.z2 import ZSERVER_FIXTURE as SERVER_FIXTURE
+
+MANAGER_NAME = 'manager'
+MANAGER_PASSWORD = 'manager123'
+MEMBER_NAME = 'member'
+MEMBER_PASSWORD = 'member123'
 IS_PLONE_6 = plone_version >= 6.0
 IS_PLONE_5 = plone_version >= 5.1
 IS_BBB = plone_version < 5.0
@@ -88,6 +105,20 @@ class Fixture(PloneSandboxLayer):
 
         self.applyProfile(portal, 'collective.fingerpointing:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
+        # robot users: a Manager and a plain Member; the PAS subscriber
+        # reads the global request
+        setRequest(portal.REQUEST)
+        setRoles(portal, TEST_USER_ID, ['Manager'])
+        login(portal, TEST_USER_NAME)
+        api.user.create(
+            email='manager@example.com', username=MANAGER_NAME,
+            password=MANAGER_PASSWORD, roles=('Member', 'Manager'))
+        api.user.create(
+            email='member@example.com', username=MEMBER_NAME,
+            password=MEMBER_PASSWORD)
+        setRoles(portal, TEST_USER_ID, ['Member'])
+        logout()
+        setRequest(None)
 
     def tearDown(self):
         super(Fixture, self).tearDown()
@@ -101,3 +132,7 @@ INTEGRATION_TESTING = IntegrationTesting(
 
 FUNCTIONAL_TESTING = FunctionalTesting(
     bases=(FIXTURE,), name='collective.fingerpointing:Functional')
+
+ACCEPTANCE = FunctionalTesting(
+    bases=(FIXTURE, REMOTE_LIBRARY_BUNDLE_FIXTURE, SERVER_FIXTURE),
+    name='collective.fingerpointing:Acceptance')

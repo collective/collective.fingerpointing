@@ -3,6 +3,8 @@ from collective.fingerpointing.interfaces import IFingerPointingSettings
 from collective.fingerpointing.testing import INTEGRATION_TESTING
 from collective.fingerpointing.testing import QIBBB
 from plone.app.testing import logout
+from plone.app.testing import setRoles
+from plone.app.testing import TEST_USER_ID
 from plone.registry.interfaces import IRegistry
 from zope.component import getUtility
 
@@ -23,6 +25,14 @@ class ControlPanelTestCase(unittest.TestCase, QIBBB):
         logout()
         with self.assertRaises(Unauthorized):
             self.portal.restrictedTraverse('@@fingerpointing-settings')
+
+    def test_controlpanel_view_renders_the_settings(self):
+        setRoles(self.portal, TEST_USER_ID, ['Manager'])
+        view = self.portal.restrictedTraverse('@@fingerpointing-settings')
+        html = view()
+        for name in ('audit_pas', 'audit_lifecycle', 'audit_workflow',
+                     'audit_profile_imports', 'audit_registry', 'audit_iterate'):
+            self.assertIn('form.widgets.' + name, html)
 
     def test_controlpanel_installed(self):
         actions = [

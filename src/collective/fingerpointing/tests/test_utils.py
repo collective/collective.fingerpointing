@@ -28,6 +28,19 @@ class UtilsTestCase(unittest.TestCase):
         self.assertEqual(
             utils.get_request_information(), ('test_user_1_', '192.168.1.1'))
 
+    def test_get_request_information_forwarded_for(self):
+        self.request.environ['HTTP_X_FORWARDED_FOR'] = '10.0.0.1'
+        from collective.fingerpointing import utils
+        self.assertEqual(
+            utils.get_request_information(), ('test_user_1_', '10.0.0.1'))
+
+    def test_get_request_information_cloudflare_wins(self):
+        self.request.environ['HTTP_X_FORWARDED_FOR'] = '10.0.0.1'
+        self.request.environ['HTTP_CF_CONNECTING_IP'] = '192.168.1.1'
+        from collective.fingerpointing import utils
+        self.assertEqual(
+            utils.get_request_information(), ('test_user_1_', '192.168.1.1'))
+
     def test_audit_log_files(self):
         from collective.fingerpointing import utils
         audit_log_files = utils.audit_log_files()
