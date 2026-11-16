@@ -84,7 +84,7 @@ class Fixture(PloneSandboxLayer):
 
     def setUpPloneSite(self, portal):
         if HAS_ITERATE:
-            self.applyProfile(portal, 'plone.app.iterate:default')
+            self.applyProfile(portal, 'plone.app.iterate:plone.app.iterate')
 
         self.applyProfile(portal, 'collective.fingerpointing:default')
         portal.portal_workflow.setDefaultChain('simple_publication_workflow')
