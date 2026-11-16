@@ -1,4 +1,3 @@
-from setuptools import find_packages
 from setuptools import setup
 
 version = "2.0.0.dev0"
@@ -39,8 +38,6 @@ setup(
     author="Hector Velarde",
     author_email="hector.velarde@gmail.com",
     url="https://github.com/collective/collective.fingerpointing",
-    packages=find_packages("src"),
-    package_dir={"": "src"},
     include_package_data=True,
     zip_safe=False,
     python_requires=">=3.10",
