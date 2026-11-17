@@ -21,6 +21,9 @@ Changelog
 - Switched to PEP 420 native namespace packages.
   [chris-adam]
 
+- Don't install horse-with-no-namespace.
+  [chris-adam]
+
 
 1.8.3 (2022-05-06)
 ------------------
