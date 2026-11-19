@@ -60,6 +60,7 @@ htmlcov/
 *.log
 output.xml
 report.html
+.venv
 
 ##
 # Add extra configuration options in .meta.toml:

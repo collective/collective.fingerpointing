@@ -1,7 +1,13 @@
 Changelog
 =========
 
-2.0.0 (unreleased)
+2.0.1 (unreleased)
+------------------
+
+- Nothing changed yet.
+
+
+2.0.0 (2026-11-19)
 ------------------
 
 - Plone 6.2 compatibility, drop Plone 4.3, 5.x and Python 2 support;
